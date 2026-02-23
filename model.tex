@@ -283,6 +283,140 @@ Combining \autoref{eq:reaction} and \autoref{eq:Pi_star}, the equilibrium securi
 \end{equation}
 Two implications will be useful below. First, as $d_k\downarrow 0$, minority mobilization vanishes, equilibrium security converges to one under either party, and competence differences become electorally irrelevant. Second, when $d_k>0$ induces a non-trivial threat, higher $S_k$ translates into higher equilibrium security by raising effective enforcement $Z_k$.
 
+\subsection{Connection to Contest Theory: Manipulating the Group Contest} \label{subsec:contest_theory}
+
+This subsection makes explicit the model's link to contest theory. In canonical contest environments, a (typically neutral) principal designs prizes or rules to shape equilibrium effort and performance (e.g., \citet{barut1998symmetric}). Recent work also emphasizes that increasing the intensity of competition can \emph{discourage} effort, yielding non-monotone response patterns (e.g., \citet{fang2020turning}). In contrast, my political economy environment features a \emph{biased} designer: the incumbent party manipulates the contest \emph{indirectly} through symbolic policy. By choosing $d_k$, the incumbent selects the Minority's equilibrium mobilization $E_m(d_k)$ and thereby the ``threat'' faced in the decentralized Majority subgame. This is the precise sense in which provocative symbolic policy can be interpreted as ``arming the enemy''---an electoral strategy that increases the intensity of the group contest in order to activate Majority enforcement and magnify the return to security competence.
+
+\subsubsection{Comparative statics on asymmetric technology $S_k$}
+Fix $E_m>0$ and consider how Majority mobilization responds to an increase in state security competence $S_k$. Define
+\[
+F(E_M,S_k;E_m)\equiv \frac{E_M}{N_M}-\Lambda\frac{S_k E_m}{(S_k E_M+E_m)^2}.
+\]
+The symmetric equilibrium $E_M^*(S_k,E_m)$ is the unique solution to $F(E_M,S_k;E_m)=0$.
+
+\begin{lemma}[\textbf{State capacity and Majority effort}] \label{lem:Sk_statics}
+Fix $E_m>0$. The equilibrium mapping $S_k\mapsto E_M^*(S_k,E_m)$ is continuously differentiable and satisfies
+\begin{equation} \label{eq:dEMdS}
+\frac{\partial E_M^*(S_k,E_m)}{\partial S_k}
+\;=\;
+-\frac{\frac{\partial F}{\partial S_k}(E_M^*,S_k;E_m)}{\frac{\partial F}{\partial E_M}(E_M^*,S_k;E_m)}
+\;=\;
+-\frac{\Lambda E_m\big(S_k E_M^*(S_k,E_m)-E_m\big)}{(S_k E_M^*(S_k,E_m)+E_m)^3\Big[\frac{1}{N_M}+\frac{2\Lambda S_k^2 E_m}{(S_k E_M^*(S_k,E_m)+E_m)^3}\Big]}.
+\end{equation}
+In particular, $\frac{\partial E_M^*}{\partial S_k}>0$ if and only if $S_k E_M^*(S_k,E_m)<E_m$. Moreover, effective enforcement $Z_k^*(S_k,E_m)\equiv S_k E_M^*(S_k,E_m)$ is strictly increasing in $S_k$.
+\end{lemma}
+
+\begin{proof}
+Fix $E_m>0$. By Lemma \autoref{lem:contest_equilibrium}, $E_M^*(S_k,E_m)$ is uniquely defined for each $S_k>0$. Moreover,
+\[
+\frac{\partial F}{\partial E_M}(E_M,S_k;E_m)=\frac{1}{N_M}+\frac{2\Lambda S_k^2 E_m}{(S_k E_M+E_m)^3}>0
+\]
+for all $E_M\ge 0$ and $S_k>0$, so the Implicit Function Theorem implies that $E_M^*(S_k,E_m)$ is continuously differentiable in $S_k$.
+
+Differentiating $F(E_M^*(S_k,E_m),S_k;E_m)=0$ with respect to $S_k$ yields
+\[
+\frac{\partial F}{\partial E_M}\frac{\partial E_M^*}{\partial S_k}+\frac{\partial F}{\partial S_k}=0,
+\]
+where
+\[
+\frac{\partial F}{\partial S_k}(E_M,S_k;E_m)= -\Lambda E_m\frac{\partial}{\partial S_k}\Big(\frac{S_k}{(S_k E_M+E_m)^2}\Big)
+=\Lambda E_m\frac{S_k E_M-E_m}{(S_k E_M+E_m)^3}.
+\]
+Substituting into the total derivative expression yields \autoref{eq:dEMdS} and the sign characterization.
+
+The final claim follows from Lemma \autoref{lem:contest_equilibrium}, which shows that $Z_k^*(S_k,E_m)$ is strictly increasing in $S_k$ and that $\Pi_k^*(S_k,E_m)=Z_k^*/(Z_k^*+E_m)$ is therefore increasing in $S_k$.
+\end{proof}
+
+\begin{corollary}[\textbf{A technology threshold}] \label{cor:Sk_threshold}
+Fix $E_m>0$ and define $\overline{S}(E_m)\equiv 2E_m/\sqrt{N_M\Lambda}$. Then $E_M^*(S_k,E_m)$ is strictly increasing in $S_k$ for all $S_k\in(0,\overline{S}(E_m))$, strictly decreasing for all $S_k\in(\overline{S}(E_m),\infty)$, and satisfies $E_M^*(\overline{S}(E_m),E_m)=\sqrt{N_M\Lambda}/2$.
+\end{corollary}
+
+\begin{proof}
+By Lemma \autoref{lem:Sk_statics}, $\partial E_M^*(S_k,E_m)/\partial S_k=0$ if and only if $S_k E_M^*(S_k,E_m)=E_m$. Substituting this restriction into \autoref{eq:EM_star} yields $E_M^*/N_M=\Lambda/(4E_M^*)$, so $E_M^*=\sqrt{N_M\Lambda}/2$ at any stationary point. Therefore any stationary point must satisfy $S_k=E_m/E_M^*=2E_m/\sqrt{N_M\Lambda}$, proving the expression for $\overline{S}(E_m)$ and the value at the peak.
+
+To see that the stationary point is unique and is a global maximum, define $r\equiv S_k E_M^*(S_k,E_m)/E_m$. As in the proof of Lemma \autoref{lem:contest_equilibrium}, $r$ satisfies $r(r+1)^2=N_M\Lambda S_k^2/E_m^2$, which is strictly increasing in $S_k$. Hence $r$ crosses one exactly once, and Lemma \autoref{lem:Sk_statics} implies that $\partial E_M^*/\partial S_k$ changes sign exactly once (from positive to negative) at $S_k=\overline{S}(E_m)$.
+\end{proof}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/functions/fig_Sk_statics.jpg}
+    \caption{\textbf{Majority mobilization as a function of asymmetric technology.} The figure plots the symmetric equilibrium $E_M^*(S_k,E_m)$ implied by \autoref{eq:EM_star} as $S_k$ varies, holding $(N_M,\Lambda,E_m)=(100,1,5)$ fixed. The plotted range focuses on the increasing branch $S_k\le \overline{S}(E_m)$ from Corollary \autoref{cor:Sk_threshold}, on which higher state capacity raises the marginal return to individual effort in the contest success function \autoref{eq:CSF} and alleviates the Majority's free-rider problem.}
+    \label{fig:Sk_statics}
+\end{figure}
+
+\subsubsection{Reaction functions and strategic complements/substitutes}
+For a fixed incumbent technology $S_k$, \autoref{eq:EM_star} defines an implicit reaction function $E_M^*(S_k,E_m)$ mapping the Minority's mobilization into the Majority's equilibrium enforcement. This reaction is generically non-monotone: small threats discipline free-riding and raise enforcement, whereas sufficiently intense threats can discourage enforcement and reduce $E_M^*$.
+
+\begin{lemma}[\textbf{Inverted-U reaction and the peak threat level}] \label{lem:reaction_invertedU}
+Fix $S_k>0$. The equilibrium reaction function $E_m\mapsto E_M^*(S_k,E_m)$ is single-peaked on $(0,\infty)$, with a unique maximizer at
+\begin{equation} \label{eq:Em_peak}
+E_m^{\mathrm{peak}}(S_k)=\frac{S_k\sqrt{N_M\Lambda}}{2}.
+\end{equation}
+At the peak, the contest is locally ``balanced'' in the sense that $S_k E_M^*(S_k,E_m^{\mathrm{peak}})=E_m^{\mathrm{peak}}$, and the maximal Majority mobilization is $E_M^*(S_k,E_m^{\mathrm{peak}})=\frac{\sqrt{N_M\Lambda}}{2}$. Moreover, the reaction exhibits strategic complements for $E_m<E_m^{\mathrm{peak}}(S_k)$ and strategic substitutes for $E_m>E_m^{\mathrm{peak}}(S_k)$:
+\[
+\frac{\partial E_M^*(S_k,E_m)}{\partial E_m}
+\begin{cases}
+>0 & \text{if } E_m<E_m^{\mathrm{peak}}(S_k),\\
+=0 & \text{if } E_m=E_m^{\mathrm{peak}}(S_k),\\
+<0 & \text{if } E_m>E_m^{\mathrm{peak}}(S_k).
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+Fix $S_k>0$ and $E_m>0$. By Lemma \autoref{lem:contest_equilibrium}, $E_M^*(S_k,E_m)$ is the unique solution to $F(E_M,S_k;E_m)=0$. Since $\frac{\partial F}{\partial E_M}>0$ everywhere, the Implicit Function Theorem implies that $E_M^*(S_k,E_m)$ is continuously differentiable in $E_m$ on $(0,\infty)$. Implicit differentiation yields
+\begin{equation} \label{eq:dEMdEm}
+\frac{\partial E_M^*(S_k,E_m)}{\partial E_m}
+\;=\;
+-\frac{\frac{\partial F}{\partial E_m}(E_M^*,S_k;E_m)}{\frac{\partial F}{\partial E_M}(E_M^*,S_k;E_m)}
+\;=\;
+\frac{\Lambda S_k\big(S_k E_M^*(S_k,E_m)-E_m\big)}{(S_k E_M^*(S_k,E_m)+E_m)^3\Big[\frac{1}{N_M}+\frac{2\Lambda S_k^2 E_m}{(S_k E_M^*(S_k,E_m)+E_m)^3}\Big]}.
+\end{equation}
+Hence $\frac{\partial E_M^*}{\partial E_m}=0$ if and only if $S_k E_M^*(S_k,E_m)=E_m$, and the sign of $\frac{\partial E_M^*}{\partial E_m}$ coincides with the sign of $S_k E_M^*(S_k,E_m)-E_m$.
+
+To establish single-peakedness and compute the maximizer, define $r\equiv S_k E_M^*(S_k,E_m)/E_m$. As in the proof of Lemma \autoref{lem:contest_equilibrium}, $r$ satisfies $r(r+1)^2=N_M\Lambda S_k^2/E_m^2$. The right-hand side is strictly decreasing in $E_m$, while the left-hand side is strictly increasing in $r$, so $r$ is strictly decreasing in $E_m$. Consequently, there exists a unique $E_m>0$ such that $r=1$, i.e., $S_k E_M^*(S_k,E_m)=E_m$, and by \autoref{eq:dEMdEm} the reaction function increases up to that point and decreases thereafter.
+
+At the peak, $r=1$ implies $E_m=S_k E_M^*$. Substituting this restriction into \autoref{eq:EM_star} yields $E_M^*/N_M=\Lambda/(4E_M^*)$, hence $E_M^*=\sqrt{N_M\Lambda}/2$ and $E_m^{\mathrm{peak}}(S_k)=S_k\sqrt{N_M\Lambda}/2$, proving \autoref{eq:Em_peak}.
+\end{proof}
+
+Lemma \autoref{lem:reaction_invertedU} tightens the connection to contest theory in two ways. First, the inverted-U best response is a precise formulation of the ``discouragement'' logic: beyond the peak, additional opposition strength reduces the equilibrium return to Majority enforcement and crowds out effort, as emphasized by \citet{fang2020turning}. Second, the peak $E_m^{\mathrm{peak}}(S_k)$ increases linearly in $S_k$: higher state capacity expands the range of threats for which Majority enforcement responds positively to opposition mobilization. This provides a contest-theoretic mechanism through which a high-$S_k$ incumbent can alleviate the Majority's collective action problem.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/functions/fig_reaction_functions.jpg}
+    \caption{\textbf{Majority reaction functions and strategic complements/substitutes.} The figure plots the equilibrium response $E_M^*(S_k,E_m)$ from \autoref{eq:EM_star} as a function of $E_m$, for two technology levels: a high-capacity Hawk ($S_A$) and a low-capacity Dove ($S_B$). Each curve is single-peaked at $E_m^{\mathrm{peak}}(S_k)$ from Lemma \autoref{lem:reaction_invertedU}. For $E_m<E_m^{\mathrm{peak}}(S_k)$, enforcement and opposition mobilization are strategic complements ($\partial E_M^*/\partial E_m>0$); for $E_m>E_m^{\mathrm{peak}}(S_k)$ they are strategic substitutes ($\partial E_M^*/\partial E_m<0$). The arrow illustrates how a more provocative symbolic policy $d$ raises $E_m(d)$ and thereby moves the economy along the high-$S_k$ reaction curve, activating Majority enforcement. Illustration uses $(N_M,\Lambda,S_A,S_B)=(100,1,1.0,0.4)$.}
+    \label{fig:reaction_functions}
+\end{figure}
+
+\subsubsection{The inefficiency of the contest: rent dissipation under biased design}
+Contest theory often measures the resource cost of conflict by the sum of equilibrium efforts (rent dissipation). In my environment, the incumbent's symbolic policy is the primitive ``design'' instrument that determines the contest intensity by shifting $E_m(d)$.
+
+\begin{definition}[\textbf{Rent dissipation}] \label{def:rent_dissipation}
+For an incumbent with technology $S_k$, define total rent dissipation under symbolic policy $d$ as
+\begin{equation} \label{eq:RD}
+RD(d,S_k)\equiv E_M^*\big(S_k,E_m(d)\big)+E_m(d)=E_M^*\big(S_k,\gamma d^{\sigma}\big)+\gamma d^{\sigma}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[\textbf{Rent dissipation and biased contest design}] \label{prop:rent_dissipation}
+For any $S_k>0$, rent dissipation satisfies $RD(0,S_k)=0$ and $RD(d,S_k)>0$ for all $d>0$. Moreover, the politically optimal symbolic policy generically features strictly positive dissipation: in any equilibrium in which the incumbent chooses $d_k^*>0$, the realized contest dissipates resources $RD(d_k^*,S_k)>0$.
+\end{proposition}
+
+\begin{proof}
+Since $E_m(0)=0$ by \autoref{eq:reaction}, Lemma \autoref{lem:contest_equilibrium} implies $E_M^*(S_k,0)=0$ and hence $RD(0,S_k)=0$. If $d>0$, then $E_m(d)=\gamma d^{\sigma}>0$, and Lemma \autoref{lem:contest_equilibrium} implies $E_M^*(S_k,E_m(d))>0$. Therefore $RD(d,S_k)>0$ for all $d>0$.
+
+The final statement follows immediately: if an incumbent chooses $d_k^*>0$ in equilibrium, then the induced dissipation is $RD(d_k^*,S_k)>0$ by the preceding argument. In particular, combining this observation with Proposition \autoref{prop:provocation} implies that strategic provocation (``arming the enemy'') in equilibrium is necessarily accompanied by strictly positive rent dissipation.
+\end{proof}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.88\textwidth]{figures/functions/fig_rent_dissipation.jpg}
+    \caption{\textbf{Rent dissipation under symbolic policy.} The figure plots $RD(d,S_k)$ from \autoref{eq:RD} against symbolic policy intensity $d$, for two levels of state capacity. By inducing $E_m(d)>0$, symbolic policy creates a contest that wastes real resources through both Minority mobilization and Majority enforcement. Unlike the neutral contest designer studied in standard contest design settings (e.g., \citet{barut1998symmetric}), the political incumbent is biased: the Hawk may deliberately choose a strictly positive $d$---and hence strictly positive dissipation---because the induced conflict helps expand the Security Premium in the election. Illustration uses $(N_M,\Lambda,\gamma,\sigma,S_A,S_B)=(100,1,5,1,1.0,0.2)$.}
+    \label{fig:rent_dissipation}
+\end{figure}
+
+Taken together, Parts A--C formalize a tight connection between symbolic politics and contest theory: by choosing $d_k$, the incumbent selects the threat environment $E_m(d_k)$ and thereby manipulates the equilibrium mapping from security competence $S_k$ into realized security $\Pi_k^*(d_k;S_k)$. This mechanism is central to the political economy analysis below.
+
 
 \section{Voter Preferences and Electoral Competition}
 
