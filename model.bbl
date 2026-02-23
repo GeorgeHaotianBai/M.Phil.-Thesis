@@ -1,0 +1,12 @@
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
+\fi
+\begin{thebibliography}{xx}
+
+\harvarditem[Jia]{Jia}{2008}{jia2008stochastic}
+{\bf Jia, Hao}, ``A stochastic derivation of the ratio form of contest success functions,'' {\it Public Choice}, 2008, {\it 135} (3), 125--130.
+
+\harvarditem[Skaperdas]{Skaperdas}{1996}{skaperdas1996contest}
+{\bf Skaperdas, Stergios}, ``Contest success functions,'' {\it Economic theory}, 1996, {\it 7} (2), 283--290.
+
+\end{thebibliography}
