@@ -176,7 +176,12 @@
 \maketitle
 
 \begin{abstract}
-I develop a model of electoral competition in an identity-fragmented economy where Majority parties differ in technological competence: one excels in public good provision (the \emph{Dove}), while the other excels in security and identity consolidation (the \emph{Hawk}). Symbolic policies provoke Minority mobilization, and higher conflict widens the Hawk's relative advantage in providing security by amplifying the returns to security competence and alleviating the Majority's collective action problem. With a fixed voter trade-off between security and consumption, the Hawk may optimally choose provocative symbolic policy when the electoral gain from a larger Security Premium outweighs its distortion/backlash costs. A dynamic extension with noisy performance signals, myopic retrospective voting, and heterogeneous voter patience generates regime switching between high-$d$/low-$g$ and low-$d$/high-$g$ regimes, and clarifies when the economy converges to a conflict trap versus political cycles.
+
+\begin{center}
+    \textcolor{red}{This is model abstract only. Motivating facts to be finished.}
+\end{center}
+\vspace{0.3cm}
+Two Majority parties compete for office: a \emph{Dove} with a comparative advantage in economic public good provision and a \emph{Hawk} with superior security technology (state capacity). Security is micro-founded as a Tullock contest between decentralized Majority enforcement and Minority mobilization. Because enforcement is decentralized, the Majority faces a free-rider problem: in peaceful environments, equilibrium effort is low and the Hawk's security advantage is largely irrelevant. I show that a security-competent Hawk therefore acts as a \emph{biased contest designer}. By choosing provocative symbolic policies ($d>0$), the Hawk \emph{arms the enemy}, induces Minority mobilization, and shifts the equilibrium into the strategic-complements region of the reaction function, where threat activates Majority effort and widens the Hawk--Dove security gap. This mechanism endogenously increases the electoral payoff and hence the salience of security, but it yields inefficient conflict with strictly positive rent dissipation. A dynamic extension with noisy performance signals and stochastic shocks clarifies long-run political outcomes. With patient, forward-looking voters, the Hawk becomes an absorbing conflict-trap regime despite economic underperformance; with myopic retrospective voters, the polity exhibits political cycles, oscillating between Dove regimes and Hawk regimes.
 \end{abstract}
 
 \section{The Model Environment}
@@ -187,7 +192,7 @@ The incumbent party $k \in \{A, B\}$ selects a policy vector $\mathbf{q}_k = (d_
 
 Parties are distinguished by their technological capabilities in delivering these policies. We assume that Party $A$ possesses a comparative advantage in the production of security and coercion, denoted by competence parameter $S_A$. Conversely, Party $B$ possesses a comparative advantage in economic management but holds inferior security competence $S_B$. Formally, we posit that $S_A > S_B$, while the cost of providing public goods satisfies $c_A(g) > c_B(g)$ for any equivalent level of $g$.
 
-\subsection{Timing and solution concept}
+\subsection*{Timing and solution concept}
 The political interaction is a three-stage game solved by backward induction.
 \begin{enumerate}[label=\textbf{Stage \arabic*:}, leftmargin=*, itemsep=0.2em]
     \item \textbf{Policy choice.} The incumbent party $k\in\{A,B\}$ selects a policy vector $(d_k,g_k)$.
@@ -600,21 +605,6 @@ Since $\Omega_t$ is increasing in $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$, a first-o
 \end{proof}
 
 \noindent Together, Propositions \autoref{prop:trap} and \autoref{prop:cycles} characterize how voter patience selects between a conflict trap and political cycles.
-
-\section{Simulations}
-
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/Cow/Code_Generated_Image.png}
-    \caption{Representative simulated path of regime switching (placeholder).}
-    \label{fig:placeholder}
-\end{figure}
-
-This section illustrates the regime-switching logic in the dynamic extension. A natural simulation design is to specify Markov processes for $(\theta_t,\omega_t)$, generate noisy performance signals $(\tilde{c}_t,\tilde{v}_t)$, and simulate repeated elections under alternative voter discount factors $\delta$. The key objects to track are the incumbent sequence $(k_t)$, symbolic policy $(d_{k_t})$, public good provision $(g_{k_t})$, and the endogenous conflict variables $(E_{m,t},E_{M,t}^*,\Pi_{k_t,t})$.
-
-
-
-
 
 
 

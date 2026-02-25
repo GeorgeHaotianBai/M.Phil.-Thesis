@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex model"] 1771169282.7012 "model.aux" "model.bbl" "model" 1771169284.53681 0
-  "./ref.bib" 1771151790.97418 1686 c94fa619a5b0c0382f9c4638a8269e26 ""
+["bibtex model"] 1772011703.85793 "model.aux" "model.bbl" "model" 1772011705.46878 0
+  "./ref.bib" 1771862531.81237 2376 7461bd80c5875a9e5fcbf5ee18014c02 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/economic/aer.bst" 1389482635 26812 2ae6e48450a8c17a93d98067b7084a7a ""
-  "model.aux" 1771169284.19833 4734 5c9b49fcd2c1e5b0da41cdfd7109f701 "pdflatex"
+  "model.aux" 1772011705.1565 13372 f842bb4a47f7e39b60b8910785466fcc "pdflatex"
   (generated)
   "model.bbl"
   "model.blg"
   (rewritten before read)
-["pdflatex"] 1771169282.89307 "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" "model.pdf" "model" 1771169284.53701 0
-  "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" 1771169280.80159 37629 673b2852b4ccddcecd21da7ead27630f ""
+["pdflatex"] 1772011703.97484 "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" "model.pdf" "model" 1772011705.46894 0
+  "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" 1772011701.90485 52406 eee236e6cbd7e8bfbe2ccdee4250f2a2 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm" 1136768653 2532 9ad73cf4dd2173a847f2a5f5608e0b9a ""
@@ -346,12 +346,14 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1763841784 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1763841774 3345742 4d7463f7472b3aa05e598dff3c63b4ce ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "figures/Cow/Code_Generated_Image.png" 1771150059.30307 146850 23007949e1783092482cb4d02faa3495 ""
-  "model.aux" 1771169284.19833 4734 5c9b49fcd2c1e5b0da41cdfd7109f701 "pdflatex"
-  "model.bbl" 1771169282.88781 513 d77b21af1b66087288a01b0d26ee7e48 "bibtex model"
-  "model.out" 1771169284.19972 2571 49cd4947ebd06645f00f6d57902a5988 "pdflatex"
-  "model.tex" 1771169280.80159 37629 673b2852b4ccddcecd21da7ead27630f ""
-  "online.aux" 1771169283.75305 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "figures/functions/fig_Sk_statics.jpg" 1771862607.74349 121786 7cae22067be320046d592eca6c9fcb5f ""
+  "figures/functions/fig_reaction_functions.jpg" 1771862608.72751 169368 fa634d49f09222ba2b4f3cd676743bb2 ""
+  "figures/functions/fig_rent_dissipation.jpg" 1771862609.61135 151434 0db058da07360c15fcdab765b4dfde2f ""
+  "model.aux" 1772011705.1565 13372 f842bb4a47f7e39b60b8910785466fcc "pdflatex"
+  "model.bbl" 1772011703.97036 1058 af464a0ff2ab2c9f6b3ccfff538a21a7 "bibtex model"
+  "model.out" 1772011705.1585 3969 f66683ef886c0e1f17c1349d76be8d20 "pdflatex"
+  "model.tex" 1772011701.90485 52406 eee236e6cbd7e8bfbe2ccdee4250f2a2 ""
+  "online.aux" 1772011704.78713 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "model.aux"
   "model.log"
