@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.22)  25 FEB 2026 10:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.22)  25 FEB 2026 11:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1205,12 +1205,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 299.
 
 
-
-[6]
 Overfull \hbox (22.39352pt too wide) detected at line 314
 [][][][][]  \OT1/cmr/m/n/10.95 =  \OMS/cmsy/m/n/10.95 ^^@[]  \OT1/cmr/m/n/10.95 =  \OMS/cmsy/m/n/10.95 ^^@[]\OML/cmm/m/it/10.95 :
  []
 
+
+
+[6]
 
 Package hyperref Warning: No autoref name for `lemma' on input line 319.
 
@@ -1302,21 +1303,21 @@ Overfull \hbox (8.39336pt too wide) in paragraph at lines 425--426
 Package hyperref Warning: No autoref name for `proposition' on input line 427.
 
 
-
-[11 <./figures/functions/fig_reaction_functions.jpg>]
-
 Package hyperref Warning: No autoref name for `proposition' on input line 430.
 
-<figures/functions/fig_rent_dissipation.jpg, id=212, 505.89pt x 310.761pt>
+
+
+[11 <./figures/functions/fig_reaction_functions.jpg>]
+<figures/functions/fig_rent_dissipation.jpg, id=213, 505.89pt x 310.761pt>
 File: figures/functions/fig_rent_dissipation.jpg Graphic file (type jpg)
 <use figures/functions/fig_rent_dissipation.jpg>
 Package pdftex.def Info: figures/functions/fig_rent_dissipation.jpg  used on input line 434.
 (pdftex.def)             Requested size: 387.9479pt x 238.31464pt.
 
 
-[12]
+[12 <./figures/functions/fig_rent_dissipation.jpg>]
 
-[13 <./figures/functions/fig_rent_dissipation.jpg>]
+[13]
 Overfull \hbox (1.78407pt too wide) in paragraph at lines 464--465
 []\T1/ppl/m/n/10.95 The cen-tral mech-a-nism of the model re-lies on the in-ter-ac-tion be-tween op-po-si-tion strength
  []
@@ -1371,14 +1372,14 @@ Package hyperref Warning: No autoref name for `lemma' on input line 583.
 Package hyperref Warning: No autoref name for `lemma' on input line 605.
 
 
+Package hyperref Warning: No autoref name for `proposition' on input line 621.
+
+
+Package hyperref Warning: No autoref name for `proposition' on input line 621.
+
+
 
 [20]
-
-Package hyperref Warning: No autoref name for `proposition' on input line 621.
-
-
-Package hyperref Warning: No autoref name for `proposition' on input line 621.
-
 
 Package hyperref Warning: No autoref name for `corollary' on input line 626.
 
@@ -1390,16 +1391,14 @@ Package hyperref Warning: No autoref name for `proposition' on input line 628.
 
 
 
-[21]
-
-[22] (./model.bbl)
+[21] (./model.bbl)
 
 Package caption Warning: Unused \captionsetup[table] on input line 154.
 See the caption package documentation for explanation.
 
 
 
-[23
+[22
 
 ] (./model.aux)
  ***********
@@ -1407,16 +1406,16 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `model.out' has not changed.
-(rerunfilecheck)             Checksum: F66683EF886C0E1F17C1349D76BE8D20;3969.
+(rerunfilecheck)             Checksum: 828D825A8974E7A2E800806E64554F7E;3807.
  ) 
 Here is how much of TeX's memory you used:
- 43059 strings out of 473190
- 980989 string characters out of 5715799
+ 43058 strings out of 473190
+ 980982 string characters out of 5715799
  1473171 words of memory out of 5000000
  65411 multiletter control sequences out of 15000+600000
  609616 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,101p,1497b,642s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,101p,1499b,642s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.4} has been referenced but does not exist, replaced by a fixed one
 
@@ -1430,10 +1429,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on model.pdf (23 pages, 752199 bytes).
+Output written on model.pdf (22 pages, 751595 bytes).
 PDF statistics:
- 438 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
+ 433 PDF objects out of 1000 (max. 8388607)
+ 356 compressed objects within 4 object streams
+ 96 named destinations out of 1000 (max. 500000)
  140 words of extra memory for PDF output out of 10000 (max. 10000000)
 
