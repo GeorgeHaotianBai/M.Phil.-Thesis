@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex model"] 1772015170.0238 "model.aux" "model.bbl" "model" 1772015311.10712 0
+["bibtex model"] 1772016451.85895 "model.aux" "model.bbl" "model" 1772016520.35951 0
   "./ref.bib" 1771862531.81237 2376 7461bd80c5875a9e5fcbf5ee18014c02 ""
   "/usr/local/texlive/2025/texmf-dist/bibtex/bst/economic/aer.bst" 1389482635 26812 2ae6e48450a8c17a93d98067b7084a7a ""
-  "model.aux" 1772015310.72589 13352 6b85a3e503bfc279a5480494ed95723b "pdflatex"
+  "model.aux" 1772016520.00003 9347 1044549b300373367325b3ac1f7fb1df "pdflatex"
   (generated)
   "model.bbl"
   "model.blg"
   (rewritten before read)
-["pdflatex"] 1772015309.38427 "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" "model.pdf" "model" 1772015311.1073 0
-  "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" 1772015308.85262 60928 5ab02be80f4fbc8f351cceadefc22986 ""
+["pdflatex"] 1772016518.59429 "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" "model.pdf" "model" 1772016520.35972 0
+  "/Users/admin/Dropbox/Oxford/M.Phil. Thesis/model/model.tex" 1772016518.35582 60938 cf4532f162afa8fea2a73b147f73d326 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/adobe/palatino/pplb8r.tfm" 1136768653 2532 9ad73cf4dd2173a847f2a5f5608e0b9a ""
@@ -320,6 +320,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/palatino.sty" 1586716065 871 125278a9cae6071e87c6114370fad4cf ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/t1ppl.fd" 1137110629 774 5747d3f33ec2f7c4881c94e931a130b1 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/psnfss/ts1ppl.fd" 1137110629 619 35f1cf70bf09b6e2d22ee0902cfb1a8b ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/ragged2e/ragged2e.sty" 1687466457 10085 3dececaeed388e31285c366e124c0c4e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657483315 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/setspace/setspace.sty" 1670275497 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
@@ -349,11 +350,11 @@
   "figures/functions/fig_Sk_statics.jpg" 1771862607.74349 121786 7cae22067be320046d592eca6c9fcb5f ""
   "figures/functions/fig_reaction_functions.jpg" 1771862608.72751 169368 fa634d49f09222ba2b4f3cd676743bb2 ""
   "figures/functions/fig_rent_dissipation.jpg" 1771862609.61135 151434 0db058da07360c15fcdab765b4dfde2f ""
-  "model.aux" 1772015310.72589 13352 6b85a3e503bfc279a5480494ed95723b "pdflatex"
-  "model.bbl" 1772015172.98994 1070 2bde5661eadbe54610b2f7ab751e610f "bibtex model"
-  "model.out" 1772015310.72775 3969 f66683ef886c0e1f17c1349d76be8d20 "pdflatex"
-  "model.tex" 1772015308.85262 60928 5ab02be80f4fbc8f351cceadefc22986 ""
-  "online.aux" 1772015310.31454 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "model.aux" 1772016520.00003 9347 1044549b300373367325b3ac1f7fb1df "pdflatex"
+  "model.bbl" 1772016451.96868 1058 af464a0ff2ab2c9f6b3ccfff538a21a7 "bibtex model"
+  "model.out" 1772016520.00182 3969 f66683ef886c0e1f17c1349d76be8d20 "pdflatex"
+  "model.tex" 1772016518.35582 60938 cf4532f162afa8fea2a73b147f73d326 ""
+  "online.aux" 1772016519.54541 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "model.aux"
   "model.log"
