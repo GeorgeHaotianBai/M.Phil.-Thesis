@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.22)  25 FEB 2026 11:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.22)  25 FEB 2026 13:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1185,11 +1185,6 @@ Overfull \hbox (8.64317pt too wide) in paragraph at lines 275--277
 Package hyperref Warning: No autoref name for `lemma' on input line 287.
 
 
-Overfull \hbox (3.4376pt too wide) in paragraph at lines 287--288
-[]\T1/ppl/m/n/10.95 Lemma [][]1[][][] iso-lates a ba-sic political-economy con-straint: state ca-pac-ity is not self-activating.
- []
-
-
 
 [5]
 
@@ -1429,7 +1424,7 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on model.pdf (22 pages, 751595 bytes).
+Output written on model.pdf (22 pages, 751655 bytes).
 PDF statistics:
  433 PDF objects out of 1000 (max. 8388607)
  356 compressed objects within 4 object streams
