@@ -1,0 +1,210 @@
+% Tables section. Each table on its own page via \clearpage.
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Data Sources}
+\label{tab:data_sources}
+\begin{threeparttable}
+\onehalfspacing
+\footnotesize
+\begin{tabularx}{\textwidth}{p{2.3cm}p{2.4cm}p{1.8cm}p{1.6cm}X}
+\toprule[1.25pt]
+Dataset & Unit & Coverage & Retrieved & Source \\
+\midrule
+Cattle Slaughter Policy & State & 1955--2018 & Sep 2025 & Author-compiled from state-level legislative records (see \S\ref{app:ban_intensity}). \\
+Bhavnani India Election v2.0 & Candidate $\times$ constituency $\times$ election & 1977--2015 & 2023 & Harvard Dataverse, Bhavnani (2014). \\
+Post-2015 election supplement & State $\times$ election-year aggregate & 2015--2025 & Apr 2026 & Author-compiled from Wikipedia ``Results of the YYYY \textit{State} Legislative Assembly election'' and ``YYYY Indian general election'' pages, cross-checked against Election Commission of India Statistical Reports. \\
+Bhavnani-to-ECI reconciliation panel & State $\times$ year & 1984--2024 & Apr 2026 & Combines Bhavnani~v2.0 with the post-2015 supplement; forward-fills non-election years. \\
+Varshney--Wilkinson (V-W) Dataset v2 & Incident & 1950--1995 & 2025 & ICPSR~04342, Varshney and Wilkinson (2006). \\
+GDELT Events Database (India subset) & Event & 1979--2024 & 2025 & Global Database of Events, Language, and Tone CAMEO~19 (Fight) subset; Hindu-Muslim subset standardised. \\
+Social Conflict Analysis Database (SCAD) & Event & 1990--2017 & 2025 & Idean Salehyan et al. (2012). \\
+India Human Development Survey (IHDS-II) & Household; individual & 2011--12 (Wave~2) & 2025 & ICPSR 36151, Desai and Vanneman (2018). \\
+BJP speech archive & Speech & 2000--2025 & Oct 2025 & \texttt{bjp.org/speeches} (author scrape). \\
+PMIndia news updates & PM speech / statement & 2024m6--2026m4 & Apr 2026 & \texttt{pmindia.gov.in/en/news\_updates} (author scrape, fallback after \texttt{narendramodi.in} was unreachable). \\
+Muslim-voice news proxy & News item & 2010--2025 & Apr 2026 & 65-query Google News RSS harvest across major English outlets; details at \S\ref{app:minority_corpus}. \\
+Relative per-capita income (state) & State $\times$ anchor-year & 1990, 2000, 2010, 2020, 2023 & 2025 & Reserve Bank of India, \textit{Handbook of Statistics on Indian States}. \\
+State population annual & State $\times$ year & 2000--2024 & Apr 2026 & Census~2011 state shares rescaled annually by World~Bank \texttt{SP.POP.TOTL} India. \\
+GADM administrative boundaries & State polygon & v4.1 (2022) & 2025 & Global Administrative Areas \texttt{gadm.org}. \\
+\bottomrule[1.25pt]
+\end{tabularx}
+\begin{tablenotes}[para,flushleft]
+\footnotesize
+\textit{Notes.} All datasets listed above are local to the project folder
+\texttt{PE\_of\_Cattle\_Shared/india\_beef\_and\_religion/} and reproducible
+end-to-end from the scripts listed alongside each subsection below. \\
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\clearpage
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Birth History and Early-Life Growth Deficiency of Muslim Households Exposed to Cow-Slaughter Bans}
+\label{tab:birth_history}
+\begin{threeparttable}
+    \onehalfspacing
+    \begin{tabularx}{1\textwidth}{lCCCCCC}
+        \toprule[1.25pt]
+        & (1) & (2) & (3) & (4) & (5) & (6) \\
+        & \multicolumn{2}{c}{\bf Pregnancy} &  \multicolumn{2}{c}{\bf Premature Death} &  \multicolumn{2}{c}{\bf Growth Deficiency} \\
+        \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+        & Spontaneous Miscarriage & Induced Abortion & $<$ 1 Month & $<$ 8 years & Infancy PI & Minors BMI \\
+\hline
+\\
+\textit{Un-Hinduism $\times$ Ban} & 0.013** & 0.008  & 0.179*** & 0.124** & -3.207*** & -0.615** \\
+ & (0.006) & (0.006) & (0.035) & (0.052) & (0.957) & (0.248) \\
+\\
+Sample & \multicolumn{2}{c}{Eligible Women} & \multicolumn{2}{c}{Dead Children} & \multicolumn{2}{c}{Alive Children} \\
+Outcome Mean & 0.419 & 0.141 & 0.520 & 0.871 & 29.026 & 16.978 \\
+Observations & 8,220 & 7,731 & 7,317 & 7,317 & 6,790 & 48,237 \\
+R-squared & 0.193 & 0.118 & 0.209 & 0.241 & 0.210 & 0.177 \\
+\\
+Individual Control & Yes & Yes & Yes & Yes & Yes & Yes \\
+Year Control & Yes & Yes & Yes & Yes & Yes & Yes \\
+State-Birth FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+State-Maternal Birth FE & No & No & Yes & Yes & Yes & Yes \\
+        \bottomrule[1.25pt]
+    \end{tabularx}
+    \begin{tablenotes}[para,flushleft]
+        \footnotesize
+        \textit{Notes.}
+        Data are from IHDS-II, the second wave of the India Human Development
+        Survey. Unit of observation is at the individual level.
+        \textit{Un-Hinduism} is an indicator for non-Hindu household identity.
+        Intensity in columns (1)--(2) is the overlap between the respondent's
+        formative years (ages 8--22) and the violent aftermath of a state-level
+        cow-slaughter ban (eight years following first enactment); in columns
+        (3)--(6), intensity is an indicator for whether the child was born
+        within that eight-year window. Column~(1): indicator for having
+        experienced a spontaneous miscarriage. Column~(2): indicator for an
+        induced abortion or dilation-and-curettage procedure. Column~(3):
+        indicator for neonatal death (within one month of birth) among
+        deceased children. Column~(4): indicator for pre-formative-years
+        death (before age eight) among deceased children. Column~(5):
+        Ponderal Index of surviving children under age three. Column~(6):
+        Body-Mass Index of surviving children under age eighteen. Individual
+        controls: gender. Year controls: survey year. Standard errors
+        clustered at the state $\times$ birth-year level. Significance:
+        \textsuperscript{*} $p < 0.10$;
+        \textsuperscript{**} $p < 0.05$;
+        \textsuperscript{***} $p < 0.01$.
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\clearpage
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Short- and Long-Term Poverty of Muslim Households Exposed to Cow-Slaughter Bans}
+\label{tab:economic}
+\begin{threeparttable}
+    \onehalfspacing
+    \begin{tabularx}{1\textwidth}{lCCCCCC}
+        \toprule[1.25pt]
+        & (1) & (2) & (3) & (4) & (5) & (6) \\
+        & \multicolumn{3}{c}{\bf Short-term Poverty} &  \multicolumn{3}{c}{\bf Long-term Poverty} \\
+        \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+        & Absolute & Relative & Subjective & Absolute & Relative & Subjective \\
+\hline
+\\
+\textit{Un-Hinduism $\times$ Ban} & 0.006 & -0.048 & 0.022 & -0.003$^\dagger$ & -0.012** & -0.009*  \\
+  & (0.039) & (0.074) & (0.036) & (0.002) & (0.005) & (0.005)  \\
+ \\
+Observations & 41,416 & 41,432 & 40,810 & 41,416 & 41,432 & 40,810 \\
+R-squared & 0.194 & 0.268 & 0.270 & 0.194 & 0.269 & 0.270 \\
+\\
+Individual Control & Yes & Yes & Yes & Yes & Yes & Yes \\
+Household Control & Yes & Yes & Yes & Yes & Yes & Yes \\
+Year Control & Yes & Yes & Yes & Yes & Yes & Yes \\
+State-Birth FE & Yes & Yes & Yes & Yes & Yes & Yes \\
+        \bottomrule[1.25pt]
+    \end{tabularx}
+    \begin{tablenotes}[para,flushleft]
+        \footnotesize
+        \textit{Notes.}
+        Data are from IHDS-II. Unit of observation is the household.
+        Intensity in columns (1)--(3) is an indicator for whether the
+        household's state of residence was within the violent aftermath of a
+        cow-slaughter ban during the survey year. Intensity in columns
+        (4)--(6) is the overlap between the household head's formative years
+        (ages 8--22) and the violent eight-year window. Columns (1) and (4):
+        indicator for household per-capita expenditure above the
+        state/urban-specific 2012 Tendulkar poverty line. Columns (2) and
+        (5): household expenditure percentile rank within the district.
+        Columns (3) and (6): an ordinal indicator of poor / middle-class /
+        comfortable self-reported status. All dependent variables are
+        standardised. Individual controls: gender. Household controls: age
+        and gender structure, highest adult education, number of workers.
+        Year controls: survey year. Standard errors clustered at the state
+        level. Significance:
+        \textsuperscript{$\dagger$} $p < 0.15$;
+        \textsuperscript{*} $p < 0.10$;
+        \textsuperscript{**} $p < 0.05$;
+        \textsuperscript{***} $p < 0.01$.
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\clearpage
+
+% Auto-generated from policy_clean.csv
+% Cattle-slaughter policy timing across Indian states/UTs
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Cattle-Slaughter Policy Timing Across Indian States and Union Territories}
+\label{tab:policy_timing}
+\begin{threeparttable}
+\onehalfspacing
+\footnotesize
+\begin{tabular}{lccccccc}
+\toprule[1.25pt]
+State / UT & Cow & Bull & Bullock & Buffalo & Beef poss. & Beef sales & General \\
+\midrule
+Andaman and Nicobar Islands & 1967 & -- & -- & -- & -- & -- & 1967 \\
+Andhra Pradesh & 1976 & -- & -- & -- & -- & -- & 1976 \\
+Arunachal Pradesh & -- & -- & -- & -- & -- & -- & -- \\
+Assam & -- & -- & -- & -- & -- & -- & -- \\
+Bihar & 1956 & 1956 & 1956 & 1956 & -- & -- & 1956 \\
+Chandigarh & 1956 & 1956 & 1956 & -- & -- & 1956 & 1956 \\
+Chhattisgarh & 2006 & 2006 & 2006 & 2006 & 2006 & -- & 2006 \\
+Dadra and Nagar Haveli & 1978 & -- & -- & -- & -- & 1978 & 1978 \\
+Daman and Diu & 1978 & -- & -- & -- & -- & 1978 & 1978 \\
+Delhi & -- & -- & -- & -- & -- & -- & -- \\
+Goa & 1978 & -- & -- & -- & -- & 1978 & 1978 \\
+Gujarat & 1961 & 2011 & 2011 & -- & 2011 & 2011 & 1961 \\
+Haryana & 2015 & 2015 & 2015 & -- & 2015 & 2015 & 2015 \\
+Himachal Pradesh & 1979 & 1979 & 1979 & -- & -- & 1979 & 1979 \\
+Jammu and Kashmir & 1989 & 1989 & 1989 & 1989 & 1989 & -- & 1989 \\
+Jharkhand & 2005 & 2005 & 2005 & -- & 2005 & 2005 & 2005 \\
+Karnataka & 1964 & -- & -- & -- & -- & -- & 1964 \\
+Kerala & -- & -- & -- & -- & -- & -- & -- \\
+Lakshadweep & -- & -- & -- & -- & -- & -- & -- \\
+Madhya Pradesh & 1960 & 2004 & 2004 & -- & 1960 & -- & 1960 \\
+Maharashtra & 1977 & 2015 & 2015 & -- & 2015 & -- & 1977 \\
+Manipur & -- & -- & -- & -- & -- & -- & -- \\
+Meghalaya & -- & -- & -- & -- & -- & -- & -- \\
+Mizoram & -- & -- & -- & -- & -- & -- & -- \\
+Nagaland & -- & -- & -- & -- & -- & -- & -- \\
+Odisha & 1961 & -- & -- & -- & -- & -- & 1961 \\
+Puducherry & 1969 & -- & -- & -- & -- & 1969 & 1969 \\
+Punjab & 1956 & 1956 & 1956 & -- & -- & 1956 & 1956 \\
+Rajasthan & 1995 & 1995 & 1995 & -- & 1995 & 1995 & 1995 \\
+Sikkim & -- & -- & -- & -- & -- & -- & -- \\
+Tamil Nadu & 1976 & -- & -- & -- & -- & -- & 1976 \\
+Telangana & 1976 & -- & -- & -- & -- & -- & 1976 \\
+Tripura & -- & -- & -- & -- & -- & -- & -- \\
+Uttar Pradesh & 1956 & -- & -- & -- & -- & 1956 & 1956 \\
+Uttarakhand & 1956 & 2007 & 2007 & -- & 2007 & 1956 & 1956 \\
+West Bengal & -- & -- & -- & -- & -- & -- & -- \\
+\bottomrule[1.25pt]
+\end{tabular}
+\begin{tablenotes}[para,flushleft]
+\footnotesize
+\textit{Notes.} Year of first enactment of each ban type. ``Cow'', ``Bull'', ``Bullock'' and ``Buffalo'' refer to slaughter prohibitions for the indicated bovine. ``Beef poss.'' and ``Beef sales'' are statutes prohibiting possession or commercial sale of bovine meat. ``General'' is the earliest of any ban type for the state. Dashes denote no enactment as of 2018. Source: author-compiled from state-level legislative records, following \citet{dasguptaNutritionalCostBeef2023}.\\
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\clearpage

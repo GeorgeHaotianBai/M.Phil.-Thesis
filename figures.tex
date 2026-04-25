@@ -1,0 +1,226 @@
+% Figures section. Each figure on its own page via \clearpage.
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/empirics/narrative_timeseries.pdf}
+    \caption{\normalsize\bf Majority and Minority Identity-Coded Narrative
+    Share, India 1996--2025.}
+    \floatfoot*{\footnotesize\textit{Notes.} Red: monthly share of
+    BJP-leadership speeches classified as identity-coded. Blue: monthly
+    share of Muslim-voice items classified as counter-mobilisation. Both
+    series are six-month centred rolling means; numerators are divided
+    by total monthly content in their own corpus, so neither series can be
+    inflated by adding speakers or outlets. Classification by Claude
+    Haiku~4.5. Majority corpus: $N=3{,}328$ speeches from
+    \texttt{bjp.org/speeches}, \texttt{pmindia.gov.in}, and BJP~Lok~Sabha
+    floor speeches from \texttt{elibrary.sansad.in}. Minority corpus:
+    $N=3{,}792$ items (news-outlet snippets plus AIMIM~Lok~Sabha floor
+    speeches) from a $65$-query harvest across major English-language
+    outlets. Vertical dashed lines mark the December~$2019$ CAA passage
+    (coincident with the Shaheen Bagh movement), the January~$2022$
+    Karnataka hijab bans, and the August~$2024$ Waqf~Amendment~Bill.
+    Classification prompt and category definitions in
+    Appendix~\ref{app:narrative_classification}.}
+    \label{fig:narrative_timeseries}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.82\textwidth]{figures/empirics/policy_cumulative_rollout.pdf}
+    \caption{\normalsize\bf Cumulative State-Level Adoption of Cattle-Slaughter
+    Bans, 1950--2020.}
+    \floatfoot*{\footnotesize\textit{Notes.} Each line traces the cumulative
+    count of state-years in which the indicated ban type is in force, across
+    the six ban categories (cow, bullock, bull, buffalo slaughter; beef
+    possession; beef sales). The 2015--2017 acceleration coincides with the
+    first Modi-government term and forms the staggered adoption window that
+    identifies the event studies in Appendix~\ref{app:event_studies}. Data:
+    author-compiled Cattle Slaughter Policy dataset; construction in
+    Appendix~\ref{app:ban_intensity}.}
+    \label{fig:ban_adoption}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/empirics/cycles_four_panel.pdf}
+    \caption{\normalsize\bf Cycles and Persistence in Indian Electoral
+    Competition, 1984--2024.}
+    \floatfoot*{\footnotesize\textit{Notes.} (A)~National BJP vote share and
+    Lok Sabha seat share, 1984--2024. (B)~Fraction of 30~Indian states (and
+    NCT of Delhi) governed by the BJP or a BJP-led coalition in each year.
+    (C)~Histogram of uninterrupted Assembly-level incumbency tenure by party
+    group \{BJP, INC, regional/other\}; spells that are still ongoing at the
+    end of the panel are right-truncated. (D)~State-year regime classification
+    (rows: $30$ states, alphabetical; columns: 1984--2024). A state-year is
+    \emph{BJP-dominant} when the BJP rules with seat-share $\geq 50\%$ or
+    vote-share margin $\geq 10$~pp; \emph{non-BJP-dominant} when a non-BJP
+    party rules with margin $\geq 10$~pp; \emph{competitive} otherwise.
+    Data: Bhavnani India Election Dataset v2.0 (1977--2015) and
+    author-compiled supplementary panel from Wikipedia and ECI for the
+    $51$~Vidhan Sabha elections and 2019, 2024 Lok Sabha elections
+    held in 2015--2025. See Appendix~\ref{app:data_sources} for the
+    construction and sanity checks.}
+    \label{fig:cycles_four_panel}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.78\textwidth]{figures/empirics/paradox_of_competence.pdf}
+    \caption{\normalsize\bf BJP Retention Rises in the Intensity of
+    Hindu--Muslim Conflict Experienced During the Incumbent's Tenure.}
+    \floatfoot*{\footnotesize\textit{Notes.} Horizontal axis: tenure-average
+    of $\log(1+\text{violent Hindu--Muslim events})$ between the prior
+    Assembly election and the current one. Vertical axis: indicator for the
+    BJP being the state government after the current election. Black
+    markers: mean retention rate by conflict quintile, with $95\%$
+    bootstrap confidence intervals. Blue line and band: linear-probability-model
+    fit with $95\%$ confidence interval, state-clustered standard errors.
+    Sample: $42$ defense elections across $15$ states in which the BJP was
+    the pre-election incumbent, $1984$--$2024$. See
+    Appendix~\ref{app:paradox_regression} for the full specification and
+    robustness checks.}
+    \label{fig:paradox_of_competence}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \subfigure[Composite cattle-slaughter ban intensity (cumulative through~2020).]{
+        \includegraphics[width=0.32\textwidth]{figures/empirics/map_ban_intensity.pdf}
+        \label{fig:map_ban_intensity}
+    }
+    \subfigure[Hindu--Muslim violence intensity per capita (1950--2024).]{
+        \includegraphics[width=0.32\textwidth]{figures/empirics/map_conflict_intensity.pdf}
+        \label{fig:map_conflict_intensity}
+    }
+    \subfigure[$\Delta$~BJP Vidhan Sabha vote share, 2009~$\to$~2019 (pp).]{
+        \includegraphics[width=0.32\textwidth]{figures/empirics/map_bjp_delta_2009_2019.pdf}
+        \label{fig:map_bjp_delta}
+    }
+    \caption{\normalsize\bf Spatial Distribution of Symbolic-Policy Intensity,
+    Hindu--Muslim Violence, and BJP Breakthrough.}
+    \floatfoot*{\footnotesize\textit{Notes.} (A)~Composite ban intensity
+    averaged over 1990--2020; construction in
+    Appendix~\ref{app:ban_intensity}. (B)~Pooled Hindu--Muslim violent
+    incidents per capita, sources: Varshney--Wilkinson 1950--1995 and GDELT
+    Hindu--Muslim variant 1980--2024; population panel at
+    Appendix~\ref{app:population}. (C)~BJP state-Assembly vote-share change
+    between the Vidhan Sabha election closest to 2009 and the Vidhan Sabha
+    election closest to 2019 for each state, in percentage points;
+    diverging colour scale centred at zero.}
+    \label{fig:maps}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.92\textwidth]{figures/empirics/voter_space_2d.pdf}
+    \caption{\normalsize\bf Voter Welfare and Political Dominance, Indian
+    States, 2000 and 2020.}
+    \floatfoot*{\footnotesize\textit{Notes.} Each point is one of the
+    fifteen largest mainland states, plotted separately for $2000$
+    (left panel) and $2020$ (right panel). Horizontal axis: state GDP per
+    capita relative to the national average in the year
+    ($1.0$~=~national average), computed as each state's share of national
+    GDP divided by its share of national population. Vertical axis: BJP
+    state-Assembly seat share. \textbf{Point size rises with the state's
+    cumulative cattle-slaughter-ban intensity as of 2020}: a state that
+    adopted all six ban types early shows as a large dot, a state with no
+    bans shows as a small dot. The size scaling is square-root, so
+    mid-range bans are distinguishable from the high-ban ceiling (reached
+    by three states). See \autoref{fig:ban_adoption} and
+    Appendix~\ref{app:ban_intensity} for the index's construction. Shared
+    axes across panels. Dashed reference lines mark the national-average
+    welfare ($x=1.0$) and the seat-share majority ($y=0.5$). Three states
+    are labelled for orientation; the remaining twelve are left unlabelled
+    to avoid overlap. Data: RBI state-GDP shares and Census-interpolated
+    population panel for the welfare axis; Bhavnani-plus-Wikipedia election
+    panel of \S\ref{subsec:cycles} for the dominance axis.}
+    \label{fig:voter_space_2d}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.82\textwidth]{figures/empirics/security_premium_empirical.pdf}
+    \caption{\normalsize\bf The Electoral Return to Communal Conflict is
+    Inverted-U.}
+    \floatfoot*{\footnotesize\textit{Notes.} Right-wing (BJP and its allied
+    parties in the National Democratic Alliance) vote share in Indian state
+    Assembly elections on the vertical axis, against the within-state
+    conflict-intensity percentile in the pre-election window on the
+    horizontal axis. The fitted shape rises over the low-to-moderate
+    conflict range and flattens beyond a finite ceiling, so the electoral
+    return to observed communal disorder is bounded. Figure retained from
+    the author's prior empirical analysis; see
+    Appendix~\ref{app:event_studies} for construction.}
+    \label{fig:security_premium_empirical}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.82\textwidth]{figures/empirics/event_study_cow_slaughter_ban.pdf}
+    \caption{\normalsize\bf Rent Dissipation: Cow-Slaughter Bans and
+    Hindu--Muslim Violence.}
+    \floatfoot*{\footnotesize\textit{Notes.} Event-time coefficients from a
+    state-year two-way fixed-effects regression of log Hindu--Muslim
+    violent events on leads and lags of state-level first adoption of a
+    cow-slaughter ban. Reference period is one year before adoption.
+    Controls: state population, precipitation, temperature, and per-capita
+    GDP time trends; state and year fixed effects. Sample: $30$ Indian
+    states, $1980$--$2024$. Pre-adoption leads are flat; post-adoption
+    lags are positive and persistent. The analogous event studies for the
+    bull, bullock, and buffalo ban variants are in
+    Appendix~\ref{app:event_studies}.}
+    \label{fig:rent_dissipation_event_study}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/empirics/event_studies_four_panel.pdf}
+    \caption{\normalsize\bf Staggered-DID Event Studies: Slaughter Bans and
+    Hindu--Muslim Violent Events.}
+    \floatfoot*{\footnotesize\textit{Notes.} Each panel plots the estimated
+    event-time coefficients from a state-year TWFE regression of log
+    Hindu--Muslim violent events (pooled GDELT and Varshney--Wilkinson) on
+    leads and lags of state-level first adoption of the relevant ban type,
+    1980--2024. Controls: state and year fixed effects; state-level
+    population, precipitation, temperature, and per-capita GDP
+    time-trend. Reference period: $t=-1$. The figures shown here are copied
+    from \texttt{python\_results/figures/regression/event\_studies/} to the
+    thesis figures folder; see the full replication package for
+    all~$144$ ban~$\times$ outcome $\times$ specification combinations.}
+    \label{fig:event_studies}
+\end{figure}
+
+\clearpage
+

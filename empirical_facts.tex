@@ -6,428 +6,394 @@
 
 \section{Empirical Facts} \label{sec:empirical_facts}
 
-This section presents four empirical regularities that motivate the model and
-anchor its primitives in the Indian case. Subsection~\ref{subsec:d_narrative}
-documents the staggered intensification of the symbolic-policy instrument~$d$
-and the co-movement of majority and minority narrative mobilization,
-$E_M$~and~$E_m$. Subsection~\ref{subsec:cycles} shows the co-existence of
-persistent Hawk-state absorption and recurrent regime cycles across Indian
-states, the two dynamic paths identified by Propositions~\ref{prop:trap}
-and~\ref{prop:cycles}. Subsection~\ref{subsec:voter_space} places states in the
-two-dimensional space $(\Delta u,\text{BJP dominance})$ with ban intensity as a
-third margin, tracing the empirical footprint of the Security Premium of
-Lemma~\ref{lem:reaction_invertedU}. Subsection~\ref{subsec:other_democracies}
-closes with three scope cases --- the United States, Colombia, and Iran ---
-that illustrate how the same mechanism operates under different institutional
-architectures. The full set of data sources, variable constructions, and
-supplementary results is deferred to Appendix~\ref{app:more_empirical_facts}.
+This section documents four empirical patterns that motivate the model
+developed in the remainder of the paper. I first trace the rise of
+identity-coded regulation in India's cow-slaughter legislation and the
+parallel evolution of identity-coded political speech by majority and
+minority actors (\S\ref{subsec:d_narrative}). I then characterise the long-run
+political geography that these legislative and rhetorical patterns have
+produced: some Indian states have become durably Hindu-nationalist, others
+cycle between the BJP and non-BJP blocs, and a third set has remained
+consistently non-BJP (\S\ref{subsec:cycles}). I place states in the
+two-dimensional space of relative economic welfare and political dominance to
+examine how symbolic-policy intensity correlates with each
+(\S\ref{subsec:voter_space}). I close with three scope cases --- the United
+States, Colombia, and Iran --- that illustrate the same pattern under
+different institutional architectures (\S\ref{subsec:other_democracies}). The
+full set of data sources, variable constructions, and supplementary results
+is deferred to Appendix~\ref{app:more_empirical_facts}. All four
+subsections are descriptive; the formal model in Section~\ref{sec:model}
+offers an explanation of the joint pattern that readers can map back to
+these facts.
 
-\subsection{Symbolic Policy and Narrative Mobilization}
+\subsection{Rise of Identity-Coded Policy and Parallel Rhetoric}
 \label{subsec:d_narrative}
 
-India's post-independence polity inherited a constitutional encouragement of
-cow protection (Article~48) but no national prohibition. Through the first
-four post-independence decades, beef regulation remained a state-level matter,
-with Congress-governed states tolerating buffalo and low-yield cattle
-slaughter and a handful of Jan Sangh- or BJP-governed states pushing stricter
-enforcement. The legal landscape changed discontinuously after the BJP's
-national victory in 2014. Between 2015 and 2017, a wave of state-level
-legislation extended the ban from cows to the entire bovine family, reversed
-the burden of proof, and raised maximum penalties to up to ten years'
-imprisonment.\footnote{Maharashtra Animal Preservation (Amendment) Act, 2015;
-Haryana Gauvansh Sanrakshan Act, 2015; analogous amendments in Gujarat,
-Jharkhand, Uttar Pradesh, Madhya Pradesh, and Uttarakhand. A 2017 Ministry of
-Environment notification sought to restrict cattle sales nationally before
-being stayed by the Supreme Court.} \autoref{fig:ban_adoption} records the
-cumulative adoption of six ban types across states, and Map~A
-(\autoref{fig:maps}) summarizes cumulative ban intensity as of 2020.
+Independent India inherited a constitutional encouragement of cow protection
+(Article~48) but no national prohibition. For four post-independence decades
+beef regulation was a state-level matter: Congress-governed states tolerated
+buffalo and low-yield cattle slaughter and a handful of Jan Sangh- or
+BJP-governed states pushed stricter enforcement. The legal landscape changed
+discontinuously after the BJP's 2014 national victory. Between 2015 and
+2017, a wave of state-level legislation extended bans from cows to the
+entire bovine family, reversed the burden of proof, and raised maximum
+penalties to ten years' imprisonment.\footnote{Maharashtra Animal
+Preservation (Amendment) Act, 2015, and Haryana Gauvansh Sanrakshan Act,
+2015, are the benchmark cases; analogous amendments followed in Gujarat,
+Jharkhand, Uttar Pradesh, Madhya Pradesh, and Uttarakhand. A 2017 Ministry
+of Environment notification sought to restrict cattle sales nationally but
+was stayed by the Supreme Court before enforcement. Map~A in
+\autoref{fig:maps} shows the resulting spatial concentration as of~2020.}
+\autoref{fig:ban_adoption} plots the cumulative count of state-years under
+each of the six cattle-slaughter bans and makes the post-2014 discontinuity
+visible at a glance.
 
-\textbf{Majority-side narrative supply.} To trace the co-movement of the
-symbolic instrument $d$ with majority-side mobilization $E_M$, I assemble a
-corpus of $2{,}324$ BJP leadership texts from three sources: the party's
-official speech archive
-(\href{https://www.bjp.org/speeches}{bjp.org/speeches}, 1996--2025), the Prime
-Minister's office
-(\href{https://www.pmindia.gov.in}{pmindia.gov.in}, 2023--2026), and BJP
-Members' floor speeches in the Lok Sabha, harvested from the official DSpace
-backend of \href{https://elibrary.sansad.in}{elibrary.sansad.in}
-(1996--2024). The Lok Sabha supplement fills the pre-2014 gap in the party's
-online archive and captures parliamentary, as distinct from campaign,
-register. Speakers include the Prime Minister, the four BJP National
-Presidents of the period (Amit Shah, Rajnath Singh, J.~P.~Nadda, and Narendra
-Modi himself), and senior front-benchers (Arun Jaitley, Sushma Swaraj, Nitin
-Gadkari). Each speech is classified into one of four categories
-by a keyword-lexicon procedure: (i)~\emph{identity-coded} content
-(cow/beef/gau, Hindu--Muslim pairs, love jihad, CAA/NRC, ghar wapsi, Ayodhya,
-UCC, hijab, loudspeaker, Gyanvapi, waqf, triple talaq, and cognate terms in
-Hindi); (ii)~\emph{economic-programmatic} content (MSME, PM-KISAN, Ujjwala,
-Aadhaar-linked DBT, GST, ``Make in India,'' ``Viksit Bharat,'' and cognates);
-(iii)~\emph{security-and-foreign} content (Pakistan, Galwan, Article~370,
-Operation Sindoor); (iv)~\emph{residual}.
-
-\textbf{Minority-side narrative.} A symmetric majority-side corpus proved
-infeasible: of the three major umbrella organizations --- the All India
-Majlis-e-Ittehadul Muslimeen (AIMIM), the Jamiat Ulama-i-Hind, and the All
-India Muslim Personal Law Board --- none operates a crawlable online speech
-archive comparable to \texttt{bjp.org}.\footnote{As of April~2026,
+A natural question is whether the rise of identity-coded \emph{legislation}
+was accompanied by a rise of identity-coded \emph{political speech}, both
+from the governing party that enacted the bans and from the minority
+community that bore their enforcement. I pursue this in two parallel
+corpora. On the majority side I assemble $3{,}328$ BJP-leadership texts from
+three archives: the party's official speech archive
+(\href{https://www.bjp.org/speeches}{bjp.org/speeches}, 1996--2025), the
+Prime Minister's office
+(\href{https://www.pmindia.gov.in}{pmindia.gov.in}, 2020--2026), and BJP
+Members' floor speeches in the Lok Sabha, harvested from
+\href{https://elibrary.sansad.in}{elibrary.sansad.in}
+(1996--2024).\footnote{Speakers include the Prime Minister, the four BJP
+National Presidents of the period --- Amit~Shah, Rajnath~Singh, J.~P.~Nadda,
+Narendra~Modi --- and senior front-benchers such as Arun~Jaitley,
+Sushma~Swaraj, and Nitin~Gadkari. The Lok~Sabha supplement fills the
+pre-2014 gap in the party website's online archive and captures
+parliamentary, as distinct from campaign, register. Full speaker-level
+counts are in Appendix~\ref{app:narrative_classification}.} On the minority
+side the three major Muslim umbrella organisations do not operate crawlable
+online speech archives, so I construct a proxy corpus of $3{,}792$ dated
+items --- $3{,}783$~news-outlet snippets on Muslim political, legal, and
+protest events plus nine AIMIM Lok~Sabha floor speeches --- from a
+$65$-query harvest over 2010--2025.\footnote{As of April~$2026$,
 \texttt{aimim.in} fails to resolve; \texttt{jamiatulama.org} resolves to a
-parked GoDaddy lander; \texttt{aimplboard.in} retains a static early-2000s
-site whose press-release endpoint returns~500. The archives of Owaisi's public
-speeches persist on social-media platforms but are not systematically
-catalogued with dates and transcripts. This asymmetry in narrative
-infrastructure is itself informative: it is the observable expression of the
-organizational-capacity parameter $\kappa$ in the Minority's collective-action
-problem (\S\ref{subsec:joint_contest}), and tightens rather than weakens the
-model's claim that the Minority's mobilization is supply-constrained.} I
-therefore construct a minority-side salience series from a proxy corpus of
-$3{,}783$ dated Indian news items, $2010$--$2025$, curated from major
-English-language outlets --- The Hindu, The Times of India, NDTV, India Today,
-Indian Express, Al Jazeera, Scroll, Maktoob, SabrangIndia, Muslim Mirror, and
-the BBC --- using $65$ keyword queries covering AIMIM/Owaisi, Jamiat, AIMPLB,
-cow-related lynchings (Akhlaq, Pehlu Khan, Junaid, Tabrez), Shaheen Bagh,
-CAA/NRC, hijab, waqf, UCC, Gyanvapi, Babri, Bilkis, and Kashmir Muslim
-leadership. Each item is classified into identity-coded, counter-mobilization
-(protest, bandh, satyagraha, rally, ``not in my name,'' boycott),
-security-and-foreign, economic, or residual.
+parked lander; \texttt{aimplboard.in} retains a static early-2000s site
+whose press-release endpoint returns HTTP~$500$. Owaisi's public speeches
+persist on social-media platforms but are not catalogued with dates. The
+asymmetry between majority-side archive density and minority-side
+infrastructure is itself striking: it says that the majority party's
+narrative supply is the margin that can be observed directly, while the
+minority's has to be proxied through press coverage. Outlet composition and
+the full query list are reported in Appendix~\ref{app:minority_corpus}.}
+Each text is classified by Claude Haiku~4.5 into one of four (majority) or
+five (minority) mutually exclusive categories, tracking whether the item is
+identity-coded, economic-programmatic, security-and-foreign, a
+counter-mobilisation or protest call (minority only), or residual. The
+classification prompt and category definitions are in
+Appendix~\ref{app:narrative_classification}.
 
-\textbf{Results.} \autoref{fig:narrative_timeseries} plots the monthly share
-of identity-coded content on the majority side (top panel) and the combined
-identity-coded and counter-mobilization share on the minority side (bottom
-panel), smoothed over a three-month rolling window. Four patterns are
-visible. First, the majority-side identity share steps up in 2015--17 around
-the state-level ban wave, contracts during the Covid period, and re-expands
-in 2022--24 around the Uniform Civil Code and Waqf debates. Second, the
-minority-side share is quiescent in 2010--14, rises discretely with the 2015
-Dadri lynching and the 2017 Pehlu Khan killing, peaks during the 2019--20
-CAA/NRC and Shaheen Bagh episode, and remains elevated through 2025. Third,
-the two series move together at high frequency around legislative shocks
-(2015 state bans, 2019 CAA), consistent with the joint contest structure of
-Lemma~\ref{lem:contest_equilibrium} in which $d>0$ activates both
-$E_M^{*}$~and~$E_m^{*}$. Fourth, the episode-level evidence is consistent
-with the inverted-U bound on the Security Premium
-(Lemma~\ref{lem:reaction_invertedU}): the majority-side identity share peaks
-in 2016--17 and again in 2024, with intermediate compressions that coincide
-with electorally costly overreach events (the 2018 Supreme Court stay of the
-livestock-market notification; the 2020--21 farm laws, which were ultimately
-repealed).
-
-% ============================================================================
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/empirics/narrative_timeseries.pdf}
-    \caption{\normalsize\bf Majority and Minority Identity-Coded Narrative
-    Share, India 2010--2025.}
-    \floatfoot*{\footnotesize\textit{Notes.} Top panel: share of BJP
-    leadership texts classified as identity-coded in the month,
-    $N=2{,}324$ from \texttt{bjp.org/speeches}, \texttt{pmindia.gov.in}, and
-    BJP Lok Sabha floor speeches harvested from
-    \texttt{elibrary.sansad.in}, 1996m9--2026m4. Bottom panel: share of
-    curated Muslim-voice items classified as identity-coded or
-    counter-mobilization in the month, $N=3{,}792$ items
-    ($3{,}783$~news-outlet proxies plus~$9$ AIMIM Lok~Sabha floor
-    speeches), 2004m12--2025m12. Both series are three-month rolling
-    means. Vertical lines mark the Dadri lynching (Sep~2015), the Haryana
-    Gauvansh Sanrakshan Act (Mar~2015), the Pehlu Khan lynching (Apr~2017),
-    the Citizenship (Amendment) Act passage and onset of Shaheen Bagh
-    (Dec~2019), the farm laws (Sep~2020) and their repeal (Nov~2021), the
-    Mahsa Amini episode in Iran (Sep~2022), and the 2024 Kanwar Yatra. The
-    classification lexicon and methodology are reported in
-    Appendix~\ref{app:narrative_classification}. Sources: bjp.org/speeches;
-    pmindia.gov.in/en/news\_updates; curated news-outlet RSS archives.}
-    \label{fig:narrative_timeseries}
-\end{figure}
-% ============================================================================
-
-% ============================================================================
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.82\textwidth]{figures/empirics/map_ban_intensity.pdf}
-    \caption{\normalsize\bf Composite Cattle-Slaughter Ban Intensity by
-    State, Cumulative Through~2020.}
-    \floatfoot*{\footnotesize\textit{Notes.} Composite ban intensity is
-    computed as the sum over six ban types (cow, bullock, bull, buffalo
-    slaughter; beef possession; beef sales) of
-    $\max(\text{current year}-\text{adoption year},0)$, averaged over
-    1990--2020. Higher values indicate earlier and broader adoption. Shapefile:
-    GADM~v4.1 administrative level~1. Underlying policy
-    data: Cattle Slaughter Policy dataset, constructed from state-level
-    legislative records; see Appendix~\ref{app:ban_intensity}.}
-    \label{fig:ban_adoption}
-\end{figure}
-% ============================================================================
+\autoref{fig:narrative_timeseries} reports the monthly \emph{share} of
+content that is identity-coded on the majority side and the share of
+content that is counter-mobilisation on the minority side, smoothed over a
+six-month centred window, over $2018$--$2025$.\footnote{Reporting shares
+rather than counts means that neither series can be inflated by the simple
+expedient of adding more speakers or outlets to the corpus: both
+numerators are normalised by their own corpus-level totals in the same
+month. On the minority side the news-proxy corpus is keyword-curated for
+Muslim-identity topics, so its identity share is mechanically near one and
+non-informative; I therefore use the narrower counter-mobilisation
+category (roughly $23\%$ of the corpus, with genuine month-to-month
+variation) as the minority signal. This choice is conservative: it picks
+the minority category that fluctuates naturally rather than the
+saturated one.} Two features stand out. First, the 2019--20 episode --- the
+passage of the Citizenship (Amendment) Act in December 2019 and the
+Shaheen Bagh protest movement that followed --- is the largest joint
+spike in the sample: the majority identity share rose from near $5\%$ to
+above $30\%$ and the minority counter-mobilisation share from near zero to
+above $70\%$. Second, majority identity content appears to lead minority
+counter-mobilisation: the cross-correlation peaks at a three-month lag
+with $r = 0.55$.\footnote{Peak Pearson correlation of $0.55$ at a $+3$-month
+lag (majority leading); the correlation at contemporaneous lag is $0.42$
+and declines symmetrically to $\approx 0$ at~$\pm 6$ months. The sign and
+direction are robust to varying the rolling window between three and nine
+months.} The $2022$ hijab-ban cycle and the $2024$ Waqf~Bill are visible as
+smaller secondary spikes in the same pattern. Pre-2019 activity on both
+sides is low, which reflects both the lower visibility of identity-coded
+legislation before the post-Modi wave and the sparsity of the speech
+archive in those years.
 
 \subsection{Cycles and Persistence in India's Political Competition}
 \label{subsec:cycles}
 
-The dynamic extension of the model in Section~\ref{sec:dynamic} delivers two
-qualitatively distinct political paths: with sufficiently patient voters,
-the Hawk becomes an absorbing state of the polity (Proposition~\ref{prop:trap});
-with myopic retrospective voters, the same mechanism generates recurrent
-Hawk--Dove regime alternation (Proposition~\ref{prop:cycles}). India's
-federal structure provides 30 quasi-independent state polities observed over
-1984--2024, in which both paths can be distinguished simultaneously.
+Indian states differ sharply in the durability of BJP incumbency. Some,
+like Gujarat, have seen uninterrupted BJP rule for three decades. Others,
+like Himachal~Pradesh, Rajasthan, or Haryana, rotate between the BJP and
+non-BJP blocs every one or two election cycles. A third set, concentrated
+in the south and east, has remained consistently non-BJP across the entire
+panel. This subsection maps the distribution of these patterns across the
+$30$~major Indian states from $1984$ to $2024$ and documents that the
+coexistence of persistence and turnover within the same federation is the
+modal Indian pattern, not an aberration.
 
 I construct a state-year panel of Vidhan Sabha (state legislative assembly)
-outcomes by combining the Bhavnani India Election Dataset v2.0 (1977--2015)
-with supplementary state-year records I harvested from the Election
-Commission of India and Wikipedia for post-2015 elections (the $51$ Vidhan
-Sabha elections and the 2019 and 2024 Lok Sabha elections held in the
-extension window). The panel is forward-filled between elections, so each
+outcomes by combining the Bhavnani India Election Dataset v2.0
+(1977--2015) with supplementary records I compiled from the Election
+Commission of India and Wikipedia for the $51$ Vidhan~Sabha elections and
+the $2019$ and $2024$ Lok Sabha elections held in the
+extension window. The panel is forward-filled between elections, so each
 state-year is assigned the incumbent party of the preceding Assembly
-result. Using the BJP's seat share, the top-1 party's vote share margin, and
-the incumbent party identity, I classify each state-year as
-\emph{Hawk-dominant} if the BJP rules with either a seat-share majority or a
-vote-share margin of at least~$10$~pp;
-\emph{Dove-dominant} if a non-BJP party rules with a margin of at
-least~$10$~pp; and \emph{competitive} otherwise.
+result. I classify each state-year into one of three categories. A state-year
+is \emph{BJP-dominant} if the BJP rules with either a seat-share majority
+or a vote-share margin of at least~$10$~percentage points;
+\emph{non-BJP-dominant} if a non-BJP party rules with a margin of at
+least~$10$~percentage points; and \emph{competitive} otherwise.
 
 \autoref{fig:cycles_four_panel} presents four panels derived from the panel.
 Panel~(A) plots the national BJP vote and seat shares in Lok Sabha elections
-from~1984 to~2024. Two step increases stand out: the 1999--2004 NDA years
-and the post-2014 Modi wave, with a peak of~55.8\%~of seats in~2019 on a
-$37.4\%$~vote share. Panel~(B) plots the fraction of state Assemblies
-governed by the BJP across time: the share rises from near-zero before~1990
+from~1984 to~2024; two step increases stand out, the 1999--2004 NDA years
+and the post-2014 Modi wave, with a peak of~$55.8\%$ of seats in~2019 on a
+$37.4\%$ vote share. Panel~(B) plots the fraction of state Assemblies
+governed by the BJP across time; the share rises from near-zero before~1990
 to~$0.55$ after~2017. Panel~(C) plots the distribution of uninterrupted
-incumbency tenure at the state level, by party group. The BJP distribution
-has a pronounced right tail: the party holds five state spells of at
-least~11~consecutive years, including Gujarat 1995--2024 (30~years),
-Madhya~Pradesh 2003--2018 (15~years), Chhattisgarh 2003--2018 (15~years), and
-Uttar~Pradesh 1991--2001 (11~years). The INC and regional-party
-distributions are centred on shorter tenures. Panel~(D) plots the state-year
-regime heatmap. Three patterns are visible. First, the post-2014 Hindi Belt
---- U.P., M.P., Rajasthan, Chhattisgarh, Gujarat, Haryana, Jharkhand ---
-is populated by long Hawk-dominant spells with few transitions, the
-empirical footprint of the conflict trap. Second, the southern and eastern
-states --- Tamil~Nadu, Kerala, West~Bengal, Andhra~Pradesh, Telangana ---
-remain Dove-dominant throughout, consistent with $\delta>\bar{\delta}$ not
-applying uniformly. Third, an intermediate set of states --- Himachal~Pradesh
-(seven regime transitions), Rajasthan ($6$), Haryana ($5$), Karnataka~($4$),
-and Delhi --- alternate between categories, the empirical footprint of the
-cycles case.
+incumbency tenure at the state level by party group. The BJP distribution
+carries a pronounced right tail, with five spells of at least~$11$
+consecutive years.\footnote{Gujarat~1995--2024 (30~years),
+Madhya~Pradesh~2003--2018 (15~years), Chhattisgarh~2003--2018 (15~years),
+Haryana~2014--2024 (11~years), and Uttar~Pradesh~1991--2001 (11~years). The
+INC and regional-party tenure distributions are centred on shorter spells.}
+Panel~(D) plots the state-year regime heatmap, which reveals three spatial
+patterns: a Hindi-Belt cluster of long BJP-dominant spells, a southern and
+eastern cluster of persistent non-BJP dominance, and an intermediate
+cluster of states that alternate between categories.\footnote{The Hindi
+Belt cluster --- Uttar~Pradesh, Madhya~Pradesh, Rajasthan, Chhattisgarh,
+Gujarat, Haryana, and Jharkhand --- shows few transitions. The southern and
+eastern cluster --- Tamil~Nadu, Kerala, West~Bengal, Andhra~Pradesh,
+Telangana --- is non-BJP throughout the panel. The alternating cluster is
+led by Himachal~Pradesh (seven regime transitions), Rajasthan~(6),
+Haryana~(5), and Karnataka~(4). The three patterns are distinct enough to
+suggest that the same institutional environment can sustain very different
+political trajectories.}
 
-% ============================================================================
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.98\textwidth]{figures/empirics/cycles_four_panel.pdf}
-    \caption{\normalsize\bf Cycles and Persistence in Indian Electoral
-    Competition, 1984--2024.}
-    \floatfoot*{\footnotesize\textit{Notes.} (A)~National BJP vote share and
-    Lok Sabha seat share, 1984--2024. (B)~Fraction of 30~Indian states (and
-    NCT of Delhi) governed by the BJP or a BJP-led coalition in each year.
-    (C)~Histogram of uninterrupted Assembly-level incumbency tenure by party
-    group \{BJP, INC, regional/other\}; spells that are still ongoing at the
-    end of the panel are right-truncated. (D)~State-year regime classification
-    (rows: $30$ states, alphabetical; columns: 1984--2024). A state-year is
-    \emph{Hawk-dominant} when the BJP rules with seat-share
-    $\geq 50\%$~or~vote-share margin~$\geq 10$~pp;
-    \emph{Dove-dominant} when a non-BJP party rules with margin
-    $\geq 10$~pp; \emph{competitive} otherwise.
-    Data: Bhavnani India Election Dataset v2.0 (1977--2015) and
-    author-compiled supplementary panel from Wikipedia and ECI for the
-    $51$~Vidhan Sabha elections and 2019, 2024 Lok Sabha elections
-    held in 2015--2025. See Appendix~\ref{app:data_sources} for the
-    construction and sanity checks.}
-    \label{fig:cycles_four_panel}
-\end{figure}
-% ============================================================================
+The coexistence of long BJP spells and intermediate-state alternation within
+the same federal system is noteworthy on its own. Gujarat's
+uninterrupted thirty-year BJP incumbency spans the $2002$ communal
+violence, three Lok Sabha electoral cycles, and at least one episode of
+sharp economic contraction; Himachal~Pradesh has turned over seven times
+over the same window. That these paths coexist inside one federation means
+that any explanation of one pattern has to be consistent with the other as
+a corollary of the same mechanism operating under different local
+parameters. The model of Section~\ref{sec:model} is designed to deliver
+exactly this feature: the same primitives can generate durable incumbency
+or recurrent alternation depending on voter time-horizons, the strength of
+moderate-voter pushback, and the incumbent's relative organisational
+capacity.
 
-The co-existence of long Hawk spells and intermediate-state cycles within the
-same federation is not, by itself, a test of
-Propositions~\ref{prop:trap} or~\ref{prop:cycles}: the classification is
-reduced-form, and cross-state heterogeneity in~$\delta$, in the moderate-
-defection technology $\chi_{\mathrm{mod}}(d)$, and in the primitive
-state-capacity gap $S_A/S_B$ will all push states toward different paths.
-What the panel does rule out is a uniform story --- either global
-entrenchment or global alternation --- and is consistent with the model's
-joint prediction that the same mechanism can produce both outcomes along
-different parameter paths. Gujarat's 30-year Hawk spell, in particular, is the
-archetype of the conflict trap: a continuous stretch in which the BJP
-retained power through the 2002 communal violence and its aftermath, three
-Lok Sabha electoral cycles, and at least one episode of sharp economic
-contraction (the 2002--03 slowdown). That it did so while retaining
-Dove-dominant neighbours (Rajasthan pre-2013, the 2018 swing) is exactly the
-cross-state heterogeneity the model predicts.
+\textbf{A second pattern: incumbency tracks conflict.} A surprising feature of
+Indian state politics is that BJP state governments are \emph{more} likely
+to survive re-election when they preside over high Hindu--Muslim conflict.
+\autoref{fig:paradox_of_competence} plots the BJP retention rate at the
+next Assembly election against the average intensity of Hindu--Muslim
+conflict during the incumbent's tenure, for the $42$ state-election pairs
+in which the BJP was the incumbent going into the contest, $1984$--$2024$.
+Retention rises monotonically across tenure-conflict quintiles, from
+$33\%$ in the lowest quintile to $78\%$ in the highest; a linear
+probability model gives a positive slope significant at the $5\%$
+level.\footnote{Sample: every (state, election-year) pair in which the BJP
+was the state-government party in the year prior to the election; $N=42$
+defense elections across $15$ states, $1984$--$2024$. Primary
+specification: LPM of an indicator for the BJP retaining power at the
+election on tenure-average annual count of violent Hindu--Muslim events
+(GDELT, with Varshney--Wilkinson as pre-1995 supplement), no controls,
+state-clustered standard errors. Coefficient~$+0.0103$ per event/year
+(SE~$0.0042$, $p=0.015$). The pattern is robust to a log specification
+($p=0.063$), to adding decade fixed effects ($p=0.089$), and to a pre-2014
+subsample ($N=23$, $p=0.061$); the effect is therefore not driven by the
+Modi-era subsample. The effect operates on the retention margin rather than
+on the continuous vote share: the coefficient on vote-share change is
+right-signed but insignificant ($p=0.36$), consistent with the
+seat-winning margin being the discretely-decided object.} The direction
+runs opposite to a naive retrospective-voting story in which better
+economic and security outcomes help the incumbent: here, \emph{more}
+realised disorder under the BJP correlates with \emph{higher} retention,
+not with punishment. Section~\ref{sec:model} provides one candidate
+explanation for this pattern, and the paradox re-enters as a corollary of
+the dynamic extension in Section~\ref{sec:dynamic}.
 
-\subsection{Voter Welfare and Political Dominance}
+\subsection{Welfare, Political Dominance, and Symbolic Policy}
 \label{subsec:voter_space}
 
-Proposition~\ref{prop:provocation} states that the Hawk's electoral survival
-requires turning the joint contest on when~$\Delta u>0$, and that the
-symbolic-policy path is chosen to substitute an activated Security Premium
-for the Hawk's economic deficit. The empirical footprint of this
-substitution is a state-year distribution in the $(\Delta u,\text{BJP
-dominance})$~space in which states with high cumulative ban intensity cluster
-in a region distinct from states that have not used symbolic policy. This
-subsection marks that distribution.
+The subsections so far have documented a rise in identity-coded policy and
+rhetoric and a cross-state pattern of BJP entrenchment versus alternation.
+A natural next question is whether these two patterns are empirically
+linked at the state level --- that is, whether states with heavier
+symbolic-policy use are the same states in which political dominance has
+decoupled from economic performance. I examine this by placing states in the
+two-dimensional space defined by (i)~relative economic welfare and
+(ii)~political dominance of the BJP, and overlaying the intensity of
+cumulative cattle-slaughter regulation.
 
-\textbf{Measurement.} I proxy $\Delta u$ by state GDP per capita relative to
-the national average (where $1.0$ denotes the national average in the given
-year), taken from the Reserve Bank of India's relative per-capita income
-series at $1990, 2000, 2010, 2020$, and~$2023$ anchor years. I proxy BJP
-dominance by the BJP's Vidhan Sabha seat share in the state-year, computed
-from the election panel of \S\ref{subsec:cycles}. Composite ban intensity is
-the state-level construction of \S\ref{subsec:d_narrative} carried forward
-through~2020.
+\textbf{Measurement.} I proxy relative welfare by each state's share of
+national GDP divided by its share of national population, yielding a
+measure of state GDP per capita relative to the national average ($1.0$
+denotes the national average in the year). Series is taken from the Reserve
+Bank of India's state-GDP-share tables at $1990$, $2000$, $2010$, $2020$
+and~$2023$ anchor years, combined with the Census-interpolated population
+panel of Appendix~\ref{app:population}. I proxy political dominance by the
+BJP's Vidhan Sabha seat share in the state-year, computed from the
+election panel of \S\ref{subsec:cycles}. Composite ban intensity is the
+state-level index of \S\ref{subsec:d_narrative} carried forward
+through~$2020$; its construction is in Appendix~\ref{app:ban_intensity}.
 
-\textbf{Maps.} Maps~B and~C in \autoref{fig:maps} visualize the cross-section.
-Map~A (ban intensity, already shown as \autoref{fig:ban_adoption}) clusters
-on the northern and western states: Gujarat, Haryana, Punjab, Himachal
-Pradesh, Uttarakhand, and large parts of Uttar Pradesh and Bihar. Map~B
-plots Hindu--Muslim violence intensity per capita, pooling incidents from
-the Varshney--Wilkinson dataset ($1950$--$1995$) and the GDELT Hindu--Muslim
-variant ($1980$--$2024$), normalized by state population.\footnote{State
-population is interpolated annually from Census~2011 shares rescaled by the
-World~Bank national-population series; see
-Appendix~\ref{app:population}.} The violence map co-locates with the ban map
-along the Gangetic-plain belt and Gujarat. Map~C plots the change in BJP
-state-Assembly vote share between the 2009-anchor and the 2019-anchor Vidhan
-Sabha elections. The post-2014 breakthrough states ---Tripura (+42~pp),
-Manipur (+35~pp), West~Bengal (+34~pp), Haryana (+27~pp), Uttar~Pradesh
-(+23~pp), Assam (+22~pp), Odisha (+17~pp) --- are precisely the states that
-had not previously delivered a BJP government and in which the post-2014 wave
-represents an entry rather than a consolidation.
+\textbf{Three-map cross-section.} \autoref{fig:maps} visualises the
+cross-sectional co-location of the three objects. Map~A plots composite ban
+intensity as of~2020; it concentrates on the northern and western states.
+Map~B plots Hindu--Muslim violence intensity per capita, pooling
+Varshney--Wilkinson and GDELT Hindu--Muslim events, normalised by state
+population.\footnote{State population is interpolated annually from
+Census~2011 shares rescaled by the World~Bank national-population series;
+Appendix~\ref{app:population}.} Map~C plots the change in BJP state-Assembly
+vote share between the 2009-anchor and the 2019-anchor Vidhan Sabha
+elections. The three maps co-locate along the Hindi Belt and Gujarat: states
+with early and broad ban adoption also carry the legacy of Hindu--Muslim
+violence and registered the largest post-2014 BJP vote-share gains. Appendix~\ref{app:supplementary_maps} reports the six policy-type-specific maps and a decade-resolution conflict map.
 
-\textbf{Two-dimensional scatter.}
-\autoref{fig:voter_space_2d} places each state-year in the $(\Delta
-u,\text{BJP seat share})$ space, with ban intensity mapped to point size and
-year to point color, for the anchor years $1990, 2000, 2010, 2020, 2023$.
-Two centroids are marked. For the high-ban-intensity states (top tercile),
-the $2000$~centroid sits at $(1.21, 0.27)$ --- above average relative income
-and appreciable BJP dominance --- and the $2020$~centroid sits at
-$(0.79, 0.33)$: relative income has fallen below the national average
-while BJP dominance has risen. For the low-ban-intensity states (bottom
-tercile), the $2000$~centroid sits at $(0.77, 0.01)$ and the $2020$~centroid
-at $(0.41, 0.02)$: relative income has fallen sharply, while BJP dominance
-is negligible throughout. The two arrows together are the empirical
-signature of Proposition~\ref{prop:provocation}: in states where symbolic
-policy was used intensively, political dominance stayed high (rose, in
-fact) even as the relative-income position deteriorated; in states where
-symbolic policy was not used, the collapse in relative income was not
-offset. The relative movement in relative income is larger than the
-movement in BJP dominance, consistent with the provocation-ceiling bound of
-equation~\eqref{eq:delta_u_bar_bound}: the electoral offset provided by
-activated symbolic contest is structurally limited, and even intense use of
-$d$ cannot fully compensate for large income deficits.
+\textbf{The welfare-dominance cloud.}
+\autoref{fig:voter_space_2d} places the $15$~largest Indian states in the
+welfare-dominance plane at two snapshots, $2000$ and $2020$, with point
+size rendering composite ban intensity as of~$2020$.\footnote{The plotted
+states are Andhra~Pradesh, Assam, Bihar, Gujarat, Haryana, Karnataka,
+Kerala, Madhya~Pradesh, Maharashtra, Odisha, Punjab, Rajasthan, Tamil~Nadu,
+Uttar~Pradesh, and West~Bengal. Small states and union territories
+(Chandigarh, Delhi, Goa, the northeast states except Assam) are excluded
+because their very small populations or special administrative status push
+their per-capita welfare far out in the right tail and make visual
+comparison noisier without adding substantive information.} Two features
+are visible from the panel pair alone. First, the $2000$ cloud is compact
+in the lower half of the vertical axis: almost no state had a BJP seat
+share above $50\%$, and the handful of states with early ban adoption
+(Gujarat, Madhya~Pradesh) sit in the upper-middle of the welfare
+distribution. Second, the $2020$ cloud expands vertically, with Gujarat
+and Uttar~Pradesh pushing the BJP seat share above $70$--$80\%$ while the
+underlying welfare position of high-ban states drifts toward the middle
+of the distribution. Low-ban states (southern and eastern India) remain
+close to zero on the dominance axis throughout the panel, consistent with
+the fact that symbolic policy is an instrument that is used, not one that
+is accidentally switched on. The pattern says that high-ban states stayed
+politically dominant even as their relative welfare moved downward, while
+low-ban states did not see a comparable consolidation.
 
-% ============================================================================
-\begin{figure}[t]
-    \centering
-    \subfigure[Composite cattle-slaughter ban intensity (cumulative through~2020).]{
-        \includegraphics[width=0.32\textwidth]{figures/empirics/map_ban_intensity.pdf}
-        \label{fig:map_ban_intensity}
-    }
-    \subfigure[Hindu--Muslim violence intensity per capita (1950--2024).]{
-        \includegraphics[width=0.32\textwidth]{figures/empirics/map_conflict_intensity.pdf}
-        \label{fig:map_conflict_intensity}
-    }
-    \subfigure[$\Delta$~BJP Vidhan Sabha vote share, 2009~$\to$~2019 (pp).]{
-        \includegraphics[width=0.32\textwidth]{figures/empirics/map_bjp_delta_2009_2019.pdf}
-        \label{fig:map_bjp_delta}
-    }
-    \caption{\normalsize\bf Spatial Distribution of Symbolic-Policy Intensity,
-    Hindu--Muslim Violence, and BJP Breakthrough.}
-    \floatfoot*{\footnotesize\textit{Notes.} (A)~Composite ban intensity as
-    defined in \autoref{fig:ban_adoption}. (B)~Pooled Hindu--Muslim violent
-    incidents per capita, sources: Varshney--Wilkinson 1950--1995 and GDELT
-    Hindu--Muslim variant 1980--2024; population panel at
-    Appendix~\ref{app:population}. (C)~BJP state-Assembly vote-share change
-    between the Vidhan Sabha election closest to 2009 and the Vidhan Sabha
-    election closest to 2019 for each state, in percentage points;
-    diverging colour scale centred at zero.}
-    \label{fig:maps}
-\end{figure}
-% ============================================================================
+\textbf{The electoral return to conflict is bounded.}
+\autoref{fig:security_premium_empirical} shifts to a different state-level
+cut: right-wing (BJP and allied NDA parties) vote share in Indian state
+Assembly elections against the percentile rank of within-state
+Hindu--Muslim conflict intensity in the pre-election window. The shape is
+inverted-U: vote share rises over the low-to-moderate range of conflict
+and flattens --- and slightly declines --- at the highest conflict levels.
+The pattern cuts against the simple reading that conflict always helps
+the hawkish party; rather, the electoral return to observed disorder
+appears to be disciplined by a ceiling.
 
-% ============================================================================
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.88\textwidth]{figures/empirics/voter_space_2d.pdf}
-    \caption{\normalsize\bf Voter Welfare and Political Dominance, Indian
-    States~1990--2023.}
-    \floatfoot*{\footnotesize\textit{Notes.} Each point is a state-year
-    observation. Horizontal axis: state GDP per capita relative to the
-    national average (1.0~=~national average in the year); vertical axis:
-    BJP state-Assembly seat share; point size: composite cumulative ban
-    intensity (see \autoref{fig:ban_adoption}); point colour: year. Anchor
-    years $\{1990, 2000, 2010, 2020, 2023\}$. Two arrows track the centroid
-    movement of the top-tercile and bottom-tercile ban-intensity states
-    between 2000 and 2020: high-ban states moved from $(1.21, 0.27)$ to
-    $(0.79, 0.33)$; low-ban states moved from $(0.77, 0.01)$ to
-    $(0.41, 0.02)$. The five states with the largest post-2014
-    seat-share movement are labelled.}
-    \label{fig:voter_space_2d}
-\end{figure}
-% ============================================================================
+\textbf{Bans raise conflict.} A separate empirical question is what
+happens to Hindu--Muslim violence after a state adopts a slaughter ban.
+\autoref{fig:rent_dissipation_event_study} reports a staggered
+difference-in-differences event study of log Hindu--Muslim violent events
+on leads and lags of state-level cow-slaughter-ban adoption. Pre-adoption
+leads are flat; post-adoption lags are positive and persistent for several
+years. Symbolic policy and communal violence therefore move together on
+impact, in the direction that the legislation appears to cause (or at
+minimum accompany) an increase in observable conflict rather than to
+suppress it.
 
-\subsection{Other Electoral Democracies: US, Colombia, and Iran}
+\textbf{Durable welfare costs to affected households.} The contemporaneous
+rise in conflict carries longer-run consequences for the households whose
+identity is the target of the legislation. Using the India Human
+Development Survey (Wave~II, IHDS-II), \autoref{tab:birth_history}
+estimates whether Muslim households in state-cohorts exposed to the violent
+aftermath of a cow-slaughter ban experience worse birth outcomes and
+early-life growth. The interaction between the non-Hindu household
+indicator and ban exposure carries statistically significant coefficients
+on neonatal and under-eight mortality (columns 3--4) and on the Ponderal
+Index of surviving infants (column~5). \autoref{tab:economic} extends the
+same design to short- and long-term household poverty measures and finds
+persistent, if modest, long-run reductions in relative
+welfare.\footnote{The intensity measure in
+\autoref{tab:birth_history} interacts the non-Hindu household indicator
+with an exposure window defined as the overlap between the respondent's
+(or child's) formative years and the eight years following a state's first
+ban enactment; \autoref{tab:economic} uses a parallel household-level
+intensity variable. The two tables are replicated from earlier
+author-generated empirical work; construction details, variable definitions,
+and robustness exercises are in Appendix~\ref{app:intergenerational}.} The
+direction of the estimates matches the empirical claim that identity-coded
+legislation imposes real welfare costs on the targeted minority that do not
+dissipate within a single electoral cycle.
+
+\subsection{Three Scope Cases: the United States, Colombia, and Iran}
 \label{subsec:other_democracies}
 
-The model is presented in the context of India's cow-slaughter and citizenship
-legislation, but its primitives are generic to two-party electoral environments
-with a salient out-group. Three further cases illustrate the mechanism
-under different institutional architectures.
+The India-centric analysis of the previous subsections is not the only
+place where the joint pattern of identity-coded policy, minority
+counter-mobilisation, and persistent incumbency appears. Three further
+cases illustrate the same configuration under different institutional
+architectures.
 
-\emph{The United States, post-2015.}
-The Republican Party's post-2015 turn to immigration enforcement and
-culturally coded domestic security fits the model closely. The Democratic
-comparative advantage lies in universalist economic provision (the Affordable
-Care Act, the American Rescue Plan, the Inflation Reduction Act), consistent
-with the Dove's role in $(S_B,\bar g_B)$. The symbolic instruments have been
-legible: Executive Order~13769, border-wall construction, the 2018
-family-separation policy, and the federalisation of culture-war education
-policy. Each is a $d$-type policy with no direct $g$ payoff. The 2018
-midterms, held immediately after the family-separation episode, returned a
-Democratic House majority, consistent with
-Lemma~\ref{lem:reaction_invertedU}'s inverted-U prediction: beyond
-$d^{\mathrm{peak}}$, the Hawk's moderate-defection cost $\chi_{\mathrm{mod}}$
-accumulates faster than the Security Premium. The dynamic path since~2016
----alternation~2016/2020/2024 --- is closer to the cycles case of
-Proposition~\ref{prop:cycles} than to the trap of
-Proposition~\ref{prop:trap}, consistent with shorter voter horizons and with
-the institutional absence of the candidacy-gatekeeping that supports the
-Indian and Iranian trap paths.
+\emph{The United States, post-2015.} The Republican Party's post-2015 turn
+to immigration enforcement and culturally coded domestic security is a
+sequence of identity-marked policies --- the entry restrictions under
+Executive Order~13769, border-wall construction, family separations at the
+Southern border, and the federalisation of culture-war education policy
+--- enacted against a Democratic Party whose comparative advantage is in
+universalist economic provision.\footnote{Democratic programmatic platform:
+Affordable Care Act (2010), American Rescue Plan (2021), Inflation Reduction
+Act (2022). Republican symbolic-policy platform: Executive Order~13769
+restricting entry from Muslim-majority countries (2017); border-wall
+construction and the family-separation policy at the Southern border
+(2018); state-level prohibitions on ``critical race theory'' and
+transgender rights (2021--24).} The 2018 midterms, held immediately after
+the family-separation episode, returned a Democratic House majority ---
+consistent with the inverted-U pattern of
+\autoref{fig:security_premium_empirical}, in which the moderate-voter
+backlash eventually outruns the identity-based consolidation. The 2016,
+2020, and 2024 presidential alternations place the US closer to the
+cyclical Indian states than to Gujarat's long durable incumbency, and the
+difference plausibly tracks the absence, in the US, of the
+candidacy-gatekeeping that stabilises hawkish incumbency in Iran (below).
 
-\emph{Colombia, the 2016 peace plebiscite.}
-Colombia's post-2002 Uribista period extended the mechanism to an environment
-in which the Minority is an ideologically coded armed party (the FARC) rather
-than an ethnic or religious domestic out-group. The \emph{Democratic
-Security} doctrine of Álvaro Uribe (2002--2010) and its continuation in the
-Centro Democrático after~2014 fit the Hawk type: it promised visible coercive
-capacity against FARC, imposed fiscal costs (the ``democratic security
-tax''), and activated a two-sided contest in which paramilitary mobilisation
-rose alongside state enforcement. The 2016 plebiscite on the Santos--FARC
-peace accord is the sharpest case of Lemma~\ref{lem:dove_corner} cutting in
-reverse: when the Dove attempted to move the system to $d=0$, enough voters
-preferred the Hawk's manufactured-threat environment to block the transition.
-That the successor administration subsequently implemented substantial
-portions of the same accord demonstrates that the narrow plebiscite margin
-was the binding electoral constraint, not a technical defect in the agreement.
+\emph{Colombia, the 2016 peace plebiscite.} Colombia's post-2002 Uribista
+period is a case in which the out-group that sustains identity-coded
+politics is an ideologically coded armed organisation (the FARC) rather
+than an ethnic or religious domestic minority. The \emph{Democratic
+Security} doctrine of Álvaro Uribe (2002--2010) and its continuation in
+the Centro Democrático after~2014 promised visible coercive capacity
+against FARC, imposed fiscal costs, and activated a visibly two-sided
+contest in which paramilitary mobilisation rose alongside state
+enforcement. The 2016 plebiscite on the Santos--FARC peace accord is a
+striking negative case: when the non-hawkish side attempted to move the
+country to a post-conflict political settlement, the \textsc{No} campaign,
+led by the Uribista bloc, narrowly blocked ratification. That the
+successor administration subsequently implemented substantial portions of
+the same accord suggests the binding constraint was electoral rather than
+substantive.
 
-\emph{Iran, morality policing and the 2022 Amini episode.}
-The Islamic Republic of Iran adapts the model to a hybrid regime in which
-competitive elections occur within candidacy-gatekeeping institutions (the
-Guardian Council). The hard-line bloc associated with the Islamic
-Revolutionary Guard Corps occupies the Hawk type; its most visible symbolic
-instrument is the regulation of women's public conduct --- compulsory hijab,
-the \emph{gasht-e ershad} morality police, and periodic ``bad hijab''
-campaigns. The Mahsa Amini episode of September~2022 and the ensuing
-\emph{Woman, Life, Freedom} protests are a textbook instance of the
-joint-contest structure of Lemma~\ref{lem:contest_equilibrium}: a $d$~shock
-triggered a large $E_m^*$, which in turn activated the regime's $S$~apparatus
-(the Basij). The re-intensification of morality-police enforcement after the
-protest's decline is the trap of Proposition~\ref{prop:trap} re-closing ---
-but with a specifically institutional interpretation: the ``patience'' that
-sustains the Hawk in Iran is supplied by candidacy gatekeeping rather than
-by voter preferences over permanence, as the model's reading of
-candidacy-filtered regimes anticipates.
+\emph{Iran, morality policing and the 2022 Amini episode.} Iran's hybrid
+regime holds competitive elections within a system that filters candidates
+through the Guardian Council.\footnote{The hard-line bloc is anchored in
+the Islamic Revolutionary Guard Corps and its paramilitary extension, the
+Basij. Reformist-pragmatist administrations under Khatami (1997--2005) and
+Rouhani (2013--21) opened brief economic windows but did not shift the
+morality-policy margin.} The hard-line bloc's most visible symbolic
+instrument is the regulation of women's public conduct --- compulsory
+hijab, the \emph{gasht-e ershad} morality police, and periodic ``bad
+hijab'' campaigns. The Mahsa Amini episode of September~2022 and the
+\emph{Woman, Life, Freedom} protests were an acute, visibly two-sided
+confrontation whose subsequent re-intensification of morality-police
+enforcement closed the brief opening. Iran is the case in which the
+persistence of hawkish incumbency is underwritten not by voter preferences
+over continuity but by the institutional filter on candidacies, which
+arguably plays the same role that deep voter commitment to security
+capacity plays in the Hindi~Belt.
 
-Together, the three cases show that the India-centric analysis of
-\S\S\ref{subsec:d_narrative}--\ref{subsec:voter_space} is an instance of a
-more general pattern rather than a country-specific artefact. In each case
-the incumbent's symbolic-policy instrument substitutes an activated contest
-environment for a structural economic disadvantage, the inverted-U bound
-disciplines the use of the instrument, and the dynamic path is shaped by the
-interaction of voter patience, institutional gatekeeping, and the strength
-of the moderate-defection channel.
+Together, the three cases make it less likely that the Indian pattern is a
+country-specific artefact, and they previsage the three scope conditions
+under which the mechanism should be expected to operate: a standing
+identity-coded policy instrument, a two-sided response triggered by its
+use, and an institutional environment in which the electoral (or
+quasi-electoral) discipline on moderate-voter backlash is the relevant
+binding constraint.
 
 % End of \section{Empirical Facts}

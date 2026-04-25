@@ -16,42 +16,6 @@
 Section~\ref{sec:empirical_facts}, together with the unit of observation,
 coverage window, and retrieval date.
 
-\begin{table}[!htbp]
-\centering
-\caption{\bf Data Sources}
-\label{tab:data_sources}
-\begin{threeparttable}
-\onehalfspacing
-\footnotesize
-\begin{tabularx}{\textwidth}{p{2.3cm}p{2.4cm}p{1.8cm}p{1.6cm}X}
-\toprule[1.25pt]
-Dataset & Unit & Coverage & Retrieved & Source \\
-\midrule
-Cattle Slaughter Policy & State & 1955--2018 & Sep 2025 & Author-compiled from state-level legislative records (see \S\ref{app:ban_intensity}). \\
-Bhavnani India Election v2.0 & Candidate $\times$ constituency $\times$ election & 1977--2015 & 2023 & Harvard Dataverse, Bhavnani (2014). \\
-Post-2015 election supplement & State $\times$ election-year aggregate & 2015--2025 & Apr 2026 & Author-compiled from Wikipedia ``Results of the YYYY \textit{State} Legislative Assembly election'' and ``YYYY Indian general election'' pages, cross-checked against Election Commission of India Statistical Reports. \\
-Bhavnani-to-ECI reconciliation panel & State $\times$ year & 1984--2024 & Apr 2026 & Combines Bhavnani~v2.0 with the post-2015 supplement; forward-fills non-election years. \\
-Varshney--Wilkinson (V-W) Dataset v2 & Incident & 1950--1995 & 2025 & ICPSR~04342, Varshney and Wilkinson (2006). \\
-GDELT Events Database (India subset) & Event & 1979--2024 & 2025 & Global Database of Events, Language, and Tone CAMEO~19 (Fight) subset; Hindu-Muslim subset standardised. \\
-Social Conflict Analysis Database (SCAD) & Event & 1990--2017 & 2025 & Idean Salehyan et al. (2012). \\
-India Human Development Survey (IHDS-II) & Household; individual & 2011--12 (Wave~2) & 2025 & ICPSR 36151, Desai and Vanneman (2018). \\
-BJP speech archive & Speech & 2000--2025 & Oct 2025 & \texttt{bjp.org/speeches} (author scrape). \\
-PMIndia news updates & PM speech / statement & 2024m6--2026m4 & Apr 2026 & \texttt{pmindia.gov.in/en/news\_updates} (author scrape, fallback after \texttt{narendramodi.in} was unreachable). \\
-Muslim-voice news proxy & News item & 2010--2025 & Apr 2026 & 65-query Google News RSS harvest across major English outlets; details at \S\ref{app:minority_corpus}. \\
-Relative per-capita income (state) & State $\times$ anchor-year & 1990, 2000, 2010, 2020, 2023 & 2025 & Reserve Bank of India, \textit{Handbook of Statistics on Indian States}. \\
-State population annual & State $\times$ year & 2000--2024 & Apr 2026 & Census~2011 state shares rescaled annually by World~Bank \texttt{SP.POP.TOTL} India. \\
-GADM administrative boundaries & State polygon & v4.1 (2022) & 2025 & Global Administrative Areas \texttt{gadm.org}. \\
-\bottomrule[1.25pt]
-\end{tabularx}
-\begin{tablenotes}[para,flushleft]
-\footnotesize
-\textit{Notes.} All datasets listed above are local to the project folder
-\texttt{PE\_of\_Cattle\_Shared/india\_beef\_and\_religion/} and reproducible
-end-to-end from the scripts listed alongside each subsection below. \\
-\end{tablenotes}
-\end{threeparttable}
-\end{table}
-
 \subsection{Composite Ban-Intensity Index} \label{app:ban_intensity}
 
 The composite ban intensity for state~$s$ in year $t$ is
@@ -78,28 +42,30 @@ count-of-ban-types-in-force metric; see \texttt{scripts/policy\_describe.py}.
 \subsection{Narrative Classification Methodology} \label{app:narrative_classification}
 
 \textbf{Corpus.} The majority-side corpus comprises three stacked sources
-totalling $2{,}324$ rows: (i)~$2{,}066$ BJP-leadership speeches from
-\texttt{bjp.org/speeches} ($2000$--$2025$), filtered to post-2014 dates for the
-main-text figure; (ii)~$644$ Prime-Ministerial speeches harvested from
-\texttt{pmindia.gov.in/en/news\_updates} (Oct~$2023$--Apr~$2026$), used as a
-supplement during the pmindia fallback window; (iii)~$222$ BJP Lok Sabha
-floor speeches and~$9$ AIMIM floor speeches harvested from the official
-DSpace backend at \texttt{elibrary.sansad.in} ($1996$--$2024$), filtered to
+totalling $3{,}328$ rows: (i)~$2{,}066$ BJP-leadership speeches from
+\texttt{bjp.org/speeches} ($2000$--$2025$), filtered to post-2014 dates for
+the main-text figure; (ii)~$1{,}500$ Prime-Ministerial speeches harvested
+from \texttt{pmindia.gov.in/en/news\_updates} (Nov~$2020$--Apr~$2026$), used
+as a supplement during the pmindia fallback window (the primary target
+\texttt{narendramodi.in} was unreachable); (iii)~$406$ BJP Lok Sabha floor
+speeches and~$9$ AIMIM floor speeches harvested from the official DSpace
+backend at \texttt{elibrary.sansad.in} ($1996$--$2024$), filtered to
 single-speaker debate items with word-count $\geq 50$. The Lok Sabha
-supplement fills the pre-$2014$ period in which the party-website archive is
-sparse (fewer than~$35$ items $1996$--$2013$) and introduces
+supplement fills the pre-$2014$ period in which the party-website archive
+is sparse (fewer than~$35$ items $1996$--$2013$) and introduces
 parliamentary-register content alongside the campaign-register bjp.org
-corpus. AIMIM Lok Sabha speeches (Asaduddin Owaisi, Imtiaz Jaleel) are
-assigned to the minority-side corpus. Top speakers in the parliamentary
-supplement are Arun~Jaitley~(92 speeches), Sushma~Swaraj~(58),
-Rajnath~Singh~(29), Narendra~Modi~(20), Nitin~Gadkari~(16),
-Asaduddin~Owaisi~(9), and Amit~Shah~(7). Speakers in the main corpus include
-the Prime Minister and the four BJP National Presidents of the period. The minority-side corpus comprises $3{,}783$
-news items from a $65$-query Google News RSS harvest, $2010$--$2025$; queries
-cover AIMIM/Owaisi, Jamiat Ulama-i-Hind, AIMPLB, cow-related lynchings
-(Akhlaq~2015, Pehlu Khan~2017, Junaid~2017, Tabrez~2019), Shaheen
-Bagh/CAA/NRC, hijab, waqf, Uniform Civil Code, Gyanvapi, Babri Masjid,
-Bilkis Bano, and Kashmir Muslim leadership. Outlets include The~Hindu, The
+corpus. AIMIM Lok Sabha speeches (Asaduddin~Owaisi, Imtiaz~Jaleel) are
+assigned to the minority-side corpus. Speakers in the main corpus include
+the Prime Minister and the four BJP National Presidents of the period; the
+top seven speakers in the parliamentary supplement are Arun~Jaitley,
+Sushma~Swaraj, Rajnath~Singh, Narendra~Modi, Nitin~Gadkari,
+Asaduddin~Owaisi, and Amit~Shah. The minority-side corpus comprises
+$3{,}792$ items ($3{,}783$~news-outlet snippets and~$9$~AIMIM Lok~Sabha
+floor speeches) from a $65$-query Google News RSS harvest, $2010$--$2025$.
+Queries cover AIMIM/Owaisi, Jamiat Ulama-i-Hind, AIMPLB, cow-related
+lynchings (Akhlaq~2015, Pehlu~Khan~2017, Junaid~2017, Tabrez~2019), Shaheen
+Bagh/CAA/NRC, hijab, Waqf, Uniform Civil Code, Gyanvapi, Babri~Masjid,
+Bilkis~Bano, and Kashmir Muslim leadership. Outlets include The~Hindu, The
 Times of India, NDTV, India~Today, Indian Express, Scroll, The~Wire,
 Maktoob, SabrangIndia, Muslim Mirror, Al~Jazeera, and the BBC.
 
@@ -113,26 +79,52 @@ like-for-like speech archive. This asymmetry is documented in the main text
 (\S\ref{subsec:d_narrative}) and treated as a data fact rather than a
 nuisance.
 
-\textbf{Classification.} Each text is classified into one of four (majority)
-or five (minority) mutually exclusive categories by dominant-keyword-count
-argmax, with ties assigned to the residual category. The four lexicons for
-the majority corpus and the five lexicons for the minority corpus are
-reported in \texttt{scripts/build\_narrative\_timeseries.py} as editable
-Python constants. Lexicon design choices, known polysemy issues (e.g.,
-``conversion,'' ``dharma''), and cross-contamination between the
-identity and security categories (``Pakistan,'' ``border,'' ``terror'' as
-identity-signalling terms in the Indian context) are discussed alongside the
-code.
+\textbf{Classification.} Each text is classified by Claude Haiku~4.5
+(\texttt{claude-haiku-4-5}) into one of four (majority) or five (minority)
+mutually exclusive categories using a structured system prompt pinned to the
+theoretical primitives. The full prompt, including category definitions and
+disambiguation rules --- most importantly that a lynching story is
+\textsc{identity\_contested} even when the victim's occupation is mentioned,
+and that anti-Pakistan framing is \textsc{identity\_policy} only when
+explicitly identity-laden and \textsc{security\_foreign} otherwise --- is
+reproduced in \texttt{scripts/classify\_with\_haiku.py}. Majority categories
+are \textsc{identity\_policy}, \textsc{economic\_provision},
+\textsc{security\_foreign}, and \textsc{residual}; minority categories add
+\textsc{counter\_mobilization} to capture collective-response content
+distinct from threat-and-event content. Texts are truncated to the first
+$500$ words to bound per-call input tokens; the pinned system prompt is
+cached via Anthropic's ephemeral prompt cache so that each call pays cache-read
+rates on the prompt and full rates only on the unique text. A keyword-lexicon
+fallback is maintained in \texttt{scripts/build\_narrative\_timeseries.py}
+for robustness; the lexicon overlaps the Haiku category boundaries on the
+high-$d$ cases and diverges on polysemous tokens (e.g., ``conversion,''
+``dharma,'' ``border'') on which Haiku is substantially sharper. On the
+$2{,}330$ rows Haiku classified at the time of the main-text figure, the
+category distributions are:
+\begin{center}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+Category & Majority & Minority \\
+\midrule
+Identity-coded / contested & $14.5\%$ & $63.3\%$ \\
+Counter-mobilisation & --- & $22.8\%$ \\
+Economic-programmatic & $33.7\%$ & $0.7\%$ \\
+Security-and-foreign & $10.3\%$ & $2.7\%$ \\
+Residual & $40.6\%$ & $10.7\%$ \\
+Unparseable / error & $0.8\%$ & $0.0\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \textbf{Outputs and validation.} The per-text classification results are
 preserved in \texttt{classified\_majority.csv} and
 \texttt{classified\_minority.csv} for inspection. Aggregate monthly shares
-underlying \autoref{fig:narrative_timeseries} are computed as
-$\text{share}_{\text{identity},m}=N^{\text{identity}}_m/N^{\text{total}}_m$ per
-month $m$, with a three-month rolling mean applied for display. A
-validation-audit against $200$ hand-coded sample speeches is planned for the
-next revision; first-pass results in \autoref{fig:narrative_timeseries} should
-be read as a salience index, not a framing measure.
+underlying \autoref{fig:narrative_timeseries} are computed as the count of
+rows in the numerator category divided by the total rows in the corpus that
+month, with a six-month centred rolling mean applied for display and
+monthly totals below two items set to missing. A validation audit against
+$200$ hand-coded sample items is planned for the next revision.
 
 \subsection{Minority Corpus Construction} \label{app:minority_corpus}
 
@@ -172,6 +164,42 @@ specifications, and robustness checks are preserved in
 \texttt{empirical\_writing/PE\_of\_India/temp\_for\_discussion.tex} and will
 be migrated into this appendix in a subsequent revision.
 
+\subsection{Paradox-of-Competence Regression}\label{app:paradox_regression}
+
+\autoref{fig:paradox_of_competence} reports a linear-probability model of
+BJP retention at the next Assembly election on tenure-average annual count
+of Hindu--Muslim violent events. The sample is every state-election pair in
+which the BJP was the state government in the year prior to the election
+($N=42$, fifteen states, $1984$--$2024$). GDELT Hindu--Muslim violent
+events $1980$--$2024$ is the primary conflict series, with
+Varshney--Wilkinson incidents as a pre-1995 supplement.
+
+The primary specification regresses the retention indicator on
+tenure-average annual event count, with state-clustered standard
+errors. The coefficient is~$+0.0103$~(SE~$0.0042$, $p=0.015$): one
+additional violent Hindu--Muslim event per tenure year raises the BJP
+retention probability by approximately one percentage point. Quintile
+means of the retention rate rise monotonically from~$33\%$ in the lowest
+tenure-conflict quintile to~$78\%$ in the highest.
+
+Robustness: the sign is stable and the magnitude broadly comparable under a
+log-conflict specification ($p=0.063$), under the addition of decade fixed
+effects ($p=0.089$), and under an average-marginal-effect logit
+($p=0.11$). Splitting the sample at 2014 returns similar positive
+coefficients in both the pre-2014 ($N=23$, $p=0.061$) and post-2014
+($N=19$, $p=0.085$) subsamples, so the pattern is not a Modi-era
+artefact. The effect operates at the retention margin rather than on a
+smoother vote-share metric: the coefficient on the continuous BJP
+vote-share change is right-signed but insignificant ($p=0.36$), consistent
+with the seat-winning margin being the discretely-decided object.
+
+The state-FE specification is not estimable with this sample size:
+within-state outcome variation is thin in $10$ of the $15$ states and the
+fixed-effects design absorbs much of the relevant variation mechanically.
+The primary specification should therefore be read as combining
+within-state and cross-state identification. Script:
+\texttt{scripts/paradox\_of\_competence.py}.
+
 \subsection{Ban-and-Conflict Event Studies} \label{app:event_studies}
 
 A parallel line of analysis estimates the effect of each of the six
@@ -185,27 +213,6 @@ python\_results/figures/regression/event\_studies/} and replicated in Stata at
 \texttt{stata\_results/figures/event\_studies/}. A selected four-panel
 summary for the four ban types operating on the bovine family (cow, bull,
 bullock, buffalo) is reported as~\autoref{fig:event_studies}.
-
-\begin{figure}[!htbp]
-    \centering
-    \subfigure[\bf Cow Slaughter Ban]{\includegraphics[width=0.49\textwidth]{figures/empirics/event_study_lnevent_all_policy_cowslaughterban_year.png}}
-    \subfigure[\bf Bull Slaughter Ban]{\includegraphics[width=0.49\textwidth]{figures/empirics/event_study_lnevent_all_policy_bullslaughterban_year.png}}
-    \subfigure[\bf Bullock Slaughter Ban]{\includegraphics[width=0.49\textwidth]{figures/empirics/event_study_lnevent_all_policy_bullockslaughterbans_year.png}}
-    \subfigure[\bf Buffalo Slaughter Ban]{\includegraphics[width=0.49\textwidth]{figures/empirics/event_study_lnevent_all_policy_buffaloslaughterbans_year.png}}
-    \caption{\normalsize\bf Staggered-DID Event Studies: Slaughter Bans and
-    Hindu--Muslim Violent Events.}
-    \floatfoot*{\footnotesize\textit{Notes.} Each panel plots the estimated
-    event-time coefficients from a state-year TWFE regression of log
-    Hindu--Muslim violent events (pooled GDELT and Varshney--Wilkinson) on
-    leads and lags of state-level first adoption of the relevant ban type,
-    1980--2024. Controls: state and year fixed effects; state-level
-    population, precipitation, temperature, and per-capita GDP
-    time-trend. Reference period: $t=-1$. The figures shown here are copied
-    from \texttt{python\_results/figures/regression/event\_studies/} to the
-    thesis figures folder; see the full replication package for
-    all~$144$ ban~$\times$ outcome $\times$ specification combinations.}
-    \label{fig:event_studies}
-\end{figure}
 
 \subsection{State-Level Population Panel} \label{app:population}
 
