@@ -1,0 +1,28 @@
+% Appendix figures. Loaded from appendix_empirical.tex AFTER \appendix.
+% Counter-renaming is handled in appendix_empirical.tex (single point of
+% truth so all appendix tables/figures share the same A.x counter).
+
+\begin{figure}[H]
+    \subfigure[\bf Cow Slaughter Ban.]{\includegraphics[width=0.495\textwidth]{es_robust_cow.jpg}}
+    \subfigure[\bf Bull Slaughter Ban.]{\includegraphics[width=0.495\textwidth]{es_robust_bull.jpg}}
+    \subfigure[\bf Bullock Slaughter Ban.]{\includegraphics[width=0.495\textwidth]{es_robust_bullock.jpg}}
+    \subfigure[\bf Buffalo Slaughter Ban.]{\includegraphics[width=0.495\textwidth]{es_robust_buffalo.jpg}}
+    \caption{\normalsize\bf Robustness of Cattle-Slaughter-Ban Event
+    Studies Across Modern Dynamic-DiD Estimators.}
+    \label{Figure:event_studies_robustness}\label{fig:event_studies_robustness}
+    \floatfoot*{\footnotesize\textit{Notes}: Each panel overlays four
+    estimators of the dynamic event-study path on $\log(1 + \text{violent
+    + nonviolent events})$: (i) the standard two-way fixed-effects
+    estimator (TWFE) with state, zone$\times$year, and four
+    quartile$\times$year fixed effects (\texttt{reghdfe}); (ii)
+    \citet*{cengizEffectMinimumWages2019} stacked DiD on the
+    never-treated control (\texttt{stackedev}); (iii) \citet*{gardnerTwostageDifferencesDifferences2022}
+    two-stage DiD (\texttt{did2s}); and (iv) \citet*{liuPracticalGuideCounterfactual2024} counterfactual estimator (\texttt{fect}) using the
+    matrix-completion variant with jackknife standard errors.
+    Sample and controls match the main-text specification of
+    \autoref{Figure:rent_dissipation_event_study}. The post-adoption
+    positive response is consistent across estimators in all four
+    panels.}
+\end{figure}
+
+\clearpage

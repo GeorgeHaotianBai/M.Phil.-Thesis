@@ -1,0 +1,87 @@
+% =============================================================================
+% Supplementary Materials README — describes the /code and /data folders
+% submitted alongside the manuscript. These two folders, together with this
+% README, regenerate the entire /output folder (figures + tables) end-to-end.
+% Insert with: \input{supplementary_readme} after \input{appendix_empirical}.
+% =============================================================================
+
+\clearpage
+\section{Supplementary Materials: Replication Package} \label{app:supplementary}
+
+The supplementary materials accompanying this paper are organised into two
+top-level folders, \texttt{code/} and \texttt{data/}, which together
+regenerate the third folder, \texttt{output/}, end-to-end. The
+\texttt{output/} folder contains every figure cited in the main text and
+appendix and the auto-generated \texttt{tabularx} bodies used by Tables 2,
+3, and A.1. All scripts read only from paths inside the project tree;
+there are no external-folder dependencies. This appendix documents the
+provenance of each input data file. A separate \texttt{README.md} in the
+replication package details the repository layout, build sequence,
+software requirements, and the script-to-figure mapping.
+
+\subsection{Analysis-ready CSVs and their provenance}
+
+The folder \texttt{data/for\_analysis/} contains one CSV per figure (or per
+panel where panels need different inputs). The naming convention is
+\texttt{figNN\_<descriptor>.csv}, so a reader can locate every input a
+script will read by inspecting the script's prefix. Provenance for each raw
+input is summarised below.
+
+\begin{table}[H]
+\footnotesize
+\centering
+\begin{tabular}{@{}p{0.36\textwidth} p{0.59\textwidth}@{}}
+\toprule
+\textbf{Raw source} & \textbf{Origin} \\
+\midrule
+\texttt{data/raw/policy/}       & State-level cattle-slaughter legislation panel; compiled from
+                                  state legislative records following \citet*{dasguptaNutritionalCostBeef2023}. \\
+\texttt{data/raw/conflict/}     & Hindu--Muslim violent events: GDELT events database
+                                  ($1980$--$2024$, identity-tagged subset) and
+                                  Varshney--Wilkinson dataset
+                                  ($1950$--$1995$). \\
+\texttt{data/raw/election/}     & State-year Vidhan Sabha and national Lok Sabha results;
+                                  Bhavnani India Election Dataset v2.0 ($1977$--$2015$),
+                                  extended to $2024$ from Election Commission of India and Wikipedia. \\
+\texttt{data/raw/control/}      & Annual state population (Census 2001/2011 interpolated to
+                                  the World Bank \texttt{SP.POP.TOTL} India series); state GDP shares
+                                  from RBI tables; auxiliary controls. \\
+\texttt{data/raw/map/}          & GADM 4.1 India administrative boundaries (state level). \\
+\texttt{data/raw/micro\_IHDS-II/} & India Human Development Survey, Wave II (ICPSR \#36151);
+                                  $14$ data sets (DS0001--DS0014) covering household, individual,
+                                  birth-history, and child-anthropometry modules. \\
+\texttt{data/raw/vote/}         & State-election vote-share and seat-share panel. \\
+\texttt{data/intermediate/speeches/} & BJP-leadership speech archives harvested from
+                                  \texttt{bjp.org/speeches}, \texttt{pmindia.gov.in},
+                                  and \texttt{elibrary.sansad.in}; AIMIM Lok Sabha
+                                  speeches; Muslim-voice news harvest via Google-News~RSS
+                                  ($65$ queries, top-$30$ outlets). \\
+\texttt{data/raw/stata\_event\_studies/} & Pre-stacked state-year panels in Stata
+                                  format consumed by the event-study \texttt{.do}
+                                  pipeline. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Software requirements}
+
+\begin{itemize}[leftmargin=*, itemsep=0.2em]
+\item \textbf{Python 3.10+} with \texttt{numpy}, \texttt{pandas},
+      \texttt{matplotlib}, \texttt{statsmodels}, \texttt{linearmodels},
+      \texttt{geopandas} (Fig.~6 maps only), \texttt{Pillow}, and
+      \texttt{anthropic} (only for re-running the Haiku classifier on
+      raw speech text; the classifier output is shipped as the
+      \texttt{fig01\_classified\_*.csv} files, so no API key is required
+      to reproduce Fig.~3).
+\item \textbf{Stata MP 17+} for the event-study pipeline, with the
+      following user-installed packages (vendored in \texttt{ado/plus/}
+      under the Stata folder for portability):
+      \texttt{reghdfe}, \texttt{ftools}, \texttt{stackedev},
+      \texttt{did2s}, \texttt{event\_plot}, \texttt{fect}.
+\item \textbf{LaTeX} (TeX Live 2024+) with the standard AER toolchain:
+      \texttt{natbib}, \texttt{floatrow}, \texttt{tabularx},
+      \texttt{pdflscape}, \texttt{subfigure}, \texttt{cleveref},
+      \texttt{hyperref}.
+\end{itemize}
+
+% End of Supplementary Materials.

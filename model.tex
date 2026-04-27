@@ -97,6 +97,10 @@
 \providecommand*{\propositionautorefname}{Proposition}
 \providecommand*{\corollaryautorefname}{Corollary}
 \providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\remarkautorefname}{Remark}
+\providecommand*{\subfigureautorefname}{Subfigure}
+\providecommand*{\algorithmautorefname}{Algorithm}
+\providecommand*{\assumptionautorefname}{Assumption}
 \newenvironment{proof}[1][Proof]{\noindent \textbf{#1.} }{\ \rule{0.5em}{0.5em}}
 \geometry{left=1.2in,right=1.2in,top=1.3in,bottom=1.3in}
 \renewcommand{\baselinestretch}{1.3}
@@ -128,6 +132,7 @@
 }
 
 \usepackage{graphicx}
+\graphicspath{{../output/figures/}{figures/empirics/}}
 \usepackage{subfigure}
 \floatsetup[figure]{font=footnotesize}
 
@@ -175,7 +180,7 @@
 \usepackage{titletoc}
 
 \title{Manufacturing Enemies in Political Contests}
-\author{Haotian (George) Bai\thanks{I thank to conference/seminar participants at xxx. I extend special thank to Prof. Jean-Paul Carvalho (Oxford).}}
+\author{Haotian (George) Bai\thanks{I thank to conference/seminar participants at Oxford. I extend special thank to Prof. Jean-Paul Carvalho (Oxford).}}
 \date{\today}
 
 \begin{document}
@@ -183,7 +188,12 @@
 \maketitle
 
 \begin{abstract}
-Identity-coded policies (symbolic) against domestic minorities are modeled as an electoral instrument that activates a dormant security contest. I suggest that a security-oriented party can manufacture a visible minority threat in order to relax majority free-riding, make its state-capacity advantage salient, and substitute identity politics for economic competence. This accounts for the puzzling fact that democratically elected parties may adopt socially costly and fiscally wasteful policies against minorities and yet be rewarded by majority voters. Symbolic provocation is, however, disciplined by an endogenous ceiling: beyond a point, arming the minority erodes the very security premium the hawkish party seeks to create and generates strictly positive rent dissipation. A dynamic extension yields two distinct long-run outcomes. With patient, forward-looking voters, manufacturing enemies produces a conflict trap in which the hawkish party becomes entrenched despite weaker economic performance. With myopic retrospective voters, the same mechanism generates recurrent political cycles between security-oriented and economically competent parties. Successful suppression of disorder can therefore increase, rather than reduce, the hawkish party's risk of electoral defeat. JEL Codes: D72, D74, P16, Z18.
+Why do political groups enact identity-related policies (i.e., symbolic policies) against out-groups in political contests? I model symbolic policy as an instrument that activates a dormant two-sided security contest between a majority and a domestic minority. By manufacturing a visible threat, a security-advantaged \emph{hawkish} party relaxes majority free-riding in decentralized enforcement, makes its state-capacity advantage electorally salient, and substitutes identity politics for economic competence. With forward-looking voters, conflict produces a self-sustaining trap in which the hawk can survive through severe economic shocks. With myopic retrospective voters, the mechanism generates recurrent regime cycles, whereby successful suppression of disorder raises the hawk's risk of turnover. These theoretical predictions are distinct from Barro-Ferejohn models. Evidence from India's cattle-slaughter legislation, along with cases on the United States, Colombia, and Iran, is consistent with each prediction. 
+
+\emph{JEL Codes: D72, D74, P16, Z18}.
+
+
+%Why do elected majority parties enact socially costly policies against domestic minorities, and why do voters reward them? I model identity-coded (``symbolic'') policy as an electoral instrument that activates a dormant two-sided security contest between a majority and a domestic minority. By manufacturing a visible threat, a security-advantaged \emph{hawkish} party relaxes majority free-riding in decentralized enforcement, makes its state-capacity advantage electorally salient, and substitutes identity politics for economic competence. Provocation is disciplined by an endogenous ceiling that depends only on the technology ratio between parties: beyond it, further provocation drags equilibrium security toward zero faster than it widens the partisan gap, eroding the very security premium the hawk is trying to manufacture. A dynamic extension delivers two regimes from the same primitive. With forward-looking voters, conflict produces a self-sustaining trap in which the hawk is retained through severe economic shocks. With myopic retrospective voters, the mechanism generates recurrent regime cycles together with a \emph{paradox of competence}, whereby successful suppression of disorder raises, rather than lowers, the hawk's defeat hazard. Evidence from India's cattle-slaughter legislation, parallel majority and minority narrative corpora (2018--25), and state-level electoral panels (1984--2024), with scope cases on the United States, Colombia, and Iran, is consistent with each prediction. JEL Codes: D72, D74, P16, Z18.
 \end{abstract}
 \clearpage
 
@@ -197,8 +207,7 @@ Identity-coded policies (symbolic) against domestic minorities are modeled as an
 
 % Paragraph 1 — Opening: the phenomenon
 
-There has been a widespread rise in identity-coded state policies (symbolic policies) targeting domestic minority groups in electoral democracies. By symbolic policies, I mean deliberate control over cultural, religious, and ethnic identities. These policies include restrictions on diet, dress, marriage, or language regulations, chosen by an elected majority party and directed at a visible domestic out-group. In the last decade, legislative waves in major Indian states\footnote{See the coverage on various beef ban policies across Indian states in Appendix Table 1. Following \citet*{dasguptaNutritionalCostBeef2023}, I tracked the policies based across state legislative records.} has criminalized cow-slaughtering with penalties of up to ten years' imprisonment. Between 2012-2018, over forty cow-related deaths were documented, whose victims were mostly Muslim.\footnote{\href{https://www.hrw.org/report/2019/02/19/violent-cow-protection-india/vigilante-groups-attack-minorities}{Human Rights Watch (2019), last access Apr 17\textsuperscript{th}, 2026}.} The pattern has been repeated across electoral democracies, from the post-2016 anti-immigration turn in the United States, to the Uribista policies under Álvaro Uribe Vélez. Such polices are also seen in non-democracies, including the recurrent morality-police campaigns of the Iranian Islamic Republic and the Chinese Communist Party (CCP)'s policies on restricting expressions of ethnic identity.\footnote{\href{https://www.bbc.co.uk/news/world-asia-china-67483202}{CCP closing and destroying mosques around China}. \citet*{cantoniCurriculumIdeology2017} documents how does curriculum reform affect political ideology, including ethnic identity.}
-These policies have severe consequences for the economic welfare of minorities and majorities, but their puzzle for political economy lies elsewhere. Conventional electoral-accountability theories predict that incumbents are punished for adverse welfare outcomes, that the return to a policy instrument falls in the disorder it generates, and that a single mechanism delivers a single political outcome. The post-2014 Indian record, documented in detail in Section~\ref{sec:empirical_facts}, runs against all three. Majority parties whose tenures coincide with more communal violence retain office at higher rates, not lower. The political return to communal disorder peaks where electoral contests are closest, not where the majority is most secure. And the same instrument has produced a durable thirty-year Hindu-nationalist incumbency in Gujarat alongside repeated alternation in Himachal Pradesh, Rajasthan, and Karnataka --- inside one federation. Symbolic provocation thus appears to function as a deliberate substitute for economic competence rather than as a residual mistake of opportunistic politicians, and the goal of the model is to organise these patterns inside a single equilibrium framework.
+There has been a widespread rise in identity-coded policies (symbolic policies) targeting domestic minority groups in electoral democracies. By symbolic policies, I mean deliberate control over cultural, religious, and ethnic identities on minority groups. These policies include restrictions on diet, dress, marriage, or language regulations, chosen by an elected majority party and directed at a visible domestic out-group. In the last decade, legislative waves in major Indian states have criminalised cow-slaughtering with penalties of up to ten years' imprisonment.\footnote{The cumulative state-by-state rollout of all six ban types is shown in \autoref{fig:policy_cumulative_rollout}, with the year-by-year coverage tabulated in Appendix~\autoref{tab:policy_timing}. Following \citet*{dasguptaNutritionalCostBeef2023}, I tracked policy-enactment dates across state legislative records.} Between 2012-2018, over forty cow-related deaths were documented, whose victims were mostly Muslim.\footnote{\href{https://www.hrw.org/report/2019/02/19/violent-cow-protection-india/vigilante-groups-attack-minorities}{Human Rights Watch (2019), last access Apr 17\textsuperscript{th}, 2026}.} The pattern has been repeated across electoral democracies, from the post-2016 anti-immigration turn in the United States, to the Uribista policies under Álvaro Uribe Vélez. Such polices are also seen in non-democracies with political competition.\footnote{Iranian principalists deploy hijab enforcement and morality-policing campaigns to combat economics reformists when they gain popularity \citep*{bajoghliIranReframedAnxieties2020}. Chinese Communist Party (CCP) has divergent policies on ethnic groups as Politburo faction shifts \citep*{leiboldEthnicPolicyChina2013}. \citet*{francoisFactionsNondemocraciesTheory2023} introduces CCP factions, policies, and welfare in China. \citet*{francoisHowPowerShared2015} documents ethnic-political contests in Africa.} These features also defy economic theories of political accountability in political contests \citep*{barroControlPoliticiansEconomic1973,ferejohnIncumbentPerformanceElectoral1986}. Why does a rising number of political groups obtain power through a non-pivotal minority group?
 
 % Paragraph 2 — Consequently: policy and scholarly interest, and the gap
 
@@ -227,7 +236,7 @@ When voters are myopic and evaluate incumbents retrospectively on the basis of c
 % Paragraph 8 — Ethnic Contest
 
 I point out the relationship to and my departures from existing work. This paper first contributes to the theoretical literature on the economics of intergroup conflict and contest design. 
-Canonical formal approach models intergroup conflict as a contest where the salient cleavage (class, religion, or ethnic identities) and the intensity of confrontation are determined by exogenous parameters such as group size, within-group inequality, or shocks on economic capacity \citep{estebanConflictDistribution1999, estebanSalienceEthnicConflict2008, caselliTheoryEthnicConflict2006}.\footnote{Empirical literature corresponds to these theoretical advances \citep{dalbóWORKERSWARRIORSCRIMINALS2011, rohnerWarSignalsTheory2013, dubeCommodityPriceShocks2013}.} A large group of literature also formalizes how incumbents initiate conflict to divert attention from economic underperformance \citep*{hessWarDemocracy2001}. However, the contest environment itself remains largely isolated from the political process. My theoretical departure is to embed a two-sided Tullock contest \citep*{skaperdasContestSuccessFunctions1996,jiaStochasticDerivationRatio2008} with endogenous collective action into a political agency framework. Therefore, incumbent strategically designs the contest's prize. Unlike a standard neutral principal optimizing rules to maximize joint effort \citep*{barutSymmetricMultiplePrize1998,fangTurningHeatDiscouraging2020}, political principal (i.e., parties) is biased in my model. By manufacturing a visible threat, the majority relaxes its free-rider problem. I formalize a novel mechanism of conflict as an endogenous electoral instrument \citep{iyerReligiousRiotsElectoral2018, mitraImplicationsEconomicTheory2014}. 
+Canonical formal approach models intergroup conflict as a contest where the salient cleavage (class, religion, or ethnic identities) and the intensity of confrontation are determined by exogenous parameters such as group size, group budget, within-group inequality, or shocks on economic capacity \citep*{estebanConflictDistribution1999, estebanSalienceEthnicConflict2008, caselliTheoryEthnicConflict2006, acharyaElectoralCampaignsDynamic2024}.\footnote{Empirical literature corresponds to these theoretical advances \citep{dalbóWORKERSWARRIORSCRIMINALS2011, rohnerWarSignalsTheory2013, dubeCommodityPriceShocks2013}.} A large group of literature also formalizes how incumbents initiate conflict to divert attention from economic underperformance \citep*{hessWarDemocracy2001}. However, the contest environment itself remains largely isolated from the political process. My theoretical departure is to embed a two-sided Tullock contest \citep*{skaperdasContestSuccessFunctions1996,jiaStochasticDerivationRatio2008} with endogenous collective action into a political agency framework. Therefore, incumbent strategically designs the contest's prize. Unlike a standard neutral principal optimizing rules to maximize joint effort \citep*{barutSymmetricMultiplePrize1998,fangTurningHeatDiscouraging2020}, political principal (i.e., parties) is biased in my model. By manufacturing a visible threat, the majority relaxes its free-rider problem. I formalize a novel mechanism of conflict as an endogenous electoral instrument \citep{iyerReligiousRiotsElectoral2018, mitraImplicationsEconomicTheory2014}. 
 
 % I point out the relationship to and my departures from existing work. I build on the economics of ethnic conflict and minority mobilization \citep{estebanConflictDistribution1999}. The literature identifies what conditions make ethnicity rather than economics the salient cleavage of social contention. \citet{estebanSalienceEthnicConflict2008} argues \emph{ex-ante} economic inequality \emph{within} an ethnic group tends to make the ethnic partition focal over the class partition.\footnote{Intra-ethnic inequality creates cooperation between the rich (offering resources) and the poor (offering effort) for collective mobilization.} Ethnic identities are also selected because ethnic identities are hard to fake \emph{ex-post} of mobilization, ensuring the inclusion of losers after conflict \citep{caselliTheoryEthnicConflict2006}.\footnote{\citet{estebanLinkingConflictInequality2011,estebanEthnicityConflictEmpirical2012} show that equilibrium conflict are determined non-linearly by \emph{intra-} and \emph{inter-} levels of group inequality.} The literature also identifies broader social-economic landscape that determines ethnic conflict, including sectoral choice between production and predation \citep{dalbóWORKERSWARRIORSCRIMINALS2011} or the informational role of inter-group trade \citep*{rohnerWarSignalsTheory2013}. A parallel body of theoretical and empirical work on mobilization asks how aggrieved members of a disadvantaged group overcome their collective-action problem. \citet{carvalhoRadicalisation2024} show that a forward-looking identity-based organisation optimally screens on commitment intensity, and that cultural purification shrinking the club is the starting point of deeper radicalisation. \citet{dubeCommodityPriceShocks2013} argues shocks to sectorial composition shift the directions of insurgent activities. \citet{bo’EconomicSocialOutsiders2023} documents economically and socially marginals mobilise radical populist groups. My departure is to endogeneize the ethnic contest within the electoral game. Ethnic mobilization is a subgame where the elected majority incumbent chooses the policy which shapes the minority's payoff. Effort levels are solved jointly as an equilibrium of two within-group Nash equilibria.
 
@@ -261,8 +270,15 @@ By contrast, my mechanism does not rely on behavioral biases, asymmetric informa
 
 % Paragraph 10 — Conflict as Electoral Strategy
 
-Finally, my dynamic extension contributes to the theory of electoral accountability, state capacity, and regime persistence. By bridging retrospective voting models with the literature on the political economics of state capacity \citep*{besleyOriginsStateCapacity2009,besleyStateCapacityConflict2010}, I demonstrate how the endogenous production of conflict generates divergent paths for democratic institutions.
-While existing work on the dismantling of institutional constraints shows how voters might rationally concentrate power to facilitate desirable redistribution \citep*{alesinaPoliticsBusinessCycles1989,coatePolicyPersistence1999}, I show how voters can be trapped in a \emph{low-welfare, high-conflict} regime precisely because the incumbent's provocations in the history have rendered their coercive capacity indispensable. In my model, I trace the dynamic feedback between the inherited grievance environment and the forward-looking value of state capacity. I reveal the \emph{conflict trap} but can be the absorbing state of a dynamically rational electorate instead of an institutional failure of state apparatus (eg., constitution). Conversely, under myopic retrospective voting, the same mechanism generates recurrent political cycles between economic competence and security provision. Therefore, I provide a unified structural explanation for the empirical oscillation between redistributive and hawkish regimes in divided democracies.
+Finally, my dynamic extension contributes to the political-agency theory of electoral accountability. Canonical theories \citep*{barroControlPoliticiansEconomic1973,ferejohnIncumbentPerformanceElectoral1986} are developed by recent contributes to capture information design \citep*{banksRepeatedElectionsModel1993,przeworskiDemocracyAccountabilityRepresentation1999,sandroniWhenConfrontRole2018a,acharyaPoliticalAccountabilityMoral2025} and behavioral responses \citep*{levyCorrelationNeglectVoting2015,ortolevaOverconfidencePoliticalBehavior2015,liElectoralAccountabilitySelection2023,vaethVoterLearningUnidimensional2023}. I bridge these literature and demonstrate how the endogenous production of conflict generates divergent paths for democratic institutions. I show how voters can be trapped in a \emph{low-welfare, high-conflict} regime precisely because the incumbent's provocations in the history have rendered their coercive capacity indispensable. In my model, I trace the dynamic feedback between the inherited grievance environment and the forward-looking value of state capacity. I reveal the \emph{conflict trap} but can be the absorbing state of a dynamically rational electorate instead of an institutional failure of state apparatus (eg., constitution). Conversely, under myopic retrospective voting, the same mechanism generates recurrent political cycles between economic competence and security provision. By doing so, I also extend existing theories of redistribution politics and state capacity in electoral polities \citep*{alesinaPoliticsBusinessCycles1989,coatePolicyPersistence1999,besleyOriginsStateCapacity2009,besleyStateCapacityConflict2010}. 
+
+
+
+
+
+
+%electoral accountability, state capacity, and regime persistence. By bridging retrospective voting models with the literature on the political economics of state capacity \citep*{besleyOriginsStateCapacity2009,besleyStateCapacityConflict2010}, 
+%While existing work on the dismantling of institutional constraints shows how voters might rationally concentrate power to facilitate desirable redistribution \citep*{alesinaPoliticsBusinessCycles1989,coatePolicyPersistence1999}, I show how voters can be trapped in a \emph{low-welfare, high-conflict} regime precisely because the incumbent's provocations in the history have rendered their coercive capacity indispensable. In my model, I trace the dynamic feedback between the inherited grievance environment and the forward-looking value of state capacity. I reveal the \emph{conflict trap} but can be the absorbing state of a dynamically rational electorate instead of an institutional failure of state apparatus (eg., constitution). Conversely, under myopic retrospective voting, the same mechanism generates recurrent political cycles between economic competence and security provision. Therefore, I provide a unified structural explanation for the empirical oscillation between redistributive and hawkish regimes in divided democracies.
 
 % Third, this paper joins the literature on the strategic use of conflict for electoral ends. The closest theoretical antecedent is \citet{baligaStrategyManipulatingConflict2012}, who study an extremist manipulating a two-sided hawk-dove conflict through public cheap-talk messaging. \citet{desaiTheoryElectoralCompetition2025} extends the electoral-competition logic to developing democracies, where voters' choice between a security-oriented and an economically oriented platform turns on the credibility of each.
 % Conflict between groups rises from shifts in party politics and economic powers \citep{iyerReligiousRiotsElectoral2018,mitraImplicationsEconomicTheory2014}.\footnote{\citet{blakesleeRathYatraEffect2018} and \citet{blakesleePoliticsPublicGoods2018} trace the electoral returns of specific symbolic campaigns and leadership shocks. My framework delivers two sharp quantitative objects, a provocation cutoff below which no symbolic policy is taken and a technological-endowment ceiling beyond which provocation is self-defeating, that sharpen the positive-returns pattern of the empirical literature into a testable non-monotonicity.} The common limitation across this body of work is that the political lever is either a cheap-talk message \citep{baligaStrategyManipulatingConflict2012} or a realised riot whose intensity is read off the economic environment \citep{iyerReligiousRiotsElectoral2018,mitraImplicationsEconomicTheory2014}. I treat it as a primitive policy choice for the political principal's to shift the prize of contest and an endogenous mobilisation response.
@@ -314,7 +330,7 @@ While both economic stability and security are public goods, they differ in thei
 
 Fix an incumbent party $k$ and suppose the Majority consists of $N_M$ identical citizens indexed by $i=1,\dots,N_M$. Citizen $i$ chooses enforcement effort $e_i\ge 0$ at private cost $\frac{1}{2}e_i^2$. Aggregate Majority effort is $E_M\equiv\sum_{i=1}^{N_M} e_i$. Aggregate Minority effort $E_m$ is determined symmetrically in the next subsection; for now it is taken as given in the Majority's best response.
 
-Security is produced by a stochastic contest between a state-amplified Majority and an oppositional Minority. Let $S_k>0$ denote the incumbent's security competence, which acts as a force multiplier on Majority effort. Following standard contest theory, the probability that the Majority prevails is given by the Tullock contest success function\footnote{Following the contest theory literature (e.g., \citet{skaperdas1996contest}; \citet{jia2008stochastic}), one micro-foundation assumes realized ``performance'' levels $Y_M=\ln(S_k E_M)+\varepsilon_M$ and $Y_m=\ln(E_m)+\varepsilon_m$, where $\varepsilon_M,\varepsilon_m$ are i.i.d.\ Type I Extreme Value (Gumbel). The probability of Majority dominance is $\Pi_k=\mathbb{P}(Y_M>Y_m)$, which simplifies to \autoref{eq:CSF}.}:
+Security is produced by a stochastic contest between a state-amplified Majority and an oppositional Minority. Let $S_k>0$ denote the incumbent's security competence, which acts as a force multiplier on Majority effort. Following standard contest theory, the probability that the Majority prevails is given by the Tullock contest success function\footnote{Following the contest theory literature (e.g., \citet{skaperdasContestSuccessFunctions1996}; \citet{jiaStochasticDerivationRatio2008}), one micro-foundation assumes realized ``performance'' levels $Y_M=\ln(S_k E_M)+\varepsilon_M$ and $Y_m=\ln(E_m)+\varepsilon_m$, where $\varepsilon_M,\varepsilon_m$ are i.i.d.\ Type I Extreme Value (Gumbel). The probability of Majority dominance is $\Pi_k=\mathbb{P}(Y_M>Y_m)$, which simplifies to \autoref{eq:CSF}.}:
 \begin{equation} \label{eq:CSF}
 \Pi_k(E_M, E_m) = \frac{S_k E_M}{S_k E_M + E_m}.
 \end{equation}
@@ -381,62 +397,7 @@ In words: in the joint best-response system, the Majority-to-Minority effort rat
 \end{lemma}
 
 \begin{proof}
-\textit{Step 1 (Dormant case, $d=0$).} If $d=0$, then $\phi d^\sigma=0$ and the Minority's FOC \autoref{eq:Em_BR} implies $e_j=0$ for all $j$, so $E_m^*=0$. Substituting $E_m=0$ into the Majority's FOC \autoref{eq:EM_BR} gives $E_M/N_M=0$, so $E_M^*=0$. By continuity of the Tullock CSF, $\lim_{d\downarrow 0}\Pi_k^*=\lim_{(E_M,E_m)\to(0,0)} S_k E_M/(S_k E_M+E_m)=1$ along the equilibrium path computed below.
-
-\textit{Step 2 (Existence, uniqueness, and closed form for $d>0$).} Fix $d>0$ and $S_k>0$. Under symmetry within each group, the joint equilibrium is characterized by \autoref{eq:EM_BR} and \autoref{eq:Em_BR} simultaneously. Dividing \autoref{eq:EM_BR} by \autoref{eq:Em_BR} (both sides strictly positive at any interior candidate equilibrium) yields
-\[
-\frac{E_M/N_M}{E_m/N_m}
-\;=\;
-\frac{\Lambda S_k E_m/(S_k E_M+E_m)^2}{\kappa\phi d^\sigma S_k E_M/(S_k E_M+E_m)^2}
-\;=\;
-\frac{\Lambda E_m}{\kappa\phi d^\sigma E_M}.
-\]
-Cross-multiplying,
-\begin{equation}\label{eq:effort_ratio_eq}
-\kappa\phi d^\sigma N_m E_M^2 \;=\; \Lambda N_M E_m^2,
-\end{equation}
-so
-\[
-\frac{E_M}{E_m}\;=\;\sqrt{\frac{\Lambda N_M}{\kappa\phi d^\sigma N_m}} \;=\; \alpha d^{-\sigma/2}.
-\]
-Substituting $E_M=\alpha d^{-\sigma/2} E_m$ into the Majority FOC \autoref{eq:EM_BR}:
-\[
-\frac{\alpha d^{-\sigma/2} E_m}{N_M}\;=\;\frac{\Lambda S_k E_m}{(S_k \alpha d^{-\sigma/2} E_m + E_m)^2}
-\;=\;\frac{\Lambda S_k}{E_m(S_k\alpha d^{-\sigma/2}+1)^2}.
-\]
-Rearranging,
-\[
-E_m \;=\; \frac{\Lambda S_k N_M d^{\sigma/2}}{\alpha\,(S_k\alpha d^{-\sigma/2}+1)^2}
-\;=\;\frac{\Lambda S_k N_M d^{\sigma/2}}{\alpha}\cdot\frac{d^\sigma}{(S_k\alpha+d^{\sigma/2})^2}
-\;=\; \frac{\Lambda S_k N_M d^{3\sigma/2}}{\alpha(S_k\alpha+d^{\sigma/2})^2}.
-\]
-Using $\alpha^2 = \Lambda N_M/(\kappa\phi N_m)$, $\Lambda N_M/\alpha = \sqrt{\Lambda N_M\kappa\phi N_m}\cdot 1/d^{0}=\sqrt{\Lambda N_M}\sqrt{\kappa\phi N_m}$ is a constant in $d$, and
-\[
-\sqrt{(\Lambda N_M)(\kappa\phi N_m)}\cdot\frac{S_k d^{3\sigma/2}}{(S_k\alpha+d^{\sigma/2})^2}
-\]
-is the closed-form expression for $E_m^*$. Writing $\beta \equiv (\kappa\phi N_m\Lambda N_M)^{1/4}$ and using $(\Lambda S_k N_M /\alpha)=S_k\alpha^{-1}\cdot\Lambda N_M = S_k\cdot \alpha^{-1}\cdot\alpha^2\kappa\phi N_m=S_k\alpha\kappa\phi N_m$, one can re-express
-\[
-E_m^*(d,S_k)
-\;=\;\frac{S_k^{1/2}\beta^2 d^{3\sigma/4}\cdot d^{3\sigma/4}}{(S_k\alpha+d^{\sigma/2})^2}\cdot\frac{1}{d^{3\sigma/4}/\sqrt{d^{3\sigma/2}}}
-\;=\;\frac{\sqrt{\Lambda N_M\kappa\phi N_m}\,S_k^{1/2}d^{3\sigma/4}}{S_k\alpha+d^{\sigma/2}},
-\]
-which is \autoref{eq:EmEM_star}. (Equivalently: using $D\equiv S_k E_M^*+E_m^*=(S_k\alpha d^{-\sigma/2}+1)E_m^*$, one obtains $D^2 = S_k d^{\sigma/2}\sqrt{\Lambda N_M\kappa\phi N_m}$, hence $D=S_k^{1/2}\beta d^{\sigma/4}$, and $E_m^*=D/(S_k\alpha d^{-\sigma/2}+1)$ yields the same formula.) The Majority level follows from $E_M^*=\alpha d^{-\sigma/2}E_m^*$, establishing existence and providing the unique candidate.
-
-To verify it is indeed a Nash equilibrium, note that each side's within-group problem is strictly concave in its own effort given the opponent's aggregate — the first term of \autoref{eq:minority_prob} is strictly concave in $e_j$ because $\Pi_k$ is strictly convex in $E_m$ along the relevant range, and the cost is strictly convex — so the FOCs fully characterize each side's symmetric best response. Uniqueness of the symmetric NE follows because \autoref{eq:effort_ratio_eq} pins down the effort ratio uniquely and the Majority FOC then pins down the level uniquely.
-
-\textit{Step 3 (Security formula).} Substituting the effort ratio into the CSF,
-\[
-\Pi_k^*\;=\;\frac{S_k E_M^*}{S_k E_M^*+E_m^*}\;=\;\frac{S_k\alpha d^{-\sigma/2}}{S_k\alpha d^{-\sigma/2}+1}\;=\;\frac{S_k\alpha}{S_k\alpha+d^{\sigma/2}},
-\]
-which is \autoref{eq:Pi_star_new}.
-
-\textit{Step 4 (Comparative statics).} Differentiating \autoref{eq:Pi_star_new},
-\[
-\frac{\partial \Pi_k^*}{\partial S_k}\;=\;\frac{\alpha\,d^{\sigma/2}}{(S_k\alpha+d^{\sigma/2})^2}>0\quad\text{for }d>0,
-\qquad
-\frac{\partial \Pi_k^*}{\partial d}\;=\;-\frac{S_k\alpha\cdot(\sigma/2)d^{\sigma/2-1}}{(S_k\alpha+d^{\sigma/2})^2}<0\quad\text{for }d>0.
-\]
-The limits $\lim_{d\downarrow 0}\Pi_k^*=1$ and $\lim_{d\uparrow\infty}\Pi_k^*=0$ follow directly from \autoref{eq:Pi_star_new}.
+See Appendix~\autoref{app:proof:contest_equilibrium}.
 \end{proof}
 
 \autoref{lem:contest_equilibrium} contains four results that reshape the reading of the rest of the paper. First, the joint contest equilibrium has a closed form, so the analysis that follows is a matter of ordinary calculus on $\Pi_k^*(d,S_k)=S_k\alpha/(S_k\alpha+d^{\sigma/2})$ rather than a sequence of implicit-function arguments. Second, the Majority-to-Minority effort ratio is $\alpha d^{-\sigma/2}$ and, strikingly, does not depend on $S_k$: the state capacity of the incumbent shifts the \emph{level} of both efforts but not their \emph{ratio}. Third, security is monotone in both of its arguments, increasing in $S_k$ and decreasing in $d$; the crowd-in effect of provocation operates on the level of $E_M^*$, but this level effect is fully absorbed by the corresponding rise in $E_m^*$ that the Minority chooses endogenously. Fourth, as in the original reduced-form model, the state capacity technology is dormant in peacetime: when $d=0$ the contest collapses to $(E_M^*,E_m^*)=(0,0)$, both parties deliver full dominance, and the Hawk's advantage is electorally invisible. The crucial difference is that this dormancy now arises from a genuine two-sided Nash equilibrium rather than from an expressive reduced-form reaction.
@@ -449,7 +410,7 @@ Two implications will be useful below. First, as $d\downarrow 0$, Minority mobil
 
 \subsection{Manipulating the Group Contest} \label{subsec:contest_theory}
 
-This subsection makes explicit the model's link to contest theory. In canonical contest environments, a (typically neutral) principal designs prizes or rules to shape equilibrium effort and performance (e.g., \citet{barut1998symmetric}). Recent work also emphasizes that increasing the intensity of competition can \emph{discourage} effort, yielding non-monotone response patterns (e.g., \citet{fang2020turning}). In contrast, my political economy environment features a \emph{biased} designer: the incumbent party manipulates the contest \emph{indirectly} through symbolic policy. By choosing $d_k$, the incumbent raises the Minority's endogenous grievance stakes $\phi d_k^\sigma$ and thereby the ``threat'' that disciplines the Majority subgame's free-riding. Because \autoref{lem:contest_equilibrium} delivers both $E_M^*$ and $E_m^*$ in closed form, the comparative statics of interest reduce to calculus on elementary functions, and the key inverted-U patterns of the original paper re-emerge as exact results rather than implicit-function artefacts.
+This subsection makes explicit the model's link to contest theory. In canonical contest environments, a (typically neutral) principal designs prizes or rules to shape equilibrium effort and performance (e.g., \citet{barutSymmetricMultiplePrize1998}). Recent work also emphasizes that increasing the intensity of competition can \emph{discourage} effort, yielding non-monotone response patterns (e.g., \citet{fangTurningHeatDiscouraging2020}). In contrast, my political economy environment features a \emph{biased} designer: the incumbent party manipulates the contest \emph{indirectly} through symbolic policy. By choosing $d_k$, the incumbent raises the Minority's endogenous grievance stakes $\phi d_k^\sigma$ and thereby the ``threat'' that disciplines the Majority subgame's free-riding. Because \autoref{lem:contest_equilibrium} delivers both $E_M^*$ and $E_m^*$ in closed form, the comparative statics of interest reduce to calculus on elementary functions, and the key inverted-U patterns of the original paper re-emerge as exact results rather than implicit-function artefacts.
 
 \subsubsection{Comparative statics on state capacity $S_k$}
 Fix symbolic policy at some $d>0$ and ask how the joint contest equilibrium responds to an increase in state security competence $S_k$. From \autoref{lem:contest_equilibrium}, both efforts share the same $S_k$-dependence through the common factor $S_k^{1/2}/(S_k\alpha+d^{\sigma/2})$: this reflects the fact that the effort ratio $E_M^*/E_m^* = \alpha d^{-\sigma/2}$ does not depend on $S_k$, so the state's capacity shifts the level of both sides of the contest in lockstep. The next result characterizes how that common level moves and contrasts it with the behaviour of effective enforcement and realized security.
@@ -464,23 +425,7 @@ In words, higher state capacity first crowds in street-level enforcement, then e
 \end{lemma}
 
 \begin{proof}
-Fix $d>0$ and write $\beta\equiv(\kappa\phi N_m\Lambda N_M)^{1/4}$. By \autoref{lem:contest_equilibrium}, the closed-form expressions \autoref{eq:EmEM_star} can be rewritten as
-\begin{equation} \label{eq:Em_Sk_explicit}
-E_m^*(d,S_k)\;=\;\beta^2\,\frac{S_k^{1/2}\,d^{3\sigma/4}}{S_k\alpha+d^{\sigma/2}},
-\qquad
-E_M^*(d,S_k)\;=\;\alpha\beta^2\,\frac{S_k^{1/2}\,d^{\sigma/4}}{S_k\alpha+d^{\sigma/2}},
-\end{equation}
-so both efforts depend on $S_k$ only through the common factor $\psi(S_k)\equiv S_k^{1/2}/(S_k\alpha+d^{\sigma/2})$. Differentiating $\log\psi$,
-\[
-\frac{d\log\psi(S_k)}{dS_k}\;=\;\frac{1}{2S_k}-\frac{\alpha}{S_k\alpha+d^{\sigma/2}}\;=\;\frac{d^{\sigma/2}-S_k\alpha}{2S_k(S_k\alpha+d^{\sigma/2})},
-\]
-which is strictly positive for $S_k<d^{\sigma/2}/\alpha$, zero at $S_k=d^{\sigma/2}/\alpha$, and strictly negative thereafter. This proves both the single-peakedness of $E_M^*$ and $E_m^*$ in $S_k$ and the formula \autoref{eq:Sk_threshold} for $\overline{S}(d)$.
-
-For effective enforcement $Z_k^*(d,S_k)=\alpha\beta^2 S_k^{3/2} d^{\sigma/4}/(S_k\alpha+d^{\sigma/2})$,
-\[
-\frac{\partial\log Z_k^*}{\partial S_k}\;=\;\frac{3}{2S_k}-\frac{\alpha}{S_k\alpha+d^{\sigma/2}}\;=\;\frac{S_k\alpha+3d^{\sigma/2}}{2S_k(S_k\alpha+d^{\sigma/2})}\;>\;0,
-\]
-so $Z_k^*$ is strictly increasing in $S_k$. Strict monotonicity of $\Pi_k^*$ in $S_k$ was established in Step 4 of the proof of \autoref{lem:contest_equilibrium}.
+See Appendix~\autoref{app:proof:Sk_statics}.
 \end{proof}
 
 \begin{corollary}[\textbf{Contest balance at the mobilization peak}] \label{cor:Sk_threshold}
@@ -492,40 +437,17 @@ independent of $d$. Equilibrium Majority mobilization is therefore inverted-U in
 \end{corollary}
 
 \begin{proof}
-Substitute $S_k=\overline{S}(d)=d^{\sigma/2}/\alpha$ into \autoref{eq:Pi_star_new}: $\Pi_k^*=S_k\alpha/(S_k\alpha+d^{\sigma/2})=d^{\sigma/2}/(2d^{\sigma/2})=\tfrac{1}{2}$. For the peak level, substitute the same restriction into $E_M^*$ from \autoref{eq:Em_Sk_explicit}:
-\[
-E_M^*\big(d,\overline{S}(d)\big)
-\;=\;\alpha\beta^2\,\frac{(d^{\sigma/2}/\alpha)^{1/2}\,d^{\sigma/4}}{2d^{\sigma/2}}
-\;=\;\frac{\alpha^{1/2}\beta^2}{2},
-\]
-and using $\alpha^{1/2}=(\Lambda N_M/(\kappa\phi N_m))^{1/4}$, $\beta^2=(\Lambda N_M\kappa\phi N_m)^{1/2}$ gives \autoref{eq:EM_peak_level}.
+See Appendix~\autoref{app:proof:Sk_threshold}.
 \end{proof}
 
 Corollary \autoref{cor:Sk_threshold} clarifies why a Hawk regime need not coincide with visibly higher Majority street violence. When $S_k$ is low, decentralized enforcement has little leverage in the contest, so free-riding dominates and mobilization is weak. As $S_k$ rises into an intermediate range, each unit of citizen effort becomes more effective in producing dominance. This raises the private marginal return to participation and increases $E_M^*$. In this region, a Hawk that is stronger than the Dove but not overwhelmingly strong relies on grass-roots enforcement: state capacity complements citizen mobilization rather than replacing it. Once $S_k$ exceeds the threshold $\overline{S}(d)$, strong public provision of identity security dominates private effort of mobilization. The state's coercive apparatus becomes sufficiently effective that dominance can be maintained with less decentralized effort, so the private return to participation falls and citizens withdraw from mobilizing for collective actions that protect their identity. Aggregate mobilization $E_M^*$ then declines even as effective enforcement $Z_k^*=S_kE_M^*$ and equilibrium security $\Pi_k^*$ continue to rise. Thus only a relatively weaker Hawk induces visible mass participation; a sufficiently strong Hawk secures order from above, through state capacity rather than street-level mobilization. The corollary therefore breaks the linear association between hawkish politics and popular enforcement, as a strong Hawk can suppress disorder precisely by making grassroots violence unattractive. The closed-form characterisation in \autoref{eq:Sk_threshold} and \autoref{eq:EM_peak_level} sharpens this story: the switch from complementarity to substitution happens exactly where the contest is balanced ($\Pi_k^*=\tfrac{1}{2}$), and the peak level of street mobilization depends only on the stakes primitives, not on the symbolic policy that triggered it.
 
-\begin{figure}[t]
-    \centering
-    \subfigure[Majority mobilization peaks at $S_k=\overline{S}(E_m)$.]{
-        \includegraphics[width=0.46\textwidth]{figures/functions/fig_Sk_statics_mobilization.pdf}
-        \label{fig:Sk_statics_mobilization}
-    }
-    \hfill
-    \subfigure[Effective enforcement $Z_k^*$ keeps rising beyond the mobilization peak.]{
-        \includegraphics[width=0.46\textwidth]{figures/functions/fig_Sk_statics_enforcement.pdf}
-        \label{fig:Sk_statics_enforcement}
-    }
-    \caption{\normalsize\bf State capacity, street mobilization, and effective enforcement.}
-    
-    \floatfoot*{\footnotesize\textit{Notes}: The left subfigure plots the symmetric equilibrium $E_M^*(d,S_k)$ from \autoref{eq:Em_Sk_explicit} against relative state capacity $S_k/\overline{S}(d)$, where $\overline{S}(d)=d^{\sigma/2}/\alpha$ is the threshold from \autoref{cor:Sk_threshold}. To the left of the threshold, higher state capacity raises the return to decentralized participation and increases Majority mobilization; to the right, stronger state capacity substitutes for street-level effort and $E_M^*$ declines. The right subfigure plots effective enforcement $Z_k^*=S_kE_M^*(d,S_k)$ over the same range. Because $Z_k^*$ keeps rising after the peak in $E_M^*$, higher-capacity regimes can generate more effective control with less visible mass participation. The marked points illustrate a low-capacity Dove, an intermediate-capacity Hawk below the threshold, and a stronger Hawk above the threshold. Parameters are $(N_M,N_m,\Lambda,\kappa,\phi,\sigma,d)=(100,100,1,1,1,1,1)$.
-    }
-
-    \label{fig:Sk_statics}
-\end{figure}
+% Figure \autoref{fig:Sk_statics} placed in dedicated Figures section.
 
 \subsubsection{Symbolic policy and the Security Premium}
 With both $E_M^*$ and $E_m^*$ determined jointly by the contest primitives, the substantively interesting comparative static is no longer a partial one between the two efforts, but how the closed-form equilibrium security $\Pi_k^*(d,S_k)=S_k\alpha/(S_k\alpha+d^{\sigma/2})$ varies with symbolic policy. Since $\Pi_k^*$ is strictly decreasing in $d$ for each fixed $S_k$, more provocation lowers the realized security delivered by \emph{every} party. Its electoral rationale therefore hinges not on the absolute security level, but on the \emph{gap} between the two parties' equilibrium securities. That gap, the Security Premium, is the object the Hawk can manipulate by choosing $d_A$; its maximum is what bounds politically useful provocation.
 
-Following \citet{barut1998symmetric}, define the Security Premium evaluated at a common symbolic policy $d$ as
+Following \citet{barutSymmetricMultiplePrize1998}, define the Security Premium evaluated at a common symbolic policy $d$ as
 \begin{equation} \label{eq:security_premium_d}
 \Delta\Pi(d)\;\equiv\;\Pi_A^*(d,S_A)-\Pi_B^*(d,S_B)\;=\;\frac{S_A\alpha}{S_A\alpha+d^{\sigma/2}}-\frac{S_B\alpha}{S_B\alpha+d^{\sigma/2}}.
 \end{equation}
@@ -544,39 +466,12 @@ which depends only on the ratio $S_A/S_B$ and is independent of all other primit
 \end{lemma}
 
 \begin{proof}
-Let $x\equiv d^{\sigma/2}$, which maps $[0,\infty)$ onto itself monotonically, and define
-\[
-h(x)\;\equiv\;\frac{S_A\alpha}{S_A\alpha+x}-\frac{S_B\alpha}{S_B\alpha+x},
-\]
-so that $\Delta\Pi(d)=h(d^{\sigma/2})$. It suffices to characterise $h$ on $[0,\infty)$. Clearly $h(0)=1-1=0$ and $\lim_{x\uparrow\infty}h(x)=0$. For $x>0$, $h(x)>0$ iff $S_A\alpha(S_B\alpha+x)>S_B\alpha(S_A\alpha+x)$, which simplifies to $(S_A-S_B)x>0$ and holds under $S_A>S_B$.
-
-Differentiating,
-\[
-h'(x)\;=\;-\frac{S_A\alpha}{(S_A\alpha+x)^2}+\frac{S_B\alpha}{(S_B\alpha+x)^2}.
-\]
-Setting $h'(x)=0$ gives $S_A(S_B\alpha+x)^2=S_B(S_A\alpha+x)^2$. Taking positive square roots (both sides strictly positive for $x\ge 0$),
-\[
-\sqrt{S_A}(S_B\alpha+x)\;=\;\sqrt{S_B}(S_A\alpha+x),
-\]
-which rearranges to $(\sqrt{S_A}-\sqrt{S_B})\,x=\alpha\sqrt{S_A S_B}(\sqrt{S_A}-\sqrt{S_B})$. Since $\sqrt{S_A}>\sqrt{S_B}$, the unique interior critical point is $x^{\mathrm{peak}}=\alpha\sqrt{S_A S_B}$. Because $h$ is continuous on $[0,\infty)$, vanishes at both endpoints, and is strictly positive on the interior, the unique critical point must be a strict global maximum, so $h$ is single-peaked. Translating back via $x=d^{\sigma/2}$ yields \autoref{eq:d_peak}.
-
-At $x^{\mathrm{peak}}$,
-\[
-\frac{S_A\alpha}{S_A\alpha+\alpha\sqrt{S_A S_B}}\;=\;\frac{S_A}{S_A+\sqrt{S_A S_B}}\;=\;\frac{\sqrt{S_A}}{\sqrt{S_A}+\sqrt{S_B}},
-\]
-and similarly $S_B\alpha/(S_B\alpha+\alpha\sqrt{S_A S_B})=\sqrt{S_B}/(\sqrt{S_A}+\sqrt{S_B})$. Subtracting yields \autoref{eq:DPi_peak}. The expression depends only on the ratio $S_A/S_B$: dividing numerator and denominator by $\sqrt{S_B}$ gives $(\sqrt{S_A/S_B}-1)/(\sqrt{S_A/S_B}+1)$.
+See Appendix~\autoref{app:proof:reaction_invertedU}.
 \end{proof}
 
 \autoref{lem:reaction_invertedU} gives a sharp bound on the Hawk's contest-based electoral advantage. For $d<d^{\mathrm{peak}}$, every additional unit of symbolic policy amplifies the Hawk's relative advantage through the contest channel, because more intense Minority mobilization crowds in more Majority mobilization and exposes the higher productivity of the Hawk's state capacity. For $d>d^{\mathrm{peak}}$, additional provocation is self-defeating: it drives both parties' equilibrium security toward zero faster than it widens the gap, so the Hawk's contest advantage shrinks. Even a party that seeks to manufacture conflict must calibrate provocation below this ceiling. The ceiling value $(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$ is the sharpest statement of the Hawk's contest-based advantage: even if the Hawk could choose $d$ freely and costlessly, the electoral return from symbolic policy is bounded by the pure ratio of technological capacities and is structurally independent of how grievance-elastic the Minority happens to be, how large the two populations are, or how the Majority's collective action problem scales.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.92\textwidth]{figures/functions/fig_reaction_functions.jpg}
-    \caption{\normalsize\bf Security Premium and the provocation ceiling.}
-
-    \floatfoot*{\footnotesize\textit{Notes}: The figure plots the Security Premium $\Delta\Pi(d)=\Pi_A^*(d,S_A)-\Pi_B^*(d,S_B)$ from \autoref{eq:security_premium_d} as a function of symbolic policy intensity $d$, for a Hawk-Dove pair with $S_A>S_B$. The curve is zero at $d=0$ (dormant contest: both parties deliver full dominance), rises on $(0,d^{\mathrm{peak}})$ as symbolic policy activates the contest and exposes the Hawk's technological advantage, and falls on $(d^{\mathrm{peak}},\infty)$ as further provocation erodes realized security for both parties. The peak value $(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$ depends only on the technology ratio $S_A/S_B$. Illustration uses $(N_M,N_m,\Lambda,\kappa,\phi,\sigma,S_A,S_B)=(100,100,1,1,1,1,1.0,0.4)$.}
-    \label{fig:reaction_functions}
-\end{figure}
+% Figure \autoref{fig:reaction_functions} placed in dedicated Figures section.
 
 \subsubsection{The inefficiency of the contest: rent dissipation under biased design}
 Contest theory often measures the resource cost of conflict by the sum of equilibrium efforts (rent dissipation). In my environment, the incumbent's symbolic policy is the primitive ``design'' instrument that determines the contest intensity by shifting the joint equilibrium $(E_M^*(d,S_k),E_m^*(d,S_k))$.
@@ -601,18 +496,12 @@ Whenever symbolic policy induces a non-trivial threat, equilibrium mobilization 
 \end{proposition}
 
 \begin{proof}
-\autoref{lem:contest_equilibrium} establishes that $E_M^*(0,S_k)=E_m^*(0,S_k)=0$ (dormant case), so $RD(0,S_k)=0$. For $d>0$, \autoref{eq:EmEM_star} gives $E_m^*(d,S_k)>0$ and $E_M^*(d,S_k)>0$, hence $RD(d,S_k)>0$. The final statement follows immediately: if an incumbent chooses $d_k^*>0$ in equilibrium, then the induced dissipation is $RD(d_k^*,S_k)>0$ by the preceding argument. In particular, combining this observation with Proposition \autoref{prop:provocation} implies that strategic provocation (``arming the enemy'') in equilibrium is necessarily accompanied by strictly positive rent dissipation.
+See Appendix~\autoref{app:proof:rent_dissipation}.
 \end{proof}
 
-Proposition \autoref{prop:rent_dissipation} records that any equilibrium with $d_k^*>0$ necessarily features positive rent dissipation, because $d$ triggers both sides of the contest to exert strictly positive effort. In this sense, symbolic policy acts as a biased contest-design instrument that shifts political competition toward security at the cost of real resource waste.
+\autoref{prop:rent_dissipation} records that any equilibrium with $d_k^*>0$ necessarily features positive rent dissipation, because $d$ triggers both sides of the contest to exert strictly positive effort. In this sense, symbolic policy acts as a biased contest-design instrument that shifts political competition toward security at the cost of real resource waste.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=0.88\textwidth]{figures/functions/fig_rent_dissipation.jpg}
-    \caption{\normalsize\bf Rent dissipation under symbolic policy.}
-
-    \floatfoot*{\footnotesize\textit{Notes}: The figure plots $RD(d,S_k)$ from \autoref{eq:RD_closed_form} as a function of symbolic policy intensity $d$, for two levels of state capacity. Symbolic policy activates the joint contest in \autoref{lem:contest_equilibrium}, generating real resource dissipation through both Minority mobilization and Majority enforcement. Unlike the neutral contest designer in standard contest models (e.g., \citet{barut1998symmetric}), the political incumbent may optimally choose a strictly positive $d$, and hence positive dissipation, because conflict increases the Security Premium in elections. Parameters are $(N_M,N_m,\Lambda,\kappa,\phi,\sigma,S_A,S_B)=(100,100,1,1,1,1,1.0,0.2)$.}
-\end{figure}
+% Figure \autoref{fig:rent_dissipation} placed in dedicated Figures section.
 
 Taken together, by choosing $d_k$ the incumbent activates the joint contest in \autoref{lem:contest_equilibrium} and thereby manipulates the equilibrium mapping from security competence $S_k$ into realized security $\Pi_k^*(d_k,S_k)$. This mechanism is central to the political economy analysis below.
 
@@ -652,17 +541,7 @@ Suppose the Dove is the incumbent and chooses $d_B\ge 0$ to maximize its re-elec
 \end{lemma}
 
 \begin{proof}
-Suppose the Dove is the incumbent. Retracing the derivation of \autoref{eq:swing} with the moderate-defection cost now attached to $k=B$, the swing-voter indifference condition — the threshold in $\xi_i$ above which the voter prefers the Hawk over the Dove — becomes
-\[
-\hat{\xi}^{B}(d)\;=\;(1-\lambda)\,\Delta u\;-\;\chi_{\mathrm{mod}}(d)\;-\;\lambda\,\Delta\Pi(d)\;=\;(1-\lambda)\,\Delta u\;-\;G(d),
-\]
-where $G(d)\equiv\chi_{\mathrm{mod}}(d)+\lambda\,\Delta\Pi(d)$. By symmetry with the Hawk-incumbent case, the Dove's vote share is $\mathbb{P}\!\left[\xi_i<\hat{\xi}^{B}(d)\right]=\Phi\!\big(\hat{\xi}^{B}(d)\big)$, strictly increasing in $\hat{\xi}^{B}(d)$. The Dove therefore maximizes its vote share by maximizing $\hat{\xi}^{B}(d)$, and since $(1-\lambda)\Delta u$ is independent of $d$, equivalently by \emph{minimizing} $G(d)$.
-
-By \autoref{lem:reaction_invertedU}, $\Delta\Pi(d)\ge 0$ for all $d\ge 0$ with $\Delta\Pi(0)=0$ and $\Delta\Pi(d)>0$ for all $d>0$; by the assumptions on $\chi_{\mathrm{mod}}$, $\chi_{\mathrm{mod}}(0)=0$ and $\chi_{\mathrm{mod}}(d)>0$ for all $d>0$. Hence for every $d>0$,
-\[
-G(d)\;=\;\chi_{\mathrm{mod}}(d)+\lambda\,\Delta\Pi(d)\;>\;0\;=\;\chi_{\mathrm{mod}}(0)+\lambda\,\Delta\Pi(0)\;=\;G(0).
-\]
-Therefore $d=0$ is the unique global minimizer of $G$ on $[0,\infty)$, and $d_B^*=0$ is the Dove's unique best response. At $d_B^*=0$, \autoref{lem:contest_equilibrium} yields $(E_M^*,E_m^*)=(0,0)$ and $\lim_{d\downarrow 0}\Pi_B^*(d,S_B)=1$.
+See Appendix~\autoref{app:proof:dove_corner}.
 \end{proof}
 
 \autoref{lem:dove_corner} has two interpretive consequences. First, the Dove's corner is an endogenous equilibrium outcome, not a modelling shortcut: the Dove has no stake in activating the contest because the underlying state-capacity technology is structurally biased in the Hawk's favor. Second, the ``sticky-environment'' reading of \autoref{eq:swing} is the only one that makes the analysis non-trivial: when the Dove is in office and $d=0$, the voter's counterfactual is the Hawk at the \emph{same} $d=0$, which by \autoref{lem:contest_equilibrium} delivers $\Pi_A^*(0,S_A)=1$ as well, so both parties look identical on the security dimension and the purely economic comparison selects the Dove by \autoref{eq:swing} whenever $\Delta u>0$. The Dove wins peacetime elections not because its security competence is high in absolute terms, but because the political environment it sets makes the security gap electorally invisible.
@@ -694,25 +573,7 @@ In words: to win in spite of an economic disadvantage, the Hawk must turn on the
 \end{proposition}
 
 \begin{proof}
-\textit{Step 1 (Existence, $F(0)=0$, and upper bound).}
-By \autoref{lem:reaction_invertedU}, $\Delta\Pi(d)$ is continuous on $[0,\infty)$ with $\Delta\Pi(0)=0$ and bounded above by the ceiling $\overline{\Delta\Pi}\equiv(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$. Hence $F(d)=\lambda\Delta\Pi(d)-\chi_{\mathrm{mod}}(d)$ is continuous on $[0,\infty)$ with $F(0)=\lambda\cdot 0-0=0$ and, since $\chi_{\mathrm{mod}}(d)\uparrow\infty$, $\lim_{d\uparrow\infty}F(d)=-\infty$. Therefore $F$ attains a finite maximum $F^*\equiv\max_{d\ge 0}F(d)\in[0,\lambda\overline{\Delta\Pi}]$ at some finite $d_A^*\ge 0$. In particular $F^*\ge F(0)=0$, so $\overline{\Delta u}\ge 0$, which establishes (i).
-
-\textit{Step 2 (Characterization of the Hawk's optimal policy).}
-Since the Hawk is the incumbent, \autoref{eq:utility} attaches $\chi_{\mathrm{mod}}(d)$ to the Hawk, while the Dove at $d_B^*=0$ (from \autoref{lem:dove_corner}) bears no moderate-defection cost. The common-$d$ swing-voter threshold \autoref{eq:swing} therefore specializes to
-\begin{equation} \label{eq:xi_hat_d}
-\hat{\xi}(d)\;=\;(1-\lambda)\Delta u\;+\;\chi_{\mathrm{mod}}(d)\;-\;\lambda\,\Delta\Pi(d)\;=\;(1-\lambda)\Delta u\;-\;F(d).
-\end{equation}
-The Hawk's vote share is $\Phi(-\hat{\xi}(d))$ with $\Phi$ strictly increasing, so maximizing the vote share is equivalent to minimizing $\hat{\xi}(d)$, and hence to maximizing $F(d)$ (since $(1-\lambda)\Delta u$ is independent of $d$). By Step~1, a finite maximizer $d_A^*\ge 0$ exists.
-
-\textit{Step 3 (Cutoff characterization).}
-The Hawk wins whenever the median voter (weakly) prefers $A$, i.e., $\hat{\xi}(d_A^*)\le 0$. Using \autoref{eq:xi_hat_d}, this is equivalent to $F(d_A^*)\ge (1-\lambda)\Delta u$. Since $F(d_A^*)=F^*$ by Step~2, the Hawk's re-election is feasible iff $F^*\ge (1-\lambda)\Delta u$, equivalently
-\[
-\Delta u\;\le\;\frac{F^*}{1-\lambda}\;=\;\overline{\Delta u},
-\]
-which establishes the first part of (ii). If $\Delta u>0$ and the Hawk wins, then $F(d_A^*)\ge (1-\lambda)\Delta u>0$; combined with $F(0)=0$, this rules out $d_A^*=0$, so $d_A^*>0$. By \autoref{lem:contest_equilibrium}, $d_A^*>0$ implies $E_m^*(d_A^*,S_A),E_M^*(d_A^*,S_A)>0$ — the joint contest is active along the strategic-provocation path.
-
-\textit{Step 4 (Technology-ratio ceiling).}
-From $F(d)=\lambda\Delta\Pi(d)-\chi_{\mathrm{mod}}(d)\le\lambda\overline{\Delta\Pi}$ for all $d$, one gets $F^*\le\lambda\overline{\Delta\Pi}$, and dividing by $(1-\lambda)$ yields \autoref{eq:delta_u_bar_bound}. For the equality-in-the-limit statement, take any vanishing sequence of cost functions $\chi_{\mathrm{mod}}^{(n)}\to 0$ pointwise with bounded variation. Then $F^{(n)}(d)\to\lambda\Delta\Pi(d)$ pointwise, and in particular $F^{(n)}(d^{\mathrm{peak}})\to\lambda\overline{\Delta\Pi}$ where $d^{\mathrm{peak}}=(\alpha\sqrt{S_A S_B})^{2/\sigma}$ is the Security-Premium maximizer from \autoref{eq:d_peak}. Hence $F^{*,(n)}\to\lambda\overline{\Delta\Pi}$ and $\overline{\Delta u}^{(n)}\to\frac{\lambda}{1-\lambda}\overline{\Delta\Pi}$, which is the right-hand side of \autoref{eq:delta_u_bar_bound}.
+See Appendix~\autoref{app:proof:provocation}.
 \end{proof}
 
 \begin{remark}[\textbf{Provocation ceiling}]\label{rem:provocation_ceiling}
@@ -755,22 +616,7 @@ Sufficiently patient voters tolerate even severe short-run economic losses to av
 \end{proposition}
 
 \begin{proof}
-Fix an incumbent Hawk regime and suppress the idiosyncratic taste term $\xi_i$ by considering the median voter (normalized to have $\xi_i=0$). Let
-\begin{equation}
-\Omega(\theta,\omega)\;\equiv\;\lambda\Big(\Pi_A^*(S_A,\omega\gamma d_A^{\sigma})-\Pi_B^*(S_B,\omega\gamma d_B^{\sigma})\Big)-(1-\lambda)\Big(u(\theta g_B)-u(\theta g_A)\Big)-\big[\chi(d_A)-\chi(d_B)\big]
-\end{equation}
-denote the one-period net advantage of the Hawk relative to the Dove in state $(\theta,\omega)$. Consider the worst economic realization $\underline{\theta}$ and assume (as in the proposition) that it constitutes the most unfavorable state for the Hawk's re-election incentive.
-
-To isolate the role of patience, consider a transitory recession at date $t$ with $\theta_t=\underline{\theta}$, followed by reversion from $t+1$ onward to a stationary environment. In that continuation environment, the discrete gap in security capacity ($S_A>S_B$) implies that the expected per-period net advantage of the Hawk is strictly positive:
-\begin{equation} \label{eq:omega_bar}
-\overline{\Omega}\;\equiv\;\mathbb{E}\big[\Omega(\theta,\omega)\mid t+1\text{ onward}\big]\;>\;0.
-\end{equation}
-Let $\underline{\Omega}\equiv \mathbb{E}\big[\Omega(\underline{\theta},\omega_t)\big]$ denote the expected one-period net advantage during the recession. The forward-looking value difference between retaining the Hawk and switching regimes at date $t$ can then be expressed (via the Bellman equations under stationarity from $t+1$ onward) as
-\begin{equation}
-\Delta V_t \;=\; \underline{\Omega} + \sum_{\tau=t+1}^{\infty}\delta^{\tau-t}\overline{\Omega}
-\;=\; \underline{\Omega} + \frac{\delta}{1-\delta}\overline{\Omega}.
-\end{equation}
-The function $\Delta V_t(\delta)$ is continuous and strictly increasing on $[0,1)$. Moreover, $\lim_{\delta\uparrow 1}\Delta V_t(\delta)=+\infty$ by \autoref{eq:omega_bar}. Hence there exists a cutoff $\bar{\delta}\in(0,1)$ such that $\Delta V_t(\delta)\ge 0$ for all $\delta\ge \bar{\delta}$. For $\delta>\bar{\delta}$ the median voter weakly prefers to retain the Hawk even when $\theta_t=\underline{\theta}$. Since $\underline{\theta}$ is the most adverse economic realization, the Hawk is retained in every state, implying that the Hawk regime is absorbing in a stationary equilibrium.
+See Appendix~\autoref{app:proof:trap}.
 \end{proof}
 
 \autoref{prop:trap} demonstrates how patience of voters interacts with accountability. Voters internalize regime switching from Hawk to Dove put them into weaker technologies of identity protection. A weak $S$ entails weaker ability of the majority to coordinate under future threats of minority. When $\delta$ is sufficient high, the discounted value of avioding future risks dominates even the worst contemporaneous economi shock $\underline{\theta}$. Current electorial punishment for economic underperformance of the Hawk fades because of voter's future concerns over identity security. This mechanism captures why identity-fragmented societies be locked into a conflict trap in which the Hawk survive indefinitely long despite worse economic management.
@@ -794,27 +640,7 @@ Myopic retrospective voting makes regime choice track current conditions: advers
 \end{proposition}
 
 \begin{proof}
-Under myopic voting ($\delta=0$), the median voter elects the Hawk at date $t$ if and only if \autoref{eq:dyn_switch} holds. Define the net advantage
-\begin{equation}
-\Omega_t \;\equiv\; \lambda\Big(\mathbb{E}_t[\Pi_{A,t}]-\mathbb{E}_t[\Pi_{B,t}]\Big)-(1-\lambda)\Big(\mathbb{E}_t[u(\theta_t g_B)]-\mathbb{E}_t[u(\theta_t g_A)]\Big)-\big[\chi(d_A)-\chi(d_B)\big],
-\end{equation}
-so the Hawk is elected if and only if $\Omega_t\ge 0$.
-
-For part (i), note that for $g_B>g_A$,
-\begin{equation}
-\frac{\partial}{\partial \theta}\Big(u(\theta g_B)-u(\theta g_A)\Big)=g_Bu'(\theta g_B)-g_Au'(\theta g_A),
-\end{equation}
-so assumption (ii) is equivalent to $g_Bu'(\theta g_B)-g_Au'(\theta g_A)<0$ on $[\underline{\theta},\overline{\theta}]$.\footnote{A common sufficient condition is CRRA utility $u(c)=c^{1-\rho}/(1-\rho)$ with $\rho>1$, in which case $g_Bu'(\theta g_B)-g_Au'(\theta g_A)=\theta^{-\rho}\big(g_B^{1-\rho}-g_A^{1-\rho}\big)<0$ for all $\theta>0$.} Combining this with assumption (i), a lower realization of $\theta_t$ strictly increases the perceived economic advantage of the Dove and therefore strictly decreases $\Omega_t$.
-
-Moreover, $\Omega_t$ is continuous in $(\theta_t,\omega_t)$ (given continuity of $u$ and monotone posteriors), and by hypothesis there exist states in which $\Omega_t\ge 0$ and states in which $\Omega_t<0$. Fix any $\omega\in[\underline{\omega},\overline{\omega}]$ and hold $\omega_t=\omega$. The previous argument implies that $\Omega_t$ is strictly increasing in $\theta_t$ on $[\underline{\theta},\overline{\theta}]$. Hence the intermediate value theorem yields a cutoff $\theta^*(\omega)\in(\underline{\theta},\overline{\theta})$ such that the myopic electorate selects the Hawk if and only if $\theta_t\ge \theta^*(\omega_t)$. Therefore, conditional on a Hawk incumbent, the Hawk $\rightarrow$ Dove transition event $\{\Omega_t<0\}$ is equivalent to $\{\theta_t<\theta^*(\omega_t)\}$, which becomes (weakly) more likely under more adverse economic realizations.
-
-For part (ii), note that minority mobilization satisfies $E_{m,t}(k)=\omega_t\gamma d_k^{\sigma}$, so higher $\omega_t$ or higher $\gamma$ increases the threat faced under either candidate platform. By Lemma \autoref{lem:reaction_invertedU} (over the relevant domain), the perceived Security Premium $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$ is increasing in the threat level, so $\Omega_t$ is increasing in $\omega_t$ and $\gamma$. Moreover,
-\begin{equation}
-\frac{\partial \Omega_t}{\partial \lambda} = \Big(\mathbb{E}_t[\Pi_{A,t}]-\mathbb{E}_t[\Pi_{B,t}]\Big)+\Big(\mathbb{E}_t[u(\theta_t g_B)]-\mathbb{E}_t[u(\theta_t g_A)]\Big) > 0,
-\end{equation}
-so $\Omega_t$ is increasing in $\lambda$. Therefore the probability that $\Omega_t$ crosses zero in favor of the Hawk (a Dove $\rightarrow$ Hawk transition) is increasing in $\omega_t$, $\gamma$, and $\lambda$.
-
-Finally, since the state process has full support and (by assumption) there exist states in which $\Omega_t\ge 0$ and states in which $\Omega_t<0$, both transitions occur with positive probability along the realized path, yielding recurrent regime switching.
+See Appendix~\autoref{app:proof:cycles}.
 \end{proof}
 
 Myopic voting breaks the electoral trap by limiting voter's horizon to current signals. When a Hawk incumbent successfully suppress visible disorder, voters infer (contemporaneously) current environment is peaceful but fails to account for the peace is sustained by high security capacity by the Hawk party. Under this equilibrium, a sufficiently adverse economic realization triggers the electorate to vote for the Dove party to recover public goods provision in the economy. When the Dove is incumbent, lower capacity in identity security weakens Majority mobilization, reduces deterrence, and the safety equilibrium cannot be sustained. Identity threat from the Minority triggers a swing back to the Hawk to contain the potential disorder with cultural policies.
@@ -827,14 +653,12 @@ A more successful Hawk can look less necessary in equilibrium: quieter streets s
 \end{corollary}
 
 \begin{proof}
-Under myopic voting, the Hawk is re-elected at date $t$ if and only if \autoref{eq:dyn_switch} holds, equivalently if $\Omega_t\ge 0$ where $\Omega_t$ is defined in the proof of Proposition \autoref{prop:cycles}. By assumption (i) in Proposition \autoref{prop:cycles} (and the monotone-likelihood-ratio sufficient condition in its footnote), a lower realization of the disorder signal $\tilde{v}_t$ weakly shifts posterior beliefs toward a lower threat environment and therefore weakly decreases the perceived Security Premium $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$.
-
-Since $\Omega_t$ is increasing in $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$, a first-order stochastic decrease in $\tilde{v}_t$ induces a first-order stochastic decrease in $\Omega_t$ and hence weakly decreases $\mathbb{P}(\Omega_t\ge 0)$, the re-election probability of the Hawk. Equivalently, the probability of a regime change, $\mathbb{P}(\Omega_t<0)$, weakly increases when observed disorder is stochastically lower.
+See Appendix~\autoref{app:proof:competence}.
 \end{proof}
 
 Corollary \autoref{cor:competence} highlights an inference effect: under myopia, low observed disorder under the Hawk shifts beliefs toward a benign threat environment and reduces the perceived Security Premium, raising the probability of a Hawk defeat.
 
-Together, Propositions \autoref{prop:trap} and \autoref{prop:cycles} show that the same micro-foundation, namely a biased incumbent manipulating a group contest to solve a collective action problem, can generate either long-run entrenchment or recurrent turnover. Patience makes the electorate internalize the durable loss of security capacity from regime change, producing an absorbing Hawk equilibrium. Myopia makes voters treat security as a contemporaneous outcome, opening the door to regime switching driven by noisy shocks and retrospective accountability.
+Together, \autoref{prop:trap} and \autoref{prop:cycles} show that the same micro-foundation, namely a biased incumbent manipulating a group contest to solve a collective action problem, can generate either long-run entrenchment or recurrent turnover. Patience makes the electorate internalize the durable loss of security capacity from regime change, producing an absorbing Hawk equilibrium. Myopia makes voters treat security as a contemporaneous outcome, opening the door to regime switching driven by noisy shocks and retrospective accountability.
 
 
 
@@ -861,5 +685,7 @@ Together, Propositions \autoref{prop:trap} and \autoref{prop:cycles} show that t
 \input{tables}
 
 \input{appendix_empirical}
+
+\input{supplementary_readme}
 
 \end{document}

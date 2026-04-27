@@ -7,6 +7,10 @@
 \appendix
 \renewcommand{\thesection}{\Alph{section}}
 \renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thetable}{A.\arabic{table}}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\setcounter{table}{0}
+\setcounter{figure}{0}
 
 \section{More on Empirical Facts} \label{app:more_empirical_facts}
 
@@ -31,13 +35,14 @@ corresponding term is zero. The cumulative map uses the
 1990--2020 annual average of this panel.
 
 The underlying policy panel was constructed from state-level legislative
-records compiled in the Cattle Slaughter Policy Excel file and maintained in
-\texttt{policy\_clean.csv}. Because a handful of states --- Bihar, Chandigarh,
+records compiled in the Cattle Slaughter Policy Excel file. Because a handful of states --- Bihar, Chandigarh,
 Punjab --- had early, near-contemporaneous adoption of multiple ban types
 before~1990, their 1990--2020 average is bounded near the theoretical
 maximum; the index compresses cross-state variation at the top end. Results
 are qualitatively identical with a binary indicator or with a
-count-of-ban-types-in-force metric; see \texttt{scripts/policy\_describe.py}.
+count-of-ban-types-in-force metric.
+
+\input{appendix_tables}
 
 \subsection{Narrative Classification Methodology} \label{app:narrative_classification}
 
@@ -82,25 +87,119 @@ nuisance.
 \textbf{Classification.} Each text is classified by Claude Haiku~4.5
 (\texttt{claude-haiku-4-5}) into one of four (majority) or five (minority)
 mutually exclusive categories using a structured system prompt pinned to the
-theoretical primitives. The full prompt, including category definitions and
-disambiguation rules --- most importantly that a lynching story is
-\textsc{identity\_contested} even when the victim's occupation is mentioned,
-and that anti-Pakistan framing is \textsc{identity\_policy} only when
-explicitly identity-laden and \textsc{security\_foreign} otherwise --- is
-reproduced in \texttt{scripts/classify\_with\_haiku.py}. Majority categories
-are \textsc{identity\_policy}, \textsc{economic\_provision},
-\textsc{security\_foreign}, and \textsc{residual}; minority categories add
-\textsc{counter\_mobilization} to capture collective-response content
-distinct from threat-and-event content. Texts are truncated to the first
-$500$ words to bound per-call input tokens; the pinned system prompt is
-cached via Anthropic's ephemeral prompt cache so that each call pays cache-read
-rates on the prompt and full rates only on the unique text. A keyword-lexicon
-fallback is maintained in \texttt{scripts/build\_narrative\_timeseries.py}
-for robustness; the lexicon overlaps the Haiku category boundaries on the
+theoretical primitives. Majority categories are \textsc{identity\_policy},
+\textsc{economic\_provision}, \textsc{security\_foreign}, and
+\textsc{residual}; minority categories add \textsc{counter\_mobilization}
+to capture collective-response content distinct from threat-and-event
+content. Texts are truncated to the first $500$ words to bound per-call
+input tokens; the pinned system prompt is cached via Anthropic's ephemeral
+prompt cache so that each call pays cache-read rates on the prompt and full
+rates only on the unique text. A keyword-lexicon fallback is maintained for
+robustness; the lexicon overlaps the Haiku category boundaries on the
 high-$d$ cases and diverges on polysemous tokens (e.g., ``conversion,''
-``dharma,'' ``border'') on which Haiku is substantially sharper. On the
-$2{,}330$ rows Haiku classified at the time of the main-text figure, the
-category distributions are:
+``dharma,'' ``border'') on which Haiku is substantially sharper. The two
+system prompts (one per side, both cached) are reproduced verbatim below;
+the user-message payload for each row is the concatenation of the title,
+date, and first-$500$-word body.
+
+\begin{quote}\footnotesize
+\noindent\textbf{Majority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MAJORITY texts (BJP leadership speeches, PM addresses,
+parliamentary BJP speeches):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_policy}: text advancing, defending, enforcing, or
+reasoning about identity-coded regulation or Hindu--Muslim relations.
+Concretely: beef/cow slaughter bans, CAA/NRC, love jihad, ghar wapsi,
+Ayodhya/Ram Mandir, Gyanvapi, UCC, waqf, triple talaq, hijab, religious
+conversion, communal violence, Muslim appeasement claims. Include
+anti-Pakistan framing ONLY when it is explicitly identity-laden (e.g.,
+``Go to Pakistan if you want beef''); exclude when it is pure foreign
+policy.
+\item \textsc{economic\_provision}: text about public-goods delivery or
+economic management. Concretely: welfare schemes (PM-KISAN, Ujjwala, Jan
+Dhan, Ayushman Bharat, Awas Yojana), DBT/Aadhaar, MGNREGA, MSME,
+farmers-as-producers (NOT farmers-as-lynching-victims), manufacturing,
+infrastructure, Make in India, Viksit Bharat, GST, startup, digital India,
+skilling.
+\item \textsc{security\_foreign}: external-security and foreign-policy
+content NOT primarily about domestic identity. Concretely: Pakistan as
+military adversary, China, Galwan, LoC, Article~370 abrogation framed as
+national security, surgical strikes, armed forces, terrorism abroad,
+neighbours as strategic partners.
+\item \textsc{residual}: ceremonial speeches, tributes, organisational
+matters, procedural parliamentary business, condolences, anniversaries
+without thematic content in the three categories above.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+\begin{quote}\footnotesize
+\noindent\textbf{Minority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MINORITY texts (press coverage and AIMIM speeches about
+Muslim community):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_contested}: text about identity-coded regulation
+or conflict affecting Muslims. Concretely: beef/cow lynching victims,
+CAA/NRC opposition, hijab rights, waqf rights, triple talaq debates,
+Babri/Gyanvapi, communal violence, Muslim representation concerns, Muslim
+electoral politics, anti-Muslim rhetoric reported on.
+\item \textsc{counter\_mobilization}: text describing Muslim-led or
+Muslim-joined protest, resistance, organising. Concretely: Shaheen Bagh,
+CAA protests, bandh, dharna, satyagraha, rally, march, ``not in my name'',
+civil disobedience, petition drives, legal challenges framed as
+resistance.
+\item \textsc{security\_foreign}: external-security content,
+Pakistan/Kashmir militancy framing, terrorism NOT primarily about identity.
+\item \textsc{economic}: genuine economic content about Muslim community
+(employment, business, education access) NOT about lynching or identity.
+\item \textsc{residual}: sports, entertainment, unrelated news, internal
+community matters without political content.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+On the $2{,}330$ rows Haiku classified at the time of the main-text figure,
+the category distributions are:
 \begin{center}
 \footnotesize
 \begin{tabular}{lcc}
@@ -117,9 +216,7 @@ Unparseable / error & $0.8\%$ & $0.0\%$ \\
 \end{tabular}
 \end{center}
 
-\textbf{Outputs and validation.} The per-text classification results are
-preserved in \texttt{classified\_majority.csv} and
-\texttt{classified\_minority.csv} for inspection. Aggregate monthly shares
+\textbf{Outputs and validation.} Aggregate monthly shares
 underlying \autoref{fig:narrative_timeseries} are computed as the count of
 rows in the numerator category divided by the total rows in the corpus that
 month, with a six-month centred rolling mean applied for display and
@@ -160,9 +257,7 @@ discrimination (electoral and ethnic segregation, political acquaintance,
 religious trust; school inaccessibility, teacher unfairness, communal
 prejudice); (iv)~first-generation utility and protest (net income, life
 satisfaction, demonstration and boycott participation). The full tables,
-specifications, and robustness checks are preserved in
-\texttt{empirical\_writing/PE\_of\_India/temp\_for\_discussion.tex} and will
-be migrated into this appendix in a subsequent revision.
+specifications, and robustness checks will be migrated into this appendix in a subsequent revision.
 
 \subsection{Paradox-of-Competence Regression}\label{app:paradox_regression}
 
@@ -197,46 +292,259 @@ The state-FE specification is not estimable with this sample size:
 within-state outcome variation is thin in $10$ of the $15$ states and the
 fixed-effects design absorbs much of the relevant variation mechanically.
 The primary specification should therefore be read as combining
-within-state and cross-state identification. Script:
-\texttt{scripts/paradox\_of\_competence.py}.
+within-state and cross-state identification.
 
 \subsection{Ban-and-Conflict Event Studies} \label{app:event_studies}
 
-A parallel line of analysis estimates the effect of each of the six
-cattle-slaughter-ban types on Hindu-Muslim violence at the state-year level,
-using staggered difference-in-differences with two-way fixed effects and
-event-study leads and lags. The full set of event-study figures ---
-$2~\text{timespans}\times2~\text{control specifications}\times
-(6~\text{GDELT outcomes}+6~\text{VW outcomes})\times6~\text{policy types}$
---- is preserved at \texttt{PE\_of\_Cattle\_Shared/india\_beef\_and\_religion/
-python\_results/figures/regression/event\_studies/} and replicated in Stata at
-\texttt{stata\_results/figures/event\_studies/}. A selected four-panel
-summary for the four ban types operating on the bovine family (cow, bull,
-bullock, buffalo) is reported as~\autoref{fig:event_studies}.
+A parallel line of analysis estimates the effect of each of the four
+bovine-family cattle-slaughter-ban types on Hindu--Muslim violence at the
+state-year level using staggered difference-in-differences with two-way
+fixed effects and event-study leads and lags. The main-text figure
+(\autoref{fig:rent_dissipation_event_study}) reports the TWFE event-study
+coefficients per ban type. \autoref{fig:event_studies_robustness} reports
+the same coefficients overlaid with three modern dynamic-DiD estimators
+--- \citet*{cengizEffectMinimumWages2019}, \citet*{gardnerTwostageDifferencesDifferences2022}, and \citet*{liuPracticalGuideCounterfactual2024} ---
+to show the post-adoption pattern is robust to estimator choice. Sample
+and control specification match the main-text version.
+
+\input{appendix_figures}
 
 \subsection{State-Level Population Panel} \label{app:population}
 
 Annual state-level population 2000--2024 is interpolated from
 Census~2001 and Census~2011 enumerations. The 2011 state shares of the
 national total are carried forward annually by rescaling to the World Bank
-\texttt{SP.POP.TOTL} India series. The resulting panel is stored at
-\texttt{data/input/control/state\_population\_annual.csv} and is used to
+\texttt{SP.POP.TOTL} India series. The resulting panel is used to
 normalize the Hindu--Muslim violence intensity in Map~B
 (\autoref{fig:map_conflict_intensity}).
 
 \subsection{Supplementary Maps} \label{app:supplementary_maps}
 
 The six policy-specific maps (one per ban type) and the seven decade-specific
-conflict maps are preserved in
-\texttt{python\_results/figures/\{policy,conflict\_describe\}} and are
-reproducible from \texttt{scripts/policy\_describe.py} and
-\texttt{scripts/conflict\_describe.py} respectively. They are not reproduced
-in this appendix.
+conflict maps are available in the supplementary replication materials but are not reproduced in this appendix.
 
 \section{Proofs} \label{app:proofs}
 
-\noindent \textit{[Proofs to be relocated here from
-\autoref{sec:dynamic} and the static analysis sections. User will perform
-the migration manually.]}
+\subsection*{Proof of \autoref{lem:contest_equilibrium}} \label{app:proof:contest_equilibrium}
+
+\begin{proof}
+\textit{Step 1 (Dormant case, $d=0$).} If $d=0$, then $\phi d^\sigma=0$ and the Minority's FOC \autoref{eq:Em_BR} implies $e_j=0$ for all $j$, so $E_m^*=0$. Substituting $E_m=0$ into the Majority's FOC \autoref{eq:EM_BR} gives $E_M/N_M=0$, so $E_M^*=0$. By continuity of the Tullock CSF, $\lim_{d\downarrow 0}\Pi_k^*=\lim_{(E_M,E_m)\to(0,0)} S_k E_M/(S_k E_M+E_m)=1$ along the equilibrium path computed below.
+
+\textit{Step 2 (Existence, uniqueness, and closed form for $d>0$).} Fix $d>0$ and $S_k>0$. Under symmetry within each group, the joint equilibrium is characterized by \autoref{eq:EM_BR} and \autoref{eq:Em_BR} simultaneously. Dividing \autoref{eq:EM_BR} by \autoref{eq:Em_BR} (both sides strictly positive at any interior candidate equilibrium) yields
+\[
+\frac{E_M/N_M}{E_m/N_m}
+\;=\;
+\frac{\Lambda S_k E_m/(S_k E_M+E_m)^2}{\kappa\phi d^\sigma S_k E_M/(S_k E_M+E_m)^2}
+\;=\;
+\frac{\Lambda E_m}{\kappa\phi d^\sigma E_M}.
+\]
+Cross-multiplying,
+\begin{equation}\label{eq:effort_ratio_eq}
+\kappa\phi d^\sigma N_m E_M^2 \;=\; \Lambda N_M E_m^2,
+\end{equation}
+so
+\[
+\frac{E_M}{E_m}\;=\;\sqrt{\frac{\Lambda N_M}{\kappa\phi d^\sigma N_m}} \;=\; \alpha d^{-\sigma/2}.
+\]
+Substituting $E_M=\alpha d^{-\sigma/2} E_m$ into the Majority FOC \autoref{eq:EM_BR}:
+\[
+\frac{\alpha d^{-\sigma/2} E_m}{N_M}\;=\;\frac{\Lambda S_k E_m}{(S_k \alpha d^{-\sigma/2} E_m + E_m)^2}
+\;=\;\frac{\Lambda S_k}{E_m(S_k\alpha d^{-\sigma/2}+1)^2}.
+\]
+Rearranging,
+\[
+E_m \;=\; \frac{\Lambda S_k N_M d^{\sigma/2}}{\alpha\,(S_k\alpha d^{-\sigma/2}+1)^2}
+\;=\;\frac{\Lambda S_k N_M d^{\sigma/2}}{\alpha}\cdot\frac{d^\sigma}{(S_k\alpha+d^{\sigma/2})^2}
+\;=\; \frac{\Lambda S_k N_M d^{3\sigma/2}}{\alpha(S_k\alpha+d^{\sigma/2})^2}.
+\]
+Using $\alpha^2 = \Lambda N_M/(\kappa\phi N_m)$, $\Lambda N_M/\alpha = \sqrt{\Lambda N_M\kappa\phi N_m}\cdot 1/d^{0}=\sqrt{\Lambda N_M}\sqrt{\kappa\phi N_m}$ is a constant in $d$, and
+\[
+\sqrt{(\Lambda N_M)(\kappa\phi N_m)}\cdot\frac{S_k d^{3\sigma/2}}{(S_k\alpha+d^{\sigma/2})^2}
+\]
+is the closed-form expression for $E_m^*$. Writing $\beta \equiv (\kappa\phi N_m\Lambda N_M)^{1/4}$ and using $(\Lambda S_k N_M /\alpha)=S_k\alpha^{-1}\cdot\Lambda N_M = S_k\cdot \alpha^{-1}\cdot\alpha^2\kappa\phi N_m=S_k\alpha\kappa\phi N_m$, one can re-express
+\[
+E_m^*(d,S_k)
+\;=\;\frac{S_k^{1/2}\beta^2 d^{3\sigma/4}\cdot d^{3\sigma/4}}{(S_k\alpha+d^{\sigma/2})^2}\cdot\frac{1}{d^{3\sigma/4}/\sqrt{d^{3\sigma/2}}}
+\;=\;\frac{\sqrt{\Lambda N_M\kappa\phi N_m}\,S_k^{1/2}d^{3\sigma/4}}{S_k\alpha+d^{\sigma/2}},
+\]
+which is \autoref{eq:EmEM_star}. (Equivalently: using $D\equiv S_k E_M^*+E_m^*=(S_k\alpha d^{-\sigma/2}+1)E_m^*$, one obtains $D^2 = S_k d^{\sigma/2}\sqrt{\Lambda N_M\kappa\phi N_m}$, hence $D=S_k^{1/2}\beta d^{\sigma/4}$, and $E_m^*=D/(S_k\alpha d^{-\sigma/2}+1)$ yields the same formula.) The Majority level follows from $E_M^*=\alpha d^{-\sigma/2}E_m^*$, establishing existence and providing the unique candidate.
+
+To verify it is indeed a Nash equilibrium, note that each side's within-group problem is strictly concave in its own effort given the opponent's aggregate — the first term of \autoref{eq:minority_prob} is strictly concave in $e_j$ because $\Pi_k$ is strictly convex in $E_m$ along the relevant range, and the cost is strictly convex — so the FOCs fully characterize each side's symmetric best response. Uniqueness of the symmetric NE follows because \autoref{eq:effort_ratio_eq} pins down the effort ratio uniquely and the Majority FOC then pins down the level uniquely.
+
+\textit{Step 3 (Security formula).} Substituting the effort ratio into the CSF,
+\[
+\Pi_k^*\;=\;\frac{S_k E_M^*}{S_k E_M^*+E_m^*}\;=\;\frac{S_k\alpha d^{-\sigma/2}}{S_k\alpha d^{-\sigma/2}+1}\;=\;\frac{S_k\alpha}{S_k\alpha+d^{\sigma/2}},
+\]
+which is \autoref{eq:Pi_star_new}.
+
+\textit{Step 4 (Comparative statics).} Differentiating \autoref{eq:Pi_star_new},
+\[
+\frac{\partial \Pi_k^*}{\partial S_k}\;=\;\frac{\alpha\,d^{\sigma/2}}{(S_k\alpha+d^{\sigma/2})^2}>0\quad\text{for }d>0,
+\qquad
+\frac{\partial \Pi_k^*}{\partial d}\;=\;-\frac{S_k\alpha\cdot(\sigma/2)d^{\sigma/2-1}}{(S_k\alpha+d^{\sigma/2})^2}<0\quad\text{for }d>0.
+\]
+The limits $\lim_{d\downarrow 0}\Pi_k^*=1$ and $\lim_{d\uparrow\infty}\Pi_k^*=0$ follow directly from \autoref{eq:Pi_star_new}.
+\end{proof}
+
+\subsection*{Proof of \autoref{lem:Sk_statics}} \label{app:proof:Sk_statics}
+
+\begin{proof}
+Fix $d>0$ and write $\beta\equiv(\kappa\phi N_m\Lambda N_M)^{1/4}$. By \autoref{lem:contest_equilibrium}, the closed-form expressions \autoref{eq:EmEM_star} can be rewritten as
+\begin{equation} \label{eq:Em_Sk_explicit}
+E_m^*(d,S_k)\;=\;\beta^2\,\frac{S_k^{1/2}\,d^{3\sigma/4}}{S_k\alpha+d^{\sigma/2}},
+\qquad
+E_M^*(d,S_k)\;=\;\alpha\beta^2\,\frac{S_k^{1/2}\,d^{\sigma/4}}{S_k\alpha+d^{\sigma/2}},
+\end{equation}
+so both efforts depend on $S_k$ only through the common factor $\psi(S_k)\equiv S_k^{1/2}/(S_k\alpha+d^{\sigma/2})$. Differentiating $\log\psi$,
+\[
+\frac{d\log\psi(S_k)}{dS_k}\;=\;\frac{1}{2S_k}-\frac{\alpha}{S_k\alpha+d^{\sigma/2}}\;=\;\frac{d^{\sigma/2}-S_k\alpha}{2S_k(S_k\alpha+d^{\sigma/2})},
+\]
+which is strictly positive for $S_k<d^{\sigma/2}/\alpha$, zero at $S_k=d^{\sigma/2}/\alpha$, and strictly negative thereafter. This proves both the single-peakedness of $E_M^*$ and $E_m^*$ in $S_k$ and the formula \autoref{eq:Sk_threshold} for $\overline{S}(d)$.
+
+For effective enforcement $Z_k^*(d,S_k)=\alpha\beta^2 S_k^{3/2} d^{\sigma/4}/(S_k\alpha+d^{\sigma/2})$,
+\[
+\frac{\partial\log Z_k^*}{\partial S_k}\;=\;\frac{3}{2S_k}-\frac{\alpha}{S_k\alpha+d^{\sigma/2}}\;=\;\frac{S_k\alpha+3d^{\sigma/2}}{2S_k(S_k\alpha+d^{\sigma/2})}\;>\;0,
+\]
+so $Z_k^*$ is strictly increasing in $S_k$. Strict monotonicity of $\Pi_k^*$ in $S_k$ was established in Step 4 of the proof of \autoref{lem:contest_equilibrium}.
+\end{proof}
+
+\subsection*{Proof of \autoref{cor:Sk_threshold}} \label{app:proof:Sk_threshold}
+
+\begin{proof}
+Substitute $S_k=\overline{S}(d)=d^{\sigma/2}/\alpha$ into \autoref{eq:Pi_star_new}: $\Pi_k^*=S_k\alpha/(S_k\alpha+d^{\sigma/2})=d^{\sigma/2}/(2d^{\sigma/2})=\tfrac{1}{2}$. For the peak level, substitute the same restriction into $E_M^*$ from \autoref{eq:Em_Sk_explicit}:
+\[
+E_M^*\big(d,\overline{S}(d)\big)
+\;=\;\alpha\beta^2\,\frac{(d^{\sigma/2}/\alpha)^{1/2}\,d^{\sigma/4}}{2d^{\sigma/2}}
+\;=\;\frac{\alpha^{1/2}\beta^2}{2},
+\]
+and using $\alpha^{1/2}=(\Lambda N_M/(\kappa\phi N_m))^{1/4}$, $\beta^2=(\Lambda N_M\kappa\phi N_m)^{1/2}$ gives \autoref{eq:EM_peak_level}.
+\end{proof}
+
+\subsection*{Proof of \autoref{lem:reaction_invertedU}} \label{app:proof:reaction_invertedU}
+
+\begin{proof}
+Let $x\equiv d^{\sigma/2}$, which maps $[0,\infty)$ onto itself monotonically, and define
+\[
+h(x)\;\equiv\;\frac{S_A\alpha}{S_A\alpha+x}-\frac{S_B\alpha}{S_B\alpha+x},
+\]
+so that $\Delta\Pi(d)=h(d^{\sigma/2})$. It suffices to characterise $h$ on $[0,\infty)$. Clearly $h(0)=1-1=0$ and $\lim_{x\uparrow\infty}h(x)=0$. For $x>0$, $h(x)>0$ iff $S_A\alpha(S_B\alpha+x)>S_B\alpha(S_A\alpha+x)$, which simplifies to $(S_A-S_B)x>0$ and holds under $S_A>S_B$.
+
+Differentiating,
+\[
+h'(x)\;=\;-\frac{S_A\alpha}{(S_A\alpha+x)^2}+\frac{S_B\alpha}{(S_B\alpha+x)^2}.
+\]
+Setting $h'(x)=0$ gives $S_A(S_B\alpha+x)^2=S_B(S_A\alpha+x)^2$. Taking positive square roots (both sides strictly positive for $x\ge 0$),
+\[
+\sqrt{S_A}(S_B\alpha+x)\;=\;\sqrt{S_B}(S_A\alpha+x),
+\]
+which rearranges to $(\sqrt{S_A}-\sqrt{S_B})\,x=\alpha\sqrt{S_A S_B}(\sqrt{S_A}-\sqrt{S_B})$. Since $\sqrt{S_A}>\sqrt{S_B}$, the unique interior critical point is $x^{\mathrm{peak}}=\alpha\sqrt{S_A S_B}$. Because $h$ is continuous on $[0,\infty)$, vanishes at both endpoints, and is strictly positive on the interior, the unique critical point must be a strict global maximum, so $h$ is single-peaked. Translating back via $x=d^{\sigma/2}$ yields \autoref{eq:d_peak}.
+
+At $x^{\mathrm{peak}}$,
+\[
+\frac{S_A\alpha}{S_A\alpha+\alpha\sqrt{S_A S_B}}\;=\;\frac{S_A}{S_A+\sqrt{S_A S_B}}\;=\;\frac{\sqrt{S_A}}{\sqrt{S_A}+\sqrt{S_B}},
+\]
+and similarly $S_B\alpha/(S_B\alpha+\alpha\sqrt{S_A S_B})=\sqrt{S_B}/(\sqrt{S_A}+\sqrt{S_B})$. Subtracting yields \autoref{eq:DPi_peak}. The expression depends only on the ratio $S_A/S_B$: dividing numerator and denominator by $\sqrt{S_B}$ gives $(\sqrt{S_A/S_B}-1)/(\sqrt{S_A/S_B}+1)$.
+\end{proof}
+
+\subsection*{Proof of \autoref{prop:rent_dissipation}} \label{app:proof:rent_dissipation}
+
+\begin{proof}
+\autoref{lem:contest_equilibrium} establishes that $E_M^*(0,S_k)=E_m^*(0,S_k)=0$ (dormant case), so $RD(0,S_k)=0$. For $d>0$, \autoref{eq:EmEM_star} gives $E_m^*(d,S_k)>0$ and $E_M^*(d,S_k)>0$, hence $RD(d,S_k)>0$. The final statement follows immediately: if an incumbent chooses $d_k^*>0$ in equilibrium, then the induced dissipation is $RD(d_k^*,S_k)>0$ by the preceding argument. In particular, combining this observation with \autoref{prop:provocation} implies that strategic provocation (``arming the enemy'') in equilibrium is necessarily accompanied by strictly positive rent dissipation.
+\end{proof}
+
+\subsection*{Proof of \autoref{lem:dove_corner}} \label{app:proof:dove_corner}
+
+\begin{proof}
+Suppose the Dove is the incumbent. Retracing the derivation of \autoref{eq:swing} with the moderate-defection cost now attached to $k=B$, the swing-voter indifference condition — the threshold in $\xi_i$ above which the voter prefers the Hawk over the Dove — becomes
+\[
+\hat{\xi}^{B}(d)\;=\;(1-\lambda)\,\Delta u\;-\;\chi_{\mathrm{mod}}(d)\;-\;\lambda\,\Delta\Pi(d)\;=\;(1-\lambda)\,\Delta u\;-\;G(d),
+\]
+where $G(d)\equiv\chi_{\mathrm{mod}}(d)+\lambda\,\Delta\Pi(d)$. By symmetry with the Hawk-incumbent case, the Dove's vote share is $\mathbb{P}\!\left[\xi_i<\hat{\xi}^{B}(d)\right]=\Phi\!\big(\hat{\xi}^{B}(d)\big)$, strictly increasing in $\hat{\xi}^{B}(d)$. The Dove therefore maximizes its vote share by maximizing $\hat{\xi}^{B}(d)$, and since $(1-\lambda)\Delta u$ is independent of $d$, equivalently by \emph{minimizing} $G(d)$.
+
+By \autoref{lem:reaction_invertedU}, $\Delta\Pi(d)\ge 0$ for all $d\ge 0$ with $\Delta\Pi(0)=0$ and $\Delta\Pi(d)>0$ for all $d>0$; by the assumptions on $\chi_{\mathrm{mod}}$, $\chi_{\mathrm{mod}}(0)=0$ and $\chi_{\mathrm{mod}}(d)>0$ for all $d>0$. Hence for every $d>0$,
+\[
+G(d)\;=\;\chi_{\mathrm{mod}}(d)+\lambda\,\Delta\Pi(d)\;>\;0\;=\;\chi_{\mathrm{mod}}(0)+\lambda\,\Delta\Pi(0)\;=\;G(0).
+\]
+Therefore $d=0$ is the unique global minimizer of $G$ on $[0,\infty)$, and $d_B^*=0$ is the Dove's unique best response. At $d_B^*=0$, \autoref{lem:contest_equilibrium} yields $(E_M^*,E_m^*)=(0,0)$ and $\lim_{d\downarrow 0}\Pi_B^*(d,S_B)=1$.
+\end{proof}
+
+\subsection*{Proof of \autoref{prop:provocation}} \label{app:proof:provocation}
+
+\begin{proof}
+\textit{Step 1 (Existence, $F(0)=0$, and upper bound).}
+By \autoref{lem:reaction_invertedU}, $\Delta\Pi(d)$ is continuous on $[0,\infty)$ with $\Delta\Pi(0)=0$ and bounded above by the ceiling $\overline{\Delta\Pi}\equiv(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$. Hence $F(d)=\lambda\Delta\Pi(d)-\chi_{\mathrm{mod}}(d)$ is continuous on $[0,\infty)$ with $F(0)=\lambda\cdot 0-0=0$ and, since $\chi_{\mathrm{mod}}(d)\uparrow\infty$, $\lim_{d\uparrow\infty}F(d)=-\infty$. Therefore $F$ attains a finite maximum $F^*\equiv\max_{d\ge 0}F(d)\in[0,\lambda\overline{\Delta\Pi}]$ at some finite $d_A^*\ge 0$. In particular $F^*\ge F(0)=0$, so $\overline{\Delta u}\ge 0$, which establishes (i).
+
+\textit{Step 2 (Characterization of the Hawk's optimal policy).}
+Since the Hawk is the incumbent, \autoref{eq:utility} attaches $\chi_{\mathrm{mod}}(d)$ to the Hawk, while the Dove at $d_B^*=0$ (from \autoref{lem:dove_corner}) bears no moderate-defection cost. The common-$d$ swing-voter threshold \autoref{eq:swing} therefore specializes to
+\begin{equation} \label{eq:xi_hat_d}
+\hat{\xi}(d)\;=\;(1-\lambda)\Delta u\;+\;\chi_{\mathrm{mod}}(d)\;-\;\lambda\,\Delta\Pi(d)\;=\;(1-\lambda)\Delta u\;-\;F(d).
+\end{equation}
+The Hawk's vote share is $\Phi(-\hat{\xi}(d))$ with $\Phi$ strictly increasing, so maximizing the vote share is equivalent to minimizing $\hat{\xi}(d)$, and hence to maximizing $F(d)$ (since $(1-\lambda)\Delta u$ is independent of $d$). By Step~1, a finite maximizer $d_A^*\ge 0$ exists.
+
+\textit{Step 3 (Cutoff characterization).}
+The Hawk wins whenever the median voter (weakly) prefers $A$, i.e., $\hat{\xi}(d_A^*)\le 0$. Using \autoref{eq:xi_hat_d}, this is equivalent to $F(d_A^*)\ge (1-\lambda)\Delta u$. Since $F(d_A^*)=F^*$ by Step~2, the Hawk's re-election is feasible iff $F^*\ge (1-\lambda)\Delta u$, equivalently
+\[
+\Delta u\;\le\;\frac{F^*}{1-\lambda}\;=\;\overline{\Delta u},
+\]
+which establishes the first part of (ii). If $\Delta u>0$ and the Hawk wins, then $F(d_A^*)\ge (1-\lambda)\Delta u>0$; combined with $F(0)=0$, this rules out $d_A^*=0$, so $d_A^*>0$. By \autoref{lem:contest_equilibrium}, $d_A^*>0$ implies $E_m^*(d_A^*,S_A),E_M^*(d_A^*,S_A)>0$ — the joint contest is active along the strategic-provocation path.
+
+\textit{Step 4 (Technology-ratio ceiling).}
+From $F(d)=\lambda\Delta\Pi(d)-\chi_{\mathrm{mod}}(d)\le\lambda\overline{\Delta\Pi}$ for all $d$, one gets $F^*\le\lambda\overline{\Delta\Pi}$, and dividing by $(1-\lambda)$ yields \autoref{eq:delta_u_bar_bound}. For the equality-in-the-limit statement, take any vanishing sequence of cost functions $\chi_{\mathrm{mod}}^{(n)}\to 0$ pointwise with bounded variation. Then $F^{(n)}(d)\to\lambda\Delta\Pi(d)$ pointwise, and in particular $F^{(n)}(d^{\mathrm{peak}})\to\lambda\overline{\Delta\Pi}$ where $d^{\mathrm{peak}}=(\alpha\sqrt{S_A S_B})^{2/\sigma}$ is the Security-Premium maximizer from \autoref{eq:d_peak}. Hence $F^{*,(n)}\to\lambda\overline{\Delta\Pi}$ and $\overline{\Delta u}^{(n)}\to\frac{\lambda}{1-\lambda}\overline{\Delta\Pi}$, which is the right-hand side of \autoref{eq:delta_u_bar_bound}.
+\end{proof}
+
+\subsection*{Proof of \autoref{prop:trap}} \label{app:proof:trap}
+
+\begin{proof}
+Fix an incumbent Hawk regime and suppress the idiosyncratic taste term $\xi_i$ by considering the median voter (normalized to have $\xi_i=0$). Let
+\begin{equation}
+\Omega(\theta,\omega)\;\equiv\;\lambda\Big(\Pi_A^*(S_A,\omega\gamma d_A^{\sigma})-\Pi_B^*(S_B,\omega\gamma d_B^{\sigma})\Big)-(1-\lambda)\Big(u(\theta g_B)-u(\theta g_A)\Big)-\big[\chi(d_A)-\chi(d_B)\big]
+\end{equation}
+denote the one-period net advantage of the Hawk relative to the Dove in state $(\theta,\omega)$. Consider the worst economic realization $\underline{\theta}$ and assume (as in the proposition) that it constitutes the most unfavorable state for the Hawk's re-election incentive.
+
+To isolate the role of patience, consider a transitory recession at date $t$ with $\theta_t=\underline{\theta}$, followed by reversion from $t+1$ onward to a stationary environment. In that continuation environment, the discrete gap in security capacity ($S_A>S_B$) implies that the expected per-period net advantage of the Hawk is strictly positive:
+\begin{equation} \label{eq:omega_bar}
+\overline{\Omega}\;\equiv\;\mathbb{E}\big[\Omega(\theta,\omega)\mid t+1\text{ onward}\big]\;>\;0.
+\end{equation}
+Let $\underline{\Omega}\equiv \mathbb{E}\big[\Omega(\underline{\theta},\omega_t)\big]$ denote the expected one-period net advantage during the recession. The forward-looking value difference between retaining the Hawk and switching regimes at date $t$ can then be expressed (via the Bellman equations under stationarity from $t+1$ onward) as
+\begin{equation}
+\Delta V_t \;=\; \underline{\Omega} + \sum_{\tau=t+1}^{\infty}\delta^{\tau-t}\overline{\Omega}
+\;=\; \underline{\Omega} + \frac{\delta}{1-\delta}\overline{\Omega}.
+\end{equation}
+The function $\Delta V_t(\delta)$ is continuous and strictly increasing on $[0,1)$. Moreover, $\lim_{\delta\uparrow 1}\Delta V_t(\delta)=+\infty$ by \autoref{eq:omega_bar}. Hence there exists a cutoff $\bar{\delta}\in(0,1)$ such that $\Delta V_t(\delta)\ge 0$ for all $\delta\ge \bar{\delta}$. For $\delta>\bar{\delta}$ the median voter weakly prefers to retain the Hawk even when $\theta_t=\underline{\theta}$. Since $\underline{\theta}$ is the most adverse economic realization, the Hawk is retained in every state, implying that the Hawk regime is absorbing in a stationary equilibrium.
+\end{proof}
+
+\subsection*{Proof of \autoref{prop:cycles}} \label{app:proof:cycles}
+
+\begin{proof}
+Under myopic voting ($\delta=0$), the median voter elects the Hawk at date $t$ if and only if \autoref{eq:dyn_switch} holds. Define the net advantage
+\begin{equation}
+\Omega_t \;\equiv\; \lambda\Big(\mathbb{E}_t[\Pi_{A,t}]-\mathbb{E}_t[\Pi_{B,t}]\Big)-(1-\lambda)\Big(\mathbb{E}_t[u(\theta_t g_B)]-\mathbb{E}_t[u(\theta_t g_A)]\Big)-\big[\chi(d_A)-\chi(d_B)\big],
+\end{equation}
+so the Hawk is elected if and only if $\Omega_t\ge 0$.
+
+For part (i), note that for $g_B>g_A$,
+\begin{equation}
+\frac{\partial}{\partial \theta}\Big(u(\theta g_B)-u(\theta g_A)\Big)=g_Bu'(\theta g_B)-g_Au'(\theta g_A),
+\end{equation}
+so assumption (ii) is equivalent to $g_Bu'(\theta g_B)-g_Au'(\theta g_A)<0$ on $[\underline{\theta},\overline{\theta}]$.\footnote{A common sufficient condition is CRRA utility $u(c)=c^{1-\rho}/(1-\rho)$ with $\rho>1$, in which case $g_Bu'(\theta g_B)-g_Au'(\theta g_A)=\theta^{-\rho}\big(g_B^{1-\rho}-g_A^{1-\rho}\big)<0$ for all $\theta>0$.} Combining this with assumption (i), a lower realization of $\theta_t$ strictly increases the perceived economic advantage of the Dove and therefore strictly decreases $\Omega_t$.
+
+Moreover, $\Omega_t$ is continuous in $(\theta_t,\omega_t)$ (given continuity of $u$ and monotone posteriors), and by hypothesis there exist states in which $\Omega_t\ge 0$ and states in which $\Omega_t<0$. Fix any $\omega\in[\underline{\omega},\overline{\omega}]$ and hold $\omega_t=\omega$. The previous argument implies that $\Omega_t$ is strictly increasing in $\theta_t$ on $[\underline{\theta},\overline{\theta}]$. Hence the intermediate value theorem yields a cutoff $\theta^*(\omega)\in(\underline{\theta},\overline{\theta})$ such that the myopic electorate selects the Hawk if and only if $\theta_t\ge \theta^*(\omega_t)$. Therefore, conditional on a Hawk incumbent, the Hawk $\rightarrow$ Dove transition event $\{\Omega_t<0\}$ is equivalent to $\{\theta_t<\theta^*(\omega_t)\}$, which becomes (weakly) more likely under more adverse economic realizations.
+
+For part (ii), note that minority mobilization satisfies $E_{m,t}(k)=\omega_t\gamma d_k^{\sigma}$, so higher $\omega_t$ or higher $\gamma$ increases the threat faced under either candidate platform. By Lemma \autoref{lem:reaction_invertedU} (over the relevant domain), the perceived Security Premium $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$ is increasing in the threat level, so $\Omega_t$ is increasing in $\omega_t$ and $\gamma$. Moreover,
+\begin{equation}
+\frac{\partial \Omega_t}{\partial \lambda} = \Big(\mathbb{E}_t[\Pi_{A,t}]-\mathbb{E}_t[\Pi_{B,t}]\Big)+\Big(\mathbb{E}_t[u(\theta_t g_B)]-\mathbb{E}_t[u(\theta_t g_A)]\Big) > 0,
+\end{equation}
+so $\Omega_t$ is increasing in $\lambda$. Therefore the probability that $\Omega_t$ crosses zero in favor of the Hawk (a Dove $\rightarrow$ Hawk transition) is increasing in $\omega_t$, $\gamma$, and $\lambda$.
+
+Finally, since the state process has full support and (by assumption) there exist states in which $\Omega_t\ge 0$ and states in which $\Omega_t<0$, both transitions occur with positive probability along the realized path, yielding recurrent regime switching.
+\end{proof}
+
+\subsection*{Proof of \autoref{cor:competence}} \label{app:proof:competence}
+
+\begin{proof}
+Under myopic voting, the Hawk is re-elected at date $t$ if and only if \autoref{eq:dyn_switch} holds, equivalently if $\Omega_t\ge 0$ where $\Omega_t$ is defined in the proof of \autoref{prop:cycles}. By assumption (i) in \autoref{prop:cycles} (and the monotone-likelihood-ratio sufficient condition in its footnote), a lower realization of the disorder signal $\tilde{v}_t$ weakly shifts posterior beliefs toward a lower threat environment and therefore weakly decreases the perceived Security Premium $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$.
+
+Since $\Omega_t$ is increasing in $\mathbb{E}_t[\Pi_{A,t}-\Pi_{B,t}]$, a first-order stochastic decrease in $\tilde{v}_t$ induces a first-order stochastic decrease in $\Omega_t$ and hence weakly decreases $\mathbb{P}(\Omega_t\ge 0)$, the re-election probability of the Hawk. Equivalently, the probability of a regime change, $\mathbb{P}(\Omega_t<0)$, weakly increases when observed disorder is stochastically lower.
+\end{proof}
 
 % End of Appendix.
