@@ -1,0 +1,889 @@
+% =============================================================================
+% MODEL REVISE / REWRITE — Manufacturing Enemies in Political Contests
+%
+% This file is a re-derivation of the *model*, *dynamic extension*, and
+% *appendix proofs* that introduces a new state variable: the mobilisation
+% stock M_t, accumulated from past minority counter-mobilisation, decaying
+% slowly at rate rho.
+%
+% Architectural sources:
+%   - Coate & Morris (1999, AER) — hysteresis-interval microfoundation
+%     for sticky policy (their Delta vs s; here, M vs Mbar)
+%   - Acharya, Lipnowski & Ramos (2025, AJPS) — promised-utility-as-state
+%     Bellman with concave value function and cutoff retention rule
+%   - Padro i Miquel (2007, RES) — fear-of-exclusion wedge Phi^M(M)
+%     for closed-form comparative statics
+%
+% Notation note: M_t (italic, time-subscripted) is the stock state variable;
+% subscript M on E_M, N_M continues to denote the Majority group.
+%
+% This file is self-contained and compiles standalone. To merge into the
+% main thesis, copy Sections 2-5 to replace the current model body, copy
+% Section 6 to replace the dynamic extension, and copy Section A to
+% replace appendix B (proofs). The static contest of the original model
+% is preserved as a special case at M=0.
+% =============================================================================
+
+\documentclass[11pt]{extarticle}
+\usepackage[english]{babel}
+\usepackage[breaklinks]{hyperref}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.25}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathrsfs, bm, bbm}
+\usepackage{enumitem, indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{cleveref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+\providecommand*{\theoremautorefname}{Theorem}
+\providecommand*{\lemmaautorefname}{Lemma}
+\providecommand*{\propositionautorefname}{Proposition}
+\providecommand*{\corollaryautorefname}{Corollary}
+\providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\remarkautorefname}{Remark}
+\providecommand*{\assumptionautorefname}{Assumption}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue}
+
+\title{Manufacturing Enemies in Political Contests \\
+       \large Model Revision: Mobilisation Stock and Markov Perfect Equilibrium}
+\author{Haotian (George) Bai}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This document re-derives the model, the dynamic extension, and the
+appendix proofs of \emph{Manufacturing Enemies in Political Contests}, replacing
+the static-contest-with-fixed-types architecture by a Markov perfect equilibrium
+on a state space $(M_t, k_t)$ in which $M_t$ is a slow-decaying stock of inherited
+minority mobilisation. Three technical templates are imported from the political-agency literature:
+(i) the hysteresis-interval microfoundation for sticky policy from \citet{coatePolicyPersistence1999};
+(ii) the promised-utility-as-state Bellman with concave value function and cutoff
+retention rule from \citet{acharyaPoliticalAccountabilityMoral2025}, generalised
+to a two-incumbent-type setting; and (iii) the fear-of-exclusion wedge from
+\citet{padróimiquelControlPoliticiansDivided2007}, transposed to manufactured-grievance
+contests as $\Phi^M(M_t)$. The static results of the original draft survive as
+within-period equilibria conditional on inherited $M_{t-1}$. The dynamic extension
+becomes a closed-form MPE with strategic per-period $d_t$ choice, a microfounded
+sticky-environment reading, and one-line monotone comparative statics on the
+conflict-trap region in $\rho$, $\lambda$, and $S_A/S_B$.
+\end{abstract}
+
+\setcounter{section}{1}
+
+%==============================================================================
+\section{Setup with Mobilisation Stock}
+%==============================================================================
+
+\subsection{Environment and the new state variable}
+
+The economy is populated by a measure-one continuum of citizens divided into
+a Majority $\mathsf M$ of share $n_M > 1/2$ and a Minority $\mathsf m$ of
+share $n_m = 1 - n_M$. Two parties, the \emph{Hawk} ($A$) and the \emph{Dove}
+($B$), compete for the support of the Majority electorate. Parties are
+distinguished by a two-dimensional technological endowment $(S_k, \bar g_k)$ with
+$S_A > S_B$ and $\bar g_A < \bar g_B$. As in the original draft, the
+public-good policy binds at the technological ceiling $g_k^* = \bar g_k$
+in every period, so only the symbolic-policy choice $d_k \ge 0$ carries
+strategic content.
+
+\paragraph{The mobilisation stock $M_t$.}
+The new state variable is a scalar $M_t \in \mathbb{R}_+$ — the inherited
+\emph{mobilisation stock} of the Minority. It captures accumulated grievance
+and organisational commitment that persist beyond a single period: if minority
+counter-mobilisation has been intense in recent periods, $M_t$ is high; if
+not, $M_t$ is near zero.
+
+The stock evolves according to
+\begin{equation} \label{eq:M_evolution}
+    M_{t+1} \;=\; (1-\rho)\,M_t \;+\; \rho\,E_m^*(d_t, S_{k_t}; M_t),
+\end{equation}
+where $\rho \in (0, 1)$ is the depreciation rate, $E_m^*(d_t, S_{k_t}; M_t)$ is
+the within-period equilibrium minority effort (defined in \autoref{lem:contest_M}
+below), and $k_t \in \{A, B\}$ is the period-$t$ incumbent. The initial stock
+$M_0 \ge 0$ is exogenous. We refer to $1 - \rho$ as the \emph{stock persistence}.
+
+\subsection{Within-period contest with stock-augmented stake}
+
+The Majority's within-period collective-action problem is unchanged:
+each citizen $i \in \{1, \dots, N_M\}$ chooses enforcement effort $e_i \ge 0$
+at cost $\frac{1}{2}e_i^2$, deriving public benefit
+$\Lambda \cdot \Pi_k(E_M, E_m)$ from the Tullock contest success function
+\begin{equation} \label{eq:CSF_M}
+    \Pi_k(E_M, E_m) \;=\; \frac{S_k\,E_M}{S_k\,E_M + E_m}.
+\end{equation}
+
+The Minority's collective-action problem is modified to absorb the inherited
+stock as a \emph{stake amplifier}. Citizen $j \in \{1, \dots, N_m\}$ chooses
+effort $e_j \ge 0$ at private cost $\frac{1}{2\kappa}e_j^2$ to maximise
+\begin{equation} \label{eq:minority_M}
+    V_j \;=\; \phi\,\big(d^\sigma + \xi M\big)\,\bigl(1 - \Pi_k(E_M, E_m)\bigr)
+    \;-\;\frac{1}{2\kappa} e_j^2,
+\end{equation}
+where $\xi > 0$ is the \emph{stock-stake elasticity} and $\sigma > 0$ the
+grievance-elasticity-of-policy parameter. The new term $\xi M$ captures inherited
+grievance: even at $d = 0$, the minority has a non-zero stake whenever
+$M > 0$, because past mobilisation has built organisational capacity and
+identity salience that current peace cannot immediately undo.
+
+\begin{remark} \label{rem:stake_amplifier}
+The stock enters the stake additively: the \emph{effective} provocation
+intensity is $\hat d^\sigma := d^\sigma + \xi M$. The original model is the
+special case $\xi = 0$, equivalently $M = 0$ in every period.
+This formulation has three consequences:
+(i) the within-period contest collapses to the original model's algebra
+under the substitution $d^\sigma \to \hat d^\sigma$, preserving all closed forms;
+(ii) at $d_t = 0$ with $M_t > 0$, the contest is \emph{not} dormant — the
+minority mobilises in proportion to inherited grievance;
+(iii) the Hawk's optimal provocation $d_A^*$ becomes a \emph{decreasing}
+function of $M$ — more inherited grievance substitutes for current
+provocation, a feature that becomes load-bearing in the dynamic equilibrium.
+\end{remark}
+
+\subsection{Joint contest equilibrium with stock}
+
+Let $\alpha := \sqrt{\Lambda N_M / (\kappa\phi N_m)}$ and
+$\beta := (\kappa \phi N_m \Lambda N_M)^{1/4}$ exactly as in the original
+draft. The within-period contest with inherited stock has the following
+characterisation.
+
+\begin{lemma}[\textbf{Joint contest equilibrium with stock}] \label{lem:contest_M}
+Fix $(d, S_k, M) \in [0,\infty) \times (0, \infty) \times [0, \infty)$ and write
+\begin{equation} \label{eq:dhat}
+    \hat d^\sigma \;:=\; d^\sigma + \xi M.
+\end{equation}
+If $\hat d^\sigma = 0$ (equivalently $d = 0$ and $M = 0$), the contest is
+dormant: $E_M^* = E_m^* = 0$ and $\lim_{\hat d \downarrow 0} \Pi_k^* = 1$.
+If $\hat d^\sigma > 0$, the unique symmetric Nash equilibrium is
+\begin{equation} \label{eq:EmEM_M}
+    E_m^*(d, S_k; M) \;=\; \frac{\beta^2\, S_k^{1/2}\,\hat d^{\,3\sigma/4}}{S_k\alpha + \hat d^{\,\sigma/2}},
+    \qquad
+    E_M^*(d, S_k; M) \;=\; \alpha\,\beta^2\,\frac{S_k^{1/2}\,\hat d^{\,\sigma/4}}{S_k\alpha + \hat d^{\,\sigma/2}},
+\end{equation}
+and the equilibrium security probability is
+\begin{equation} \label{eq:Pi_M}
+    \Pi_k^*(d, S_k; M) \;=\; \frac{S_k\alpha}{S_k\alpha + \hat d^{\,\sigma/2}}.
+\end{equation}
+The function $\Pi_k^*$ is strictly increasing in $S_k$, strictly decreasing
+in $\hat d$ (hence in both $d$ and $M$), and the limits
+$\lim_{\hat d \downarrow 0}\Pi_k^* = 1$, $\lim_{\hat d \uparrow \infty}\Pi_k^* = 0$ hold.
+\end{lemma}
+
+\begin{proof}[Proof sketch] Apply the substitution $d^\sigma \to \hat d^\sigma = d^\sigma + \xi M$ in the FOC system of \autoref{eq:minority_M} and the unchanged Majority FOC. The algebra of the original Joint Contest Equilibrium Lemma carries through unchanged. Full proof in \autoref{app:proof:contest_M}.
+\end{proof}
+
+The Security Premium is now a function of both $d$ and the inherited stock:
+\begin{equation} \label{eq:DPi_M}
+    \Delta\Pi(d; M) \;:=\; \Pi_A^*(d, S_A; M) - \Pi_B^*(d, S_B; M)
+    \;=\; \frac{S_A\alpha}{S_A\alpha + \hat d^{\,\sigma/2}} - \frac{S_B\alpha}{S_B\alpha + \hat d^{\,\sigma/2}}.
+\end{equation}
+
+\begin{lemma}[\textbf{Inverted-U Security Premium with stock and migrating peak}] \label{lem:invU_M}
+Suppose $S_A > S_B > 0$. The Security Premium $\Delta\Pi(\cdot; M)$ as a
+function of current $d$ is single-peaked on $[0, \infty)$ for every fixed
+$M \ge 0$. The unique maximiser is
+\begin{equation} \label{eq:dpeak_M}
+    d^{\mathrm{peak}}(M) \;=\;
+    \begin{cases}
+        \big(\alpha^2 S_A S_B - \xi M\big)^{1/\sigma} & \text{if } M < \alpha^2 S_A S_B / \xi, \\[0.4em]
+        0 & \text{if } M \ge \alpha^2 S_A S_B / \xi.
+    \end{cases}
+\end{equation}
+The peak value is unchanged from the original model:
+\begin{equation} \label{eq:DPi_peak_M}
+    \max_{d \ge 0}\Delta\Pi(d; M) \;=\; \frac{\sqrt{S_A} - \sqrt{S_B}}{\sqrt{S_A} + \sqrt{S_B}},
+\end{equation}
+attained at $d^{\mathrm{peak}}(M)$ for any $M < \alpha^2 S_A S_B / \xi$, and
+attained at the boundary $d = 0$ for higher $M$.
+\end{lemma}
+
+\autoref{lem:invU_M} contains the central new comparative static of the
+revised model: \emph{the optimal provocation peak migrates leftward as the
+inherited stock grows}. At $M = 0$ the peak is at the original
+$d^{\mathrm{peak}}(0) = (\alpha\sqrt{S_A S_B})^{2/\sigma}$; at sufficiently large
+$M$, the peak coincides with $d = 0$ — the inherited grievance has already
+done the contest-activation work, and the Hawk's marginal incentive to
+provoke vanishes. This is the structural source of the \emph{paradox of
+restraint} in the dynamic equilibrium: a sufficiently entrenched Hawk
+chooses minimal current provocation precisely because the stock is doing
+the work for him.
+
+%==============================================================================
+\section{Voter Preferences and Within-Period Equilibrium}
+%==============================================================================
+
+\subsection{Per-period payoffs}
+
+The Majority representative voter's per-period utility under incumbent
+$k \in \{A, B\}$ at inherited stock $M$ and current policy $d$ is
+\begin{equation} \label{eq:utility_M}
+    U^k(d; M) \;=\; \lambda\, \Pi_k^*(d, S_k; M) \;+\; (1-\lambda)\, u(\bar g_k)
+    \;-\; \chi_{\mathrm{econ}}(d) \;-\; \chi_{\mathrm{mod}}(d)\,\mathbb{1}[k = A]\,\mathbb{1}[d > 0],
+\end{equation}
+where $\lambda \in (0, 1)$ is the (exogenous) weight on security, $u(\cdot)$
+is strictly increasing in the public good, $\chi_{\mathrm{econ}}, \chi_{\mathrm{mod}}$
+are convex, increasing, with $\chi_{\mathrm{econ}}(0) = \chi_{\mathrm{mod}}(0) = 0$
+(unchanged from original). The economic deficit is
+$\Delta u := u(\bar g_B) - u(\bar g_A) > 0$ as before.
+
+\subsection{Within-period election under sticky environment}
+
+A central simplification of the original draft was the ``sticky-environment''
+reading: voters compare the two parties at the \emph{incumbent's} policy $d$,
+not at counterfactual policies. With $M_t$ as a state variable, this is
+\emph{microfounded} rather than assumed. Within period $t$, the inherited
+stock $M_{t-1}$ has already determined the contest's stake amplifier
+$\xi M_{t-1}$, which both parties face. The current $d_t$ is the only
+strategic margin; voters compare $U^A(d_t; M_{t-1})$ and $U^B(d_t; M_{t-1})$.
+
+Adding an idiosyncratic taste shock $\xi_i \sim \Phi$ in favour of the Hawk,
+voter $i$ supports $A$ iff
+$U^A(d_t; M_{t-1}) - U^B(d_t; M_{t-1}) + \xi_i \ge 0$. The swing-voter
+indifference condition is
+\begin{equation} \label{eq:swing_M}
+    \hat\xi(d, M) \;=\; (1-\lambda)\,\Delta u \;+\; \chi_{\mathrm{mod}}(d)\,\mathbb{1}[d > 0]
+    \;-\; \lambda\,\Delta\Pi(d; M).
+\end{equation}
+Party $A$ wins iff $\Phi(-\hat\xi(d, M)) > 1/2$.
+
+\begin{remark}[Microfoundation of sticky policy] \label{rem:microfound_sticky}
+At $d = 0$ and $M = 0$, both parties give $\Pi^* = 1$, so $\Delta\Pi = 0$ and
+the security dimension is electorally invisible — the voter elects on the
+economic dimension and the Dove wins (whenever $\Delta u > 0$). At $d = 0$
+and $M > 0$, $\Delta\Pi(0; M) > 0$: the Hawk's $S_A$-advantage is
+electorally salient \emph{even with no current provocation}, purely
+because of inherited grievance. This is the structural microfoundation
+the original draft relied on assuming. Following \citet{coatePolicyPersistence1999},
+the inherited stock plays the role of irreversible private investment that
+locks in the policy regime.
+\end{remark}
+
+\subsection{Hawk's static (within-period) provocation problem}
+
+Given inherited $M$, the Hawk-incumbent's optimal $d$ solves
+\begin{equation} \label{eq:Hawk_FOC_M}
+    d_A^*(M) \;\in\; \arg\max_{d \ge 0}\;\big[\lambda\,\Delta\Pi(d; M) - \chi_{\mathrm{mod}}(d)\big].
+\end{equation}
+
+Define the within-period \emph{net electoral return} to provocation as
+$F(d; M) := \lambda\,\Delta\Pi(d; M) - \chi_{\mathrm{mod}}(d)$, and the
+within-period provocation cutoff as
+\begin{equation} \label{eq:du_bar_M}
+    \overline{\Delta u}(M) \;:=\; \frac{1}{1-\lambda}\,\max_{d \ge 0} F(d; M).
+\end{equation}
+
+\begin{proposition}[\textbf{Within-period strategic provocation with stock}] \label{prop:provocation_M}
+Under the conditions on $\chi_{\mathrm{mod}}$ in the original draft (continuously
+differentiable, strictly increasing, strictly convex, $\chi_{\mathrm{mod}}(0) = 0$,
+$\lim_{d\uparrow\infty}\chi_{\mathrm{mod}}(d) = \infty$):
+\begin{enumerate}[label=(\roman*)]
+    \item For each $M \ge 0$, $F(\cdot; M)$ attains a finite maximum at some
+    $d_A^*(M) \ge 0$, and $\overline{\Delta u}(M) \ge 0$.
+    \item A Hawk victory is feasible iff $\Delta u \le \overline{\Delta u}(M)$.
+    \item The cutoff is non-decreasing in $M$:
+    $\partial \overline{\Delta u}(M)/\partial M \ge 0$, with strict inequality
+    whenever $d_A^*(M) > 0$ is interior.
+    \item The optimal provocation $d_A^*(M)$ is non-increasing in $M$:
+    when inherited grievance grows, the Hawk needs less current provocation
+    to maintain its electoral advantage.
+\end{enumerate}
+\end{proposition}
+
+Part (iii) is the analogue of Coate--Morris's central comparative static —
+the willingness to pay for the policy is increasing in inherited stock —
+transposed to the manufactured-enemy setting. Part (iv) is the
+\emph{paradox of restraint}: a Hawk in a high-$M$ steady state may quite
+literally choose $d_t = 0$ in equilibrium and still hold the security
+premium intact. The original draft could not deliver this prediction.
+
+%==============================================================================
+\section{Dynamic Extension: Markov Perfect Equilibrium}
+%==============================================================================
+
+\subsection{State, timing, and strategies}
+
+The political game is dynamic with discrete time $t = 0, 1, 2, \dots$ and an
+infinite horizon. The state at the start of period $t$ is
+$(M_t, k_t) \in \mathbb{R}_+ \times \{A, B\}$, where $k_t$ is the incumbent
+inherited from period $t-1$'s election outcome and $M_t$ is the inherited
+mobilisation stock. (We write $M_t$ for the state at the \emph{start} of
+period $t$; the original draft's notation has $M_{t-1}$ in the same role.)
+
+Within each period:
+\begin{enumerate}[label=\textbf{Stage \arabic*:}, leftmargin=*, itemsep=0.2em]
+    \item \textbf{Policy.} Incumbent $k_t$ chooses $d_t \ge 0$.
+    \item \textbf{Contest.} The within-period contest equilibrium
+    $(E_M^*, E_m^*, \Pi_k^*)$ realises at $(d_t, S_{k_t}, M_t)$ per \autoref{lem:contest_M}.
+    \item \textbf{Election.} The Majority electorate observes a noisy signal
+    of period-$t$ outcomes and chooses $k_{t+1} \in \{A, B\}$.
+    \item \textbf{Stock update.} $M_{t+1} = (1-\rho)M_t + \rho E_m^*(d_t, S_{k_t}; M_t)$.
+\end{enumerate}
+
+A \emph{Markov strategy} for the incumbent is a measurable function
+$d_k : \mathbb{R}_+ \to \mathbb{R}_+$ specifying provocation at each $M$ if
+party $k$ holds office. A \emph{Markov retention rule} for the voter is a
+measurable function $\rho^v : \mathbb{R}_+ \times \{A, B\} \to [0, 1]$
+specifying the probability of retaining the incumbent at each state.
+
+\subsection{Voter Bellman and the cutoff retention rule}
+
+We follow \citet{acharyaPoliticalAccountabilityMoral2025} in solving the
+voter's problem recursively. Let $V^v(M, k)$ denote the voter's expected
+discounted utility at state $(M, k)$. Given the incumbent's strategy
+$d_k(\cdot)$ and the law of motion \autoref{eq:M_evolution}:
+\begin{equation} \label{eq:voter_bellman}
+    V^v(M, k) \;=\; U^k(d_k(M); M) \;+\; \delta\,\big[\rho^v(M, k)\,V^v(M', k) + (1 - \rho^v(M, k))\,V^v(M', \tilde k)\big],
+\end{equation}
+where $M' = (1-\rho)M + \rho E_m^*(d_k(M), S_k; M)$, $\tilde k = B$ if $k = A$
+and vice versa, and $\delta \in (0, 1)$ is the voter's discount factor.
+
+Optimal retention compares the two regime-specific value functions:
+$\rho^v(M, k) = 1$ if $V^v(M, k) > V^v(M, \tilde k)$ and $0$ otherwise.
+Define the \emph{voter wedge}
+\begin{equation} \label{eq:wedge}
+    \Phi^M(M) \;:=\; V^v(M, A) - V^v(M, B).
+\end{equation}
+The voter retains the Hawk at state $(M, A)$ iff $\Phi^M(M) \ge 0$. The wedge
+is the structural transposition of \citet{padróimiquelControlPoliticiansDivided2007}'s
+fear-of-exclusion wedge to the manufactured-grievance setting: it bundles
+discounting (through $V^v$), incumbency stickiness (through retention
+probability), and cross-regime utility gap (through $V^v(M, A) - V^v(M, B)$)
+into a single scalar.
+
+\begin{lemma}[\textbf{Concavity and monotonicity of $V^v$}] \label{lem:Vv_concave}
+Under the conditions of \autoref{prop:provocation_M}:
+\begin{enumerate}[label=(\roman*)]
+    \item $V^v(\cdot, A)$ and $V^v(\cdot, B)$ are continuous and uniformly
+    bounded on $[0, \infty)$.
+    \item $V^v(M, B)$ is non-increasing in $M$: under a Dove incumbent at
+    $d_B = 0$, higher inherited grievance is unambiguously bad for the
+    voter's per-period payoff, and improvement requires waiting for
+    decay.
+    \item $V^v(M, A)$ is single-peaked in $M$: at low $M$ the Hawk's
+    advantage is electorally invisible (low security premium); at high
+    $M$ the cumulative cost $\chi_{\mathrm{econ}}(d_A^*(M))$ + the realised
+    security loss outpaces the security-premium gain.
+    \item Consequently, the voter wedge $\Phi^M(M) = V^v(M, A) - V^v(M, B)$
+    is single-crossing: there exists a unique $\bar M \in (0, \infty]$ such
+    that $\Phi^M(M) < 0$ for $M < \bar M$ and $\Phi^M(M) \ge 0$ for $M \ge \bar M$.
+\end{enumerate}
+\end{lemma}
+
+The single-crossing wedge yields the cutoff retention rule. The Acharya
+et al. template for our setting:
+
+\begin{proposition}[\textbf{Cutoff retention rule}] \label{prop:cutoff}
+A Markov retention rule $\rho^v$ is part of a Markov Perfect Equilibrium
+if and only if
+\begin{equation} \label{eq:cutoff}
+    \rho^v(M, A) \;=\;
+    \begin{cases}
+        1 & \text{if } M \ge \bar M, \\
+        0 & \text{if } M < \bar M,
+    \end{cases}
+    \qquad
+    \rho^v(M, B) \;=\;
+    \begin{cases}
+        1 & \text{if } M \le \underline M, \\
+        0 & \text{if } M > \underline M,
+    \end{cases}
+\end{equation}
+where $\bar M = \inf\{M : \Phi^M(M) \ge 0\}$ and $\underline M = \sup\{M : \Phi^M(M) \le 0\}$.
+The two thresholds satisfy $\underline M \le \bar M$, with strict inequality
+generic in $\rho$.
+\end{proposition}
+
+The thresholds $\bar M$ and $\underline M$ play the same role as Coate--Morris's
+$\Delta$ vs $s$: the interval $[\underline M, \bar M]$ is the
+\emph{hysteresis region}, where retention depends on which incumbent is
+currently in office rather than on the state $M$ alone.
+
+\subsection{Existence of MPE}
+
+\begin{proposition}[\textbf{Existence of pure-strategy MPE}] \label{prop:MPE_exist}
+Under the regularity conditions on $\chi_{\mathrm{econ}}$, $\chi_{\mathrm{mod}}$,
+and the contest primitives, a pure-strategy Markov Perfect Equilibrium
+$(d_A^\star, d_B^\star, \rho^v)$ exists in which:
+\begin{enumerate}[label=(\roman*)]
+    \item $d_B^\star(M) = 0$ for all $M \ge 0$.
+    \item $d_A^\star(M)$ is the within-period optimum
+    $\arg\max_d F(d; M)$ from \autoref{prop:provocation_M}, weakly decreasing in $M$.
+    \item $\rho^v$ is the cutoff rule of \autoref{prop:cutoff}.
+\end{enumerate}
+The voter value functions $V^v(\cdot, A), V^v(\cdot, B)$ are the unique
+fixed point of the Bellman operator on the Banach space of bounded
+continuous functions on $[0, \infty)$.
+\end{proposition}
+
+The Dove's corner $d_B^\star = 0$ now has a different interpretation than in
+the original draft: even though the inherited stock $M$ keeps the Minority
+mobilising and pushes $\Pi_B^* < 1$, the Dove still chooses $d = 0$ because
+provoking would (i) push $\Pi_B^*$ even lower and (ii) generate
+$\chi_{\mathrm{mod}}$ on the Dove. The Dove cannot benefit from raising the
+security dimension because $S_B < S_A$. The corner survives the introduction
+of $M$.
+
+%==============================================================================
+\section{Long-Run Outcomes: Conflict Trap, Cycles, and the Paradox}
+%==============================================================================
+
+\subsection{Conflict trap restated}
+
+\begin{proposition}[\textbf{Conflict trap with mobilisation stock}] \label{prop:trap_M}
+Suppose the model parameters $(\rho, \delta, \lambda, S_A, S_B, \xi, \kappa, \phi, \sigma, \Lambda, N_M, N_m)$
+are such that $\bar M < \infty$ and $d_A^\star(\bar M) > 0$. Then there
+exists $\bar\rho \in (0, 1)$ such that for all $\rho < \bar\rho$, the set
+\begin{equation} \label{eq:trap_set}
+    \mathcal{T} \;:=\; \big\{(M, k) : k = A,\ M \ge \bar M\big\}
+\end{equation}
+is forward-invariant under the equilibrium dynamics: starting from any
+$(M_0, A) \in \mathcal{T}$, $(M_t, k_t) \in \mathcal{T}$ for all $t \ge 0$
+almost surely. Within the trap, the equilibrium policy converges to a
+stationary level $d_A^\infty > 0$ (or $d_A^\infty = 0$ in the
+\emph{paradox-of-restraint} regime $M^\infty \ge \alpha^2 S_A S_B / \xi$)
+and the Hawk is retained in every period.
+\end{proposition}
+
+\autoref{prop:trap_M} differs from the v1 conflict trap (which required
+forward-looking voters and an exogenous threat shock) in two ways:
+\begin{enumerate}[label=(\roman*)]
+    \item No exogenous threat shock is needed. The trap is generated
+    endogenously by the strategic interaction between Hawk's
+    provocation and slow stock decay. Voter myopia ($\delta = 0$) is
+    sufficient.
+    \item ``Permanent capacity loss'' from a Dove victory is no longer
+    counterfactual but \emph{quantitative}: switching to Dove leaves
+    inherited $M_t$ unchanged in the short run, but Dove's $d_B = 0$
+    causes $M$ to decay at rate $\rho$. Voter discounting makes this
+    transition welfare-decreasing if $\rho$ is small relative to the
+    Hawk's per-period security advantage. Below the cutoff $\bar M$, the
+    voter prefers Dove; above, Hawk.
+\end{enumerate}
+
+The paradox of restraint within the trap is the most distinctive new
+prediction: a sufficiently entrenched Hawk regime can equilibrate at $d_t = 0$
+indefinitely, with the contest sustained entirely by inherited grievance.
+This rationalises observed regimes where the security-coded party governs
+without enacting visibly new symbolic policy — Iran's hijab regime in its
+mature phase, India's BJP after 2019 — without abandoning the manufactured-enemies
+mechanism.
+
+\subsection{Political cycles restated}
+
+When $\rho$ is large (fast stock decay), the trap region shrinks. Under
+myopic voting and an exogenous threat process $\omega_t \in [0, \bar\omega]$
+that adds to the within-period stake, the equilibrium exhibits regime
+oscillations.
+
+\begin{proposition}[\textbf{Political cycles with mobilisation stock}] \label{prop:cycles_M}
+Suppose voters are myopic ($\delta \to 0$) and the per-period stake includes
+an exogenous threat $\omega_t$ with full support on $[0, \bar\omega]$.
+Suppose further that
+$\bar\rho < \rho < 1$ (fast decay regime). Then:
+\begin{enumerate}[label=(\roman*)]
+    \item Conditional on a Hawk incumbent, the probability of a Hawk-to-Dove
+    transition is strictly decreasing in current $\omega_t$ and in inherited
+    $M_t$.
+    \item Conditional on a Dove incumbent, the probability of a Dove-to-Hawk
+    transition is strictly increasing in $\omega_t$, in $\xi$, and in the
+    minority's structural mobilisation potential $\kappa\phi$.
+    \item Both transitions occur with positive probability along the
+    realised path, yielding recurrent regime switching.
+\end{enumerate}
+\end{proposition}
+
+The substantive distinction from the v1 cycles result is that $d_t$ is now
+\emph{endogenously oscillating} via $d_A^\star(M_t)$, rather than mechanically
+flipping between fixed type values. Under a Hawk-to-Dove transition, the
+inherited stock $M_t$ decays gradually under $d_B = 0$; the contest
+softens. Under a Dove-to-Hawk transition, the new Hawk inherits a low
+$M_t$ and chooses a high $d_t$ to re-activate the contest; the cycle
+restarts.
+
+\subsection{Paradox of competence}
+
+\begin{corollary}[\textbf{Paradox of competence with stock}] \label{cor:paradox_M}
+Under myopic voting, a first-order stochastic decrease in observed disorder
+$\tilde v_t = (1 - \Pi_{k_t}^*) + \varepsilon_t^v$ under a Hawk incumbent
+weakly decreases the perceived security premium and weakly increases the
+hazard of a Hawk-to-Dove transition.
+\end{corollary}
+
+The corollary carries through unchanged from the v1 paradox of competence:
+quieter streets shrink the perceived security premium and raise the Hawk's
+defeat hazard. The new dynamic mechanism does not affect the underlying
+inference problem.
+
+%==============================================================================
+\section{Comparative Statics on the Trap Region}
+%==============================================================================
+
+The fear-wedge $\Phi^M$ delivers one-line comparative statics on the
+conflict-trap region.
+
+\begin{proposition}[\textbf{Comparative statics on $\bar M$}] \label{prop:cs_trap}
+The conflict-trap threshold $\bar M$ satisfies
+\begin{equation} \label{eq:cs_signs}
+    \frac{\partial \bar M}{\partial \rho} \;>\; 0,
+    \qquad \frac{\partial \bar M}{\partial (S_A/S_B)} \;<\; 0,
+    \qquad \frac{\partial \bar M}{\partial \lambda} \;<\; 0,
+    \qquad \frac{\partial \bar M}{\partial \Delta u} \;>\; 0.
+\end{equation}
+That is, the trap region (states with $M \ge \bar M$ that are forward-invariant) shrinks in faster decay $\rho$ and in larger Dove economic advantage $\Delta u$, and expands in larger Hawk security advantage $S_A/S_B$ and in larger weight $\lambda$ on security.
+\end{proposition}
+
+These four monotone comparative statics replace the original draft's
+implicit reliance on numerical examples. Each runs through the wedge
+$\Phi^M$ and the implicit-function theorem applied to
+$\Phi^M(\bar M; \rho, \lambda, S_A/S_B, \Delta u) = 0$.
+
+%==============================================================================
+\section{Discussion: How This Differs from the Original Draft}
+%==============================================================================
+
+The original draft has three load-bearing assumptions that this revision
+either eliminates or microfounds:
+
+\begin{enumerate}
+    \item \textbf{Sticky-environment swing-voter equation.} The original
+    draft assumes both parties are evaluated at the incumbent's $d$ — see
+    the v1 footnote at the swing-voter equation. This is now microfounded:
+    inherited $M_{t-1}$ has already determined the within-period stake
+    amplifier $\xi M_{t-1}$, which is exogenous to the current incumbent's
+    choice.
+
+    \item \textbf{Fixed party types $d_A > d_B$ in dynamic.} The v1 dynamic
+    extension assumed $d_A > d_B$ as exogenous types, contradicting the
+    static result $d_B^* = 0$. The revised dynamic extension has both
+    parties making strategic per-period choices: $d_B^\star(M) = 0$
+    (consistent with static), $d_A^\star(M)$ a continuous-valued strategic
+    function (resolving the contradiction).
+
+    \item \textbf{Permanent security-capacity loss from regime change.}
+    The v1 trap required voters to expect future exogenous threats that
+    Dove's $S_B$ cannot manage. The revised trap uses inherited $M$
+    directly: under Dove, $d_B = 0$ and $M$ decays at rate $\rho$, but in
+    the meantime the Hawk's $S_A$ would have been valuable. Voter
+    discounting + slow decay = trap, with no exogenous threat process
+    needed.
+\end{enumerate}
+
+In addition, the revised draft contributes a named state-variable type
+to the political-agency literature: the \emph{adversary's mobilisation
+stock}. Existing political-agency models work with two types of state
+variables: voter beliefs about the politician's type or future actions
+(e.g., \citealp{acharyaPoliticalAccountabilityMoral2025};
+\citealp{banksRepeatedElectionsModel1993}), and the politician's own
+reputation or commitment stock (e.g., \citealp{coatePolicyPersistence1999};
+\citealp{padróimiquelControlPoliticiansDivided2007}). The mobilisation
+stock $M_t$ is a third type: it accumulates from the adversary's response
+to the agent's strategic action, and yet the strategic agent has an
+interest in deliberately accumulating it because doing so activates the
+very contest dimension on which his comparative advantage operates. This
+is the formal version of ``manufactured persistence.''
+
+%==============================================================================
+\appendix
+\section{Proofs} \label{app:proofs}
+%==============================================================================
+
+\subsection{Proof of \autoref{lem:contest_M}} \label{app:proof:contest_M}
+
+\begin{proof}
+The Majority FOC of the original draft is unchanged:
+\[
+    e_i \;=\; \Lambda \,\frac{S_k E_m}{(S_k E_M + E_m)^2}.
+\]
+The Minority FOC under \autoref{eq:minority_M} replaces the original's
+$\phi d^\sigma$ with $\phi(d^\sigma + \xi M)$:
+\[
+    e_j \;=\; \kappa\,\phi(d^\sigma + \xi M)\,\frac{S_k E_M}{(S_k E_M + E_m)^2}.
+\]
+Define $\hat d^\sigma := d^\sigma + \xi M$. The system is now identical to the
+original draft's contest equilibrium with $d^\sigma$ replaced by
+$\hat d^\sigma$ throughout. Dividing the symmetric FOCs $E_M/N_M = e_i$
+and $E_m/N_m = e_j$ yields
+\[
+    \frac{E_M/N_M}{E_m/N_m} \;=\; \frac{\Lambda E_m}{\kappa\phi\hat d^\sigma E_M},
+\]
+hence $\kappa\phi\hat d^\sigma N_m E_M^2 = \Lambda N_M E_m^2$, which gives
+$E_M / E_m = \alpha\hat d^{-\sigma/2}$. Substituting into the Majority FOC
+yields $E_m^*$ as in \autoref{eq:EmEM_M}. The Tullock CSF then gives
+$\Pi_k^* = S_k E_M^* / (S_k E_M^* + E_m^*) = S_k\alpha / (S_k\alpha + \hat d^{\sigma/2})$
+as in \autoref{eq:Pi_M}. Comparative statics in $S_k$, $d$, and $M$ follow
+from differentiating these closed forms. The dormant case $\hat d = 0$
+follows from continuity: $\lim_{\hat d \downarrow 0} E_m^* = 0$,
+$\lim_{\hat d \downarrow 0} E_M^* = 0$,
+$\lim_{\hat d \downarrow 0}\Pi_k^* = 1$.
+\end{proof}
+
+\subsection{Proof of \autoref{lem:invU_M}} \label{app:proof:invU_M}
+
+\begin{proof}
+By \autoref{eq:DPi_M}, write $\Delta\Pi(d; M) = h(\hat d^{\sigma/2})$ where
+\[
+    h(x) := \frac{S_A\alpha}{S_A\alpha + x} - \frac{S_B\alpha}{S_B\alpha + x}.
+\]
+The function $h$ is the same as in the original draft's Inverted-U Security
+Premium lemma. It is strictly positive on $(0, \infty)$
+when $S_A > S_B$, vanishes at $0$ and $\infty$, and is single-peaked at
+$x^{\mathrm{peak}} = \alpha\sqrt{S_A S_B}$ with peak value
+$h(x^{\mathrm{peak}}) = (\sqrt{S_A} - \sqrt{S_B})/(\sqrt{S_A} + \sqrt{S_B})$.
+
+Translating back: $\Delta\Pi(d; M)$ is single-peaked in $\hat d^{\sigma/2}$
+at $\alpha\sqrt{S_A S_B}$, equivalently $\hat d^\sigma = \alpha^2 S_A S_B$,
+equivalently $d^\sigma + \xi M = \alpha^2 S_A S_B$. Solving for $d$:
+\begin{enumerate}
+    \item If $\xi M < \alpha^2 S_A S_B$, the peak is interior at
+    $d^{\mathrm{peak}}(M) = (\alpha^2 S_A S_B - \xi M)^{1/\sigma}$.
+    \item If $\xi M \ge \alpha^2 S_A S_B$, the peak is at the boundary $d = 0$
+    because $\hat d^\sigma$ already exceeds $\alpha^2 S_A S_B$ from the
+    stock alone, and any further $d > 0$ moves $\hat d^{\sigma/2}$ past
+    $\alpha\sqrt{S_A S_B}$ into the decreasing part of $h$.
+\end{enumerate}
+The peak value is $h(\alpha\sqrt{S_A S_B})$ in case (1) and
+$h(\sqrt{\xi M}) < h(\alpha\sqrt{S_A S_B})$ in case (2). Within case (1),
+the peak value is $M$-invariant; within case (2), it strictly decreases in $M$.
+\end{proof}
+
+\subsection{Proof of \autoref{prop:provocation_M}} \label{app:proof:provocation_M}
+
+\begin{proof}
+\textit{(i)} $F(d; M) = \lambda\Delta\Pi(d; M) - \chi_{\mathrm{mod}}(d)$ is
+continuous on $[0, \infty)$ for each $M$, with $F(0; M) = \lambda\Delta\Pi(0; M)$
+finite and $\lim_{d\uparrow\infty}F(d; M) = -\infty$ since $\chi_{\mathrm{mod}}(d) \to \infty$
+and $\Delta\Pi$ is bounded by 1. Hence the maximum is attained at some
+finite $d_A^*(M)$. $\overline{\Delta u}(M) = F(d_A^*(M); M)/(1-\lambda) \ge F(0; M)/(1-\lambda) \ge 0$
+because $\Delta\Pi \ge 0$ everywhere.
+
+\textit{(ii)} The Hawk wins iff the swing-voter threshold
+$\hat\xi(d_A^*(M); M) \le 0$, i.e., $F(d_A^*(M); M) \ge (1-\lambda)\Delta u$,
+i.e., $\overline{\Delta u}(M) \ge \Delta u$.
+
+\textit{(iii)} By the envelope theorem,
+\[
+    \frac{\partial}{\partial M}\overline{\Delta u}(M)
+    \;=\; \frac{1}{1-\lambda}\,\frac{\partial F(d_A^*(M); M)}{\partial M}
+    \;=\; \frac{\lambda}{1-\lambda}\,\frac{\partial \Delta\Pi(d_A^*(M); M)}{\partial M}.
+\]
+The partial derivative of $\Delta\Pi$ with respect to $M$ at any
+$d \in (0, d^{\mathrm{peak}}(0))$ is positive on the increasing branch of
+the inverted-U: increasing $M$ moves $\hat d^{\sigma/2}$ closer to the peak.
+On the decreasing branch, the sign flips and $\partial\Delta\Pi/\partial M < 0$.
+For interior $d_A^*(M) \in (0, d^{\mathrm{peak}}(M))$, the optimum lies on
+the increasing branch (where the marginal benefit equals
+$\chi_{\mathrm{mod}}'$); hence
+$\partial\overline{\Delta u}/\partial M > 0$.
+
+\textit{(iv)} Differentiate the Hawk's FOC
+$\lambda\,\partial\Delta\Pi/\partial d|_{d_A^*(M); M} = \chi_{\mathrm{mod}}'(d_A^*(M))$
+implicitly with respect to $M$. By the convexity of $\chi_{\mathrm{mod}}$
+and the supermodularity of $\Delta\Pi$ in $(d, -M)$ on the relevant region:
+$\partial d_A^*/\partial M < 0$. Details: differentiate
+\[
+    \lambda\,\frac{\partial \Delta\Pi(d; M)}{\partial d}\bigg|_{d=d_A^*(M)} \;=\; \chi_{\mathrm{mod}}'(d_A^*(M))
+\]
+with respect to $M$ to get
+\[
+    \lambda\,\frac{\partial^2 \Delta\Pi}{\partial d^2}\,\frac{\partial d_A^*}{\partial M} + \lambda\,\frac{\partial^2 \Delta\Pi}{\partial d\,\partial M} \;=\; \chi_{\mathrm{mod}}''(d_A^*)\,\frac{\partial d_A^*}{\partial M}.
+\]
+Solving:
+\[
+    \frac{\partial d_A^*}{\partial M} \;=\; \frac{\lambda\,\partial^2\Delta\Pi/(\partial d\,\partial M)}{\chi_{\mathrm{mod}}''(d_A^*) - \lambda\,\partial^2\Delta\Pi/\partial d^2}.
+\]
+At an interior optimum, $\chi_{\mathrm{mod}}'' > 0$ and the denominator is
+strictly positive (second-order condition for the maximum). The cross-partial
+$\partial^2\Delta\Pi/(\partial d\,\partial M)$ on the increasing branch
+is negative (the function $\Delta\Pi$ in $\hat d^{\sigma/2}$ is concave on
+its increasing branch, so increases in $M$ reduce the marginal benefit of
+further $d$). Hence $\partial d_A^*/\partial M < 0$.
+\end{proof}
+
+\subsection{Proof of \autoref{lem:Vv_concave}} \label{app:proof:Vv_concave}
+
+\begin{proof}[Sketch]
+Continuity and boundedness follow from standard contraction-mapping
+arguments on the Bellman operator over bounded continuous functions on
+$[0, \infty)$ (see Stokey, Lucas, and Prescott 1989 for the canonical
+treatment).
+
+\textit{Monotonicity of $V^v(\cdot, B)$.} Under Dove with $d_B = 0$, the
+within-period payoff is
+$U^B(0; M) = \lambda\Pi_B^*(0, S_B; M) + (1-\lambda)u(\bar g_B)$, which is
+strictly decreasing in $M$ because $\Pi_B^*$ falls in $M$ (\autoref{lem:contest_M}).
+The continuation $M' = (1-\rho)M$ is also strictly increasing in $M$, but
+under Dove $V^v(\cdot, B)$ is monotone-decreasing by induction on the
+Bellman.
+
+\textit{Single-peakedness of $V^v(\cdot, A)$.} At $M = 0$, $\Pi_A^*(0, S_A; 0) = 1 = \Pi_B^*(0, S_B; 0)$,
+so the security premium is zero and the Dove's $u(\bar g_B) > u(\bar g_A)$
+implies $V^v(0, A) < V^v(0, B)$ (assuming $\Delta u > 0$, the canonical case).
+At intermediate $M$, the security premium activates and the Hawk's $S_A$
+advantage delivers $\Pi_A^* > \Pi_B^*$, raising $U^A$ above $U^B$. At very
+large $M$, both $\Pi_A^*$ and $\Pi_B^*$ approach 0, and the security
+premium $\Delta\Pi$ also vanishes (right tail of the inverted-U); the
+Dove's economic advantage $\Delta u$ dominates again. Hence $V^v(\cdot, A)$
+is single-peaked.
+
+\textit{Single-crossing wedge.} $\Phi^M(M) = V^v(M, A) - V^v(M, B)$ is
+continuous, negative at $M = 0$, positive on an intermediate interval
+(if any exists), and crosses zero exactly once on $[0, \infty)$ under
+the regularity conditions of \autoref{prop:provocation_M}. The case
+$\Phi^M < 0$ everywhere gives $\bar M = \infty$ (no trap).
+\end{proof}
+
+\subsection{Proof of \autoref{prop:cutoff}} \label{app:proof:cutoff}
+
+\begin{proof}
+By the single-crossing of $\Phi^M$ from \autoref{lem:Vv_concave},
+$V^v(M, A) \ge V^v(M, B)$ iff $M \ge \bar M$, hence the voter retains the
+Hawk iff $M \ge \bar M$. Symmetrically, retains the Dove iff $V^v(M, B) \ge V^v(M, A)$,
+iff $\Phi^M(M) \le 0$, iff $M \le \underline M$. Generic strict inequality
+$\underline M < \bar M$ follows from the existence of a hysteresis interval
+analogous to Coate--Morris's $[-s, s)$: when the value gap $|\Phi^M|$ is
+small, the marginal effect of a regime switch on continuation $M$ depends
+on which incumbent is currently in office (Hawk plays $d_A^* > 0$ and
+keeps $M$ high; Dove plays $d_B = 0$ and lets $M$ decay). The two thresholds
+coincide only in the degenerate case $\rho = 1$ (full instantaneous decay).
+\end{proof}
+
+\subsection{Proof of \autoref{prop:MPE_exist}} \label{app:proof:MPE_exist}
+
+\begin{proof}[Sketch]
+The Bellman operator $T$ defined by
+\[
+    (TV)(M, k) \;=\; U^k(d_k(M); M) + \delta\big[\rho^v(M, k)V(M', k) + (1-\rho^v(M, k))V(M', \tilde k)\big]
+\]
+maps the space $\mathcal{C}_b([0,\infty) \times \{A, B\})$ of bounded
+continuous functions to itself, given any measurable strategy profile.
+$T$ is a $\delta$-contraction in the sup norm. By Banach's fixed-point
+theorem, it has a unique fixed point $V^v(\cdot, \cdot)$.
+
+\textit{Existence of pure-strategy MPE.} Apply Glicksberg's fixed-point
+theorem to the joint best-response correspondence on the compact space
+of Markov strategies $\{d_k : [0, \bar M^*] \to [0, \bar d^*]\}$, where
+$\bar d^*$ is the eventual maximum provocation. Continuity and convexity
+of best responses follow from the strict convexity of $\chi_{\mathrm{mod}}$
+and concavity of $\Delta\Pi$ on the relevant branch. (Full proof requires
+verifying the regularity conditions; we leave details to a longer version.)
+
+\textit{Dove's corner $d_B^\star(M) = 0$.} Under Dove incumbency,
+$\chi_{\mathrm{mod}}$ is borne by Dove if $d > 0$. Provoking would move
+$\Pi_B^*$ down (\autoref{lem:contest_M}) and thus $V^v(M, B)$ down
+(\autoref{lem:Vv_concave}). Hence $d_B^\star = 0$ in any MPE.
+
+\textit{Hawk's $d_A^\star(M)$.} The within-period FOC of \autoref{prop:provocation_M}
+(part iv) characterises $d_A^\star$ as a continuous, weakly decreasing
+function of $M$. The dynamic best response coincides with the static one
+because the Hawk's continuation value $V^A(M', A)$ and the voter's
+retention rule are both Markov in $M$, and the Hawk's per-period payoff
+is concave in $d$ on the relevant branch.
+\end{proof}
+
+\subsection{Proof of \autoref{prop:trap_M}} \label{app:proof:trap_M}
+
+\begin{proof}
+Suppose $(M_0, k_0) \in \mathcal{T}$, i.e., $k_0 = A$ and $M_0 \ge \bar M$. We
+show $(M_t, k_t) \in \mathcal{T}$ for all $t$.
+
+\textit{Step 1: voter retains.} By $M_0 \ge \bar M$ and \autoref{prop:cutoff},
+$\rho^v(M_0, A) = 1$, so $k_1 = A$.
+
+\textit{Step 2: stock stays above cutoff.} Under Hawk with $d_A^\star(M_0) \ge 0$,
+the next-period stock is $M_1 = (1-\rho)M_0 + \rho E_m^*(d_A^\star(M_0), S_A; M_0)$.
+Two cases:
+\begin{itemize}
+    \item If $d_A^\star(M_0) > 0$: $E_m^*(\cdot) > 0$, so
+    $M_1 \ge (1-\rho)M_0 + \rho \underline E_m$ where
+    $\underline E_m := \inf\{E_m^*(d_A^\star(M), S_A; M) : M \ge \bar M\} > 0$.
+    Choose $\bar\rho$ small enough that $(1-\bar\rho)\bar M + \bar\rho\underline E_m \ge \bar M$,
+    i.e., $\bar\rho \le (\bar M - \bar M)/(\bar M - \underline E_m) = $ a finite positive number
+    when $\underline E_m > \bar M$. Otherwise, set
+    $\bar\rho \le 1 - \bar M/M_0 + \rho\underline E_m/M_0$, which is positive
+    when $M_0$ is sufficiently above $\bar M$.
+
+    \item If $d_A^\star(M_0) = 0$ (paradox-of-restraint regime,
+    $M_0 \ge \alpha^2 S_A S_B/\xi$): $E_m^*(0, S_A; M_0) > 0$ because
+    $M_0 > 0$, so the contest is still active.
+    $M_1 = (1-\rho)M_0 + \rho E_m^*(0, S_A; M_0)$. The stationary level
+    of this dynamics satisfies $M^\infty = E_m^*(0, S_A; M^\infty)$, i.e.,
+    \[
+        M^\infty \;=\; \frac{\beta^2 S_A^{1/2}(\xi M^\infty)^{3/4}}{S_A\alpha + (\xi M^\infty)^{1/2}}.
+    \]
+    This implicit equation has a unique positive solution
+    $M^\infty(S_A, \alpha, \beta, \xi) > 0$. The dynamics converge
+    monotonically to $M^\infty$.
+\end{itemize}
+In either case, $M_1 \ge \bar M$ for $\rho$ small enough, so
+$(M_1, A) \in \mathcal{T}$. By induction, $(M_t, A) \in \mathcal{T}$ for all $t$.
+\end{proof}
+
+\subsection{Proof of \autoref{prop:cycles_M}} \label{app:proof:cycles_M}
+
+\begin{proof}[Sketch]
+Replace $\hat d^\sigma = d^\sigma + \xi M$ with $\hat d^\sigma = d^\sigma + \xi M + \omega$
+(absorbing the exogenous threat). Under myopic voting ($\delta \to 0$),
+the retention rule reduces to $\rho^v(M, k) = 1$ iff $U^k(d_k^\star; M, \omega) \ge U^{\tilde k}(d_{\tilde k}^\star; M, \omega)$.
+Comparative statics in $\omega$, $M$, $\xi$, $\kappa\phi$ follow by
+differentiating the Hawk's and Dove's per-period $U$ values and applying
+implicit-function theorem to the regime-comparison condition. Recurrent
+oscillation under full-support $\omega$ follows from the intermediate-value
+theorem on the Markov chain on $(M_t, k_t)$.
+\end{proof}
+
+\subsection{Proof of \autoref{cor:paradox_M}} \label{app:proof:paradox_M}
+
+\begin{proof}
+Under myopia, retention requires
+$U^A(d_A^\star(M); M) + \varepsilon^v_t \ge U^B(0; M)$. A first-order
+stochastic decrease in $\tilde v_t = (1 - \Pi_{A,t}^*) + \varepsilon_t^v$
+implies a stochastic decrease in $\varepsilon^v_t$ (since $\Pi_{A,t}^*$ is
+deterministic given $M$ and $\omega$), which weakly decreases the LHS,
+hence weakly increases the probability that the LHS falls below the RHS.
+Equivalently, the Hawk's defeat hazard weakly increases.
+\end{proof}
+
+\subsection{Proof of \autoref{prop:cs_trap}} \label{app:proof:cs_trap}
+
+\begin{proof}[Sketch]
+Differentiate $\Phi^M(\bar M) = 0$ implicitly with respect to each parameter:
+\[
+    \frac{\partial \bar M}{\partial \theta}
+    \;=\; -\,\frac{\partial \Phi^M / \partial \theta}{\partial \Phi^M / \partial M}
+    \;\bigg|_{M = \bar M}.
+\]
+By \autoref{lem:Vv_concave} the denominator $\partial \Phi^M/\partial M > 0$ at $\bar M$.
+The numerator's sign depends on the parameter:
+\begin{itemize}
+    \item $\theta = \rho$: faster decay raises $V^v(M, B)$ (faster recovery
+    from inherited grievance under Dove) and lowers $V^v(M, A)$ (Hawk's
+    induced $M$ persistence has shorter half-life). Hence
+    $\partial \Phi^M/\partial \rho < 0$, giving $\partial \bar M/\partial \rho > 0$.
+    \item $\theta = S_A/S_B$: larger Hawk advantage raises $\Delta\Pi$,
+    raises $V^v(M, A)$ and lowers $V^v(M, B)$. Hence
+    $\partial \Phi^M/\partial(S_A/S_B) > 0$, giving
+    $\partial \bar M/\partial(S_A/S_B) < 0$.
+    \item $\theta = \lambda$: larger weight on security raises the security
+    premium's electoral relevance; analogous to $S_A/S_B$.
+    \item $\theta = \Delta u$: larger Dove economic advantage raises
+    $V^v(M, B)$, lowers $\Phi^M$, raises $\bar M$.
+\end{itemize}
+\end{proof}
+
+%==============================================================================
+\bibliographystyle{aer}
+\bibliography{ref}
+
+\end{document}
