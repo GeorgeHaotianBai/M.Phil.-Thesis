@@ -271,11 +271,11 @@
 \begin{figure}[H]
     \centering
     \subfigure[\bf Majority mobilization peaks at $S_k=\overline{S}(E_m)$.]{%
-        \includegraphics[width=0.48\textwidth]{figures/functions/fig_Sk_statics_mobilization.pdf}%
+        \includegraphics[width=0.48\textwidth]{fig_Sk_statics_mobilization.jpg}%
         \label{fig:Sk_statics_mobilization}%
     }\hfill
     \subfigure[\bf Effective enforcement $Z_k^*$ keeps rising beyond the mobilization peak.]{%
-        \includegraphics[width=0.48\textwidth]{figures/functions/fig_Sk_statics_enforcement.pdf}%
+        \includegraphics[width=0.48\textwidth]{fig_Sk_statics_enforcement.jpg}%
         \label{fig:Sk_statics_enforcement}%
     }
     \caption{\normalsize\bf State capacity, street mobilization, and effective enforcement.}
@@ -289,7 +289,7 @@
 % ============================================================================
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.92\textwidth]{figures/functions/fig_reaction_functions.jpg}
+    \includegraphics[width=0.92\textwidth]{fig_reaction_functions.jpg}
     \caption{\normalsize\bf Security Premium and the provocation ceiling.}
     \label{fig:reaction_functions}
     \floatfoot*{\footnotesize\textit{Notes}: The figure plots the Security Premium $\Delta\Pi(d)=\Pi_A^*(d,S_A)-\Pi_B^*(d,S_B)$ from \autoref{eq:security_premium_d} as a function of symbolic policy intensity $d$, for a Hawk-Dove pair with $S_A>S_B$. The curve is zero at $d=0$ (dormant contest: both parties deliver full dominance), rises on $(0,d^{\mathrm{peak}})$ as symbolic policy activates the contest and exposes the Hawk's technological advantage, and falls on $(d^{\mathrm{peak}},\infty)$ as further provocation erodes realized security for both parties. The peak value $(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$ depends only on the technology ratio $S_A/S_B$. Illustration uses $(N_M,N_m,\Lambda,\kappa,\phi,\sigma,S_A,S_B)=(100,100,1,1,1,1,1.0,0.4)$.}
@@ -301,10 +301,29 @@
 % ============================================================================
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.88\textwidth]{figures/functions/fig_rent_dissipation.jpg}
+    \includegraphics[width=0.88\textwidth]{fig_rent_dissipation.jpg}
     \caption{\normalsize\bf Rent dissipation under symbolic policy.}
     \label{fig:rent_dissipation}
     \floatfoot*{\footnotesize\textit{Notes}: The figure plots $RD(d,S_k)$ from \autoref{eq:RD_closed_form} as a function of symbolic policy intensity $d$, for two levels of state capacity. Symbolic policy activates the joint contest in \autoref{lem:contest_equilibrium}, generating real resource dissipation through both Minority mobilization and Majority enforcement. Unlike the neutral contest designer in standard contest models (e.g., \citet{barutSymmetricMultiplePrize1998}), the political incumbent may optimally choose a strictly positive $d$, and hence positive dissipation, because conflict increases the Security Premium in elections. Parameters are $(N_M,N_m,\Lambda,\kappa,\phi,\sigma,S_A,S_B)=(100,100,1,1,1,1,1.0,0.2)$.}
+\end{figure}
+% ============================================================================
+
+\clearpage
+
+% ============================================================================
+\begin{figure}[H]
+    \centering
+    \subfigure[\bf Hawk drift map and shock band.]{%
+        \includegraphics[width=0.48\textwidth]{fig_phase_transition_drift.jpg}%
+        \label{fig:phase_transition_drift}%
+    }\hfill
+    \subfigure[\bf Joint $(M_t,k_t)$ sample paths under common shocks.]{%
+        \includegraphics[width=0.48\textwidth]{fig_phase_transition_paths.jpg}%
+        \label{fig:phase_transition_paths}%
+    }
+    \caption{\normalsize\bf Phase transition between trap and cycles.}
+    \label{fig:phase_transition}
+    \floatfoot*{\footnotesize\textit{Notes}: Visualisation of \autoref{prop:phase_transition}. \textit{Panel (a)} plots the Hawk-incumbency drift map $\bar\Psi_A(M;\rho)=(1-\rho)M+\rho\,\mathbb{E}_\omega[E_m^*(d_A^\star,S_A;M,\omega)]$ together with the realisation-conditional shock band $[\Psi_A(M;\rho,\omega=0),\Psi_A(M;\rho,\omega=\bar\omega)]$ for two values of $\rho$. The 45-degree line locates fixed points; the worst-case retention cutoff $\bar M^*$ is shown by the vertical dot-dash line. For $\rho<\bar\rho$ (solid curve, dark band) the basin around the high attractor lies strictly to the right of $\bar M^*$ and the band is narrow enough that no realisation of $\omega\in[0,\bar\omega]$ pushes the orbit across the cutoff: the chain is absorbed in the trap region $\mathcal T^*=\{M\ge\bar M^*\}$. For $\rho>\bar\rho$ (dashed curve, light band) the per-period jump scales linearly with $\rho$, the band widens, and a positive-measure subset of shock realisations sends $M_{t+1}$ below $\bar M^*$, ejecting the Hawk in finite time. \textit{Panel (b)} plots simulated joint sample paths $\{(M_t,k_t)\}$ under common i.i.d.\ shocks $\omega_t\sim U[0,\bar\omega]$ and a small voter idiosyncratic shock that allows retention to flip near the cutoff. The trap path (solid) stays comfortably above $\bar M^*$ in the Hawk-attractor neighbourhood. The cycles path (dashed) oscillates between Hawk and Dove regimes; regime switches are marked by white circles. The Dove-incumbency drift uses $S_B<S_A$ and $d_B=0$, generating a lower attractor below $\bar M^*$ that the chain visits between Hawk episodes. Parameters: $(\alpha,\beta,\xi,\sigma,d_A,d_B,S_A,S_B,\bar\omega,\bar M^*)=(1,2,0.5,1,0.5,0,1.0,0.10,1.5,1.7)$ with $\rho_{\mathrm{trap}}=0.20$ and $\rho_{\mathrm{cycles}}=0.70$.}
 \end{figure}
 % ============================================================================
 
