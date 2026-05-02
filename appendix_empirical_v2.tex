@@ -1,0 +1,325 @@
+% =============================================================================
+% Appendix A (More on Empirical Facts) + Appendix B (Proofs) stubs
+% Insert with: \appendix \input{appendix_empirical} before \end{document} in model.tex.
+% User will relocate proofs into Appendix B manually.
+% =============================================================================
+
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thetable}{A.\arabic{table}}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+
+\section{More on Empirical Facts} \label{app:more_empirical_facts}
+
+\subsection{Data Sources} \label{app:data_sources}
+
+\autoref{tab:data_sources} catalogues every dataset used in
+Section~\ref{sec:empirical_facts}, together with the unit of observation,
+coverage window, and retrieval date.
+
+\subsection{Composite Ban-Intensity Index} \label{app:ban_intensity}
+
+The composite ban intensity for state~$s$ in year $t$ is
+\begin{equation*}
+\text{BanIntensity}_{s,t}
+\;=\;\sum_{b\in\mathcal{B}} \max\!\big(t-\tau_{s,b},\,0\big),
+\end{equation*}
+where $\mathcal{B}=\{\text{cow slaughter, bull slaughter, bullock slaughter,
+buffalo slaughter, beef possession, beef sales}\}$ is the set of six ban
+types and $\tau_{s,b}$ is the year in which state~$s$ first enacted a ban of
+type~$b$. A state that never enacts ban~$b$ has $\tau_{s,b}=\infty$ and the
+corresponding term is zero. The cumulative map uses the
+1990--2020 annual average of this panel.
+
+The underlying policy panel was constructed from state-level legislative
+records compiled in the Cattle Slaughter Policy Excel file. Because a handful of states (Bihar, Chandigarh,
+Punjab) had early, near-contemporaneous adoption of multiple ban types
+before~1990, their 1990--2020 average is bounded near the theoretical
+maximum; the index compresses cross-state variation at the top end. Results
+are qualitatively identical with a binary indicator or with a
+count-of-ban-types-in-force metric.
+
+\input{appendix_tables}
+
+\subsection{Narrative Classification Methodology} \label{app:narrative_classification}
+
+\textbf{Corpus.} The majority-side corpus comprises three stacked sources
+totalling $3{,}328$ rows: (i)~$2{,}066$ BJP-leadership speeches from
+\texttt{bjp.org/speeches} ($2000$--$2025$), filtered to post-2014 dates for
+the main-text figure; (ii)~$1{,}500$ Prime-Ministerial speeches harvested
+from \texttt{pmindia.gov.in/en/news\_updates} (Nov~$2020$--Apr~$2026$), used
+as a supplement during the pmindia fallback window (the primary target
+\texttt{narendramodi.in} was unreachable); (iii)~$406$ BJP Lok Sabha floor
+speeches and~$9$ AIMIM floor speeches harvested from the official DSpace
+backend at \texttt{elibrary.sansad.in} ($1996$--$2024$), filtered to
+single-speaker debate items with word-count $\geq 50$. The Lok Sabha
+supplement fills the pre-$2014$ period in which the party-website archive
+is sparse (fewer than~$35$ items $1996$--$2013$) and introduces
+parliamentary-register content alongside the campaign-register bjp.org
+corpus. AIMIM Lok Sabha speeches (Asaduddin~Owaisi, Imtiaz~Jaleel) are
+assigned to the minority-side corpus. Speakers in the main corpus include
+the Prime Minister and the four BJP National Presidents of the period; the
+top seven speakers in the parliamentary supplement are Arun~Jaitley,
+Sushma~Swaraj, Rajnath~Singh, Narendra~Modi, Nitin~Gadkari,
+Asaduddin~Owaisi, and Amit~Shah. The minority-side corpus comprises
+$3{,}792$ items ($3{,}783$~news-outlet snippets and~$9$~AIMIM Lok~Sabha
+floor speeches) from a $65$-query Google News RSS harvest, $2010$--$2025$.
+Queries cover AIMIM/Owaisi, Jamiat Ulama-i-Hind, AIMPLB, cow-related
+lynchings (Akhlaq~2015, Pehlu~Khan~2017, Junaid~2017, Tabrez~2019), Shaheen
+Bagh/CAA/NRC, hijab, Waqf, Uniform Civil Code, Gyanvapi, Babri~Masjid,
+Bilkis~Bano, and Kashmir Muslim leadership. Outlets include The~Hindu, The
+Times of India, NDTV, India~Today, Indian Express, Scroll, The~Wire,
+Maktoob, SabrangIndia, Muslim Mirror, Al~Jazeera, and the BBC.
+
+\textbf{Asymmetry in primary-source availability.} A primary-source Muslim
+corpus analogous to \texttt{bjp.org/speeches} was not feasible: as of
+April~2026, \texttt{aimim.in} fails to resolve; \texttt{jamiatulama.org}
+resolves to a parked lander; \texttt{aimplboard.in} retains a static
+early-2000s site whose press-release endpoint returns HTTP~500. The
+minority-side corpus is therefore a curated press proxy rather than a
+like-for-like speech archive. This asymmetry is documented in the main text
+(\autoref{fact:1}) and treated as a data fact rather than a
+nuisance.
+
+\textbf{Classification.} Each text is classified by Claude Haiku~4.5
+(\texttt{claude-haiku-4-5}) into one of four (majority) or five (minority)
+mutually exclusive categories using a structured system prompt pinned to the
+theoretical primitives. Majority categories are \textsc{identity\_policy},
+\textsc{economic\_provision}, \textsc{security\_foreign}, and
+\textsc{residual}; minority categories add \textsc{counter\_mobilization}
+to capture collective-response content distinct from threat-and-event
+content. Texts are truncated to the first $500$ words to bound per-call
+input tokens; the pinned system prompt is cached via Anthropic's ephemeral
+prompt cache so that each call pays cache-read rates on the prompt and full
+rates only on the unique text. A keyword-lexicon fallback is maintained for
+robustness; the lexicon overlaps the Haiku category boundaries on the
+high-$d$ cases and diverges on polysemous tokens (e.g., ``conversion,''
+``dharma,'' ``border'') on which Haiku is substantially sharper. The two
+system prompts (one per side, both cached) are reproduced verbatim below;
+the user-message payload for each row is the concatenation of the title,
+date, and first-$500$-word body.
+
+\begin{quote}\footnotesize
+\noindent\textbf{Majority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MAJORITY texts (BJP leadership speeches, PM addresses,
+parliamentary BJP speeches):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_policy}: text advancing, defending, enforcing, or
+reasoning about identity-coded regulation or Hindu--Muslim relations.
+Concretely: beef/cow slaughter bans, CAA/NRC, love jihad, ghar wapsi,
+Ayodhya/Ram Mandir, Gyanvapi, UCC, waqf, triple talaq, hijab, religious
+conversion, communal violence, Muslim appeasement claims. Include
+anti-Pakistan framing ONLY when it is explicitly identity-laden (e.g.,
+``Go to Pakistan if you want beef''); exclude when it is pure foreign
+policy.
+\item \textsc{economic\_provision}: text about public-goods delivery or
+economic management. Concretely: welfare schemes (PM-KISAN, Ujjwala, Jan
+Dhan, Ayushman Bharat, Awas Yojana), DBT/Aadhaar, MGNREGA, MSME,
+farmers-as-producers (NOT farmers-as-lynching-victims), manufacturing,
+infrastructure, Make in India, Viksit Bharat, GST, startup, digital India,
+skilling.
+\item \textsc{security\_foreign}: external-security and foreign-policy
+content NOT primarily about domestic identity. Concretely: Pakistan as
+military adversary, China, Galwan, LoC, Article~370 abrogation framed as
+national security, surgical strikes, armed forces, terrorism abroad,
+neighbours as strategic partners.
+\item \textsc{residual}: ceremonial speeches, tributes, organisational
+matters, procedural parliamentary business, condolences, anniversaries
+without thematic content in the three categories above.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+\begin{quote}\footnotesize
+\noindent\textbf{Minority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MINORITY texts (press coverage and AIMIM speeches about
+Muslim community):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_contested}: text about identity-coded regulation
+or conflict affecting Muslims. Concretely: beef/cow lynching victims,
+CAA/NRC opposition, hijab rights, waqf rights, triple talaq debates,
+Babri/Gyanvapi, communal violence, Muslim representation concerns, Muslim
+electoral politics, anti-Muslim rhetoric reported on.
+\item \textsc{counter\_mobilization}: text describing Muslim-led or
+Muslim-joined protest, resistance, organising. Concretely: Shaheen Bagh,
+CAA protests, bandh, dharna, satyagraha, rally, march, ``not in my name'',
+civil disobedience, petition drives, legal challenges framed as
+resistance.
+\item \textsc{security\_foreign}: external-security content,
+Pakistan/Kashmir militancy framing, terrorism NOT primarily about identity.
+\item \textsc{economic}: genuine economic content about Muslim community
+(employment, business, education access) NOT about lynching or identity.
+\item \textsc{residual}: sports, entertainment, unrelated news, internal
+community matters without political content.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+On the $2{,}330$ rows Haiku classified at the time of the main-text figure,
+the category distributions are:
+\begin{center}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+Category & Majority & Minority \\
+\midrule
+Identity-coded / contested & $14.5\%$ & $63.3\%$ \\
+Counter-mobilisation & --- & $22.8\%$ \\
+Economic-programmatic & $33.7\%$ & $0.7\%$ \\
+Security-and-foreign & $10.3\%$ & $2.7\%$ \\
+Residual & $40.6\%$ & $10.7\%$ \\
+Unparseable / error & $0.8\%$ & $0.0\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Outputs and validation.} Aggregate monthly shares
+underlying \autoref{fig:narrative_timeseries} are computed as the count of
+rows in the numerator category divided by the total rows in the corpus that
+month, with a six-month centred rolling mean applied for display and
+monthly totals below two items set to missing. A validation audit against
+$200$ hand-coded sample items is planned for the next revision.
+
+\subsection{Minority Corpus Construction} \label{app:minority_corpus}
+
+The $3{,}783$-item Muslim-voice proxy corpus is constructed from Google News
+RSS feeds, one per query, retrieved at 1 request per second with a custom
+user agent and cached locally. Queries span five categories: (i)~Muslim
+political representation (Owaisi, AIMIM, MIM, Muslim MP, Muslim
+chief~minister); (ii)~religious leadership (Jamiat Ulama-i-Hind, Deoband,
+AIMPLB); (iii)~cow-related violence (Akhlaq, Pehlu Khan, Junaid, Tabrez,
+cow~vigilante lynching, gau~rakshak); (iv)~legislative episodes (CAA,
+NRC, NPR, triple talaq, hijab, waqf, UCC); (v)~locational flashpoints
+(Shaheen~Bagh, Babri~Masjid, Gyanvapi, Bilkis~Bano, Kashmir). Each retrieved
+item is deduplicated by URL, enriched with outlet name parsed from the RSS
+source field, and stored with the item's title, description (first $\sim$30
+words), publication date, and URL. The 2025 share of items is
+disproportionately high ($31\%$) because of the Waqf Amendment and
+freshness-weighted indexing in Google News RSS; the main-text figure
+controls for this with monthly-share normalisation rather than raw counts.
+
+\subsection{Intergenerational Welfare Consequences} \label{app:intergenerational}
+
+The main text's focus on the contemporaneous Security Premium leaves open the
+question of the durable welfare consequences of repeated symbolic-policy
+shocks. In prior work on the same India beef-ban setting, I estimate a series
+of generation-specific consequences using the IHDS-II micro-panel and an
+intensity measure \textit{Non-Hindu~$\times$~Ban} that interacts household
+religious identity with exposure to the ban window. The results span three
+generations and four domains: (i)~birth history and early-life growth
+deficiency (induced abortion, premature death, infant Ponderal Index, minor
+BMI); (ii)~short- and long-term poverty (absolute, relative, and subjective
+cutoffs); (iii)~first-generation segregation and second-generation
+discrimination (electoral and ethnic segregation, political acquaintance,
+religious trust; school inaccessibility, teacher unfairness, communal
+prejudice); (iv)~first-generation utility and protest (net income, life
+satisfaction, demonstration and boycott participation). The full tables,
+specifications, and robustness checks will be migrated into this appendix in a subsequent revision.
+
+\subsection{Paradox-of-Competence Regression}\label{app:paradox_regression}
+
+\autoref{fig:paradox_of_competence} reports a linear-probability model of
+BJP retention at the next Assembly election on tenure-average annual count
+of Hindu--Muslim violent events. The sample is every state-election pair in
+which the BJP was the state government in the year prior to the election
+($N=42$, fifteen states, $1984$--$2024$). GDELT Hindu--Muslim violent
+events $1980$--$2024$ is the primary conflict series, with
+Varshney--Wilkinson incidents as a pre-1995 supplement.
+
+The primary specification regresses the retention indicator on
+tenure-average annual event count, with state-clustered standard
+errors. The coefficient is~$+0.0103$~(SE~$0.0042$, $p=0.015$): one
+additional violent Hindu--Muslim event per tenure year raises the BJP
+retention probability by approximately one percentage point. Quintile
+means of the retention rate rise monotonically from~$33\%$ in the lowest
+tenure-conflict quintile to~$78\%$ in the highest.
+
+Robustness: the sign is stable and the magnitude broadly comparable under a
+log-conflict specification ($p=0.063$), under the addition of decade fixed
+effects ($p=0.089$), and under an average-marginal-effect logit
+($p=0.11$). Splitting the sample at 2014 returns similar positive
+coefficients in both the pre-2014 ($N=23$, $p=0.061$) and post-2014
+($N=19$, $p=0.085$) subsamples, so the pattern is not a Modi-era
+artefact. The effect operates at the retention margin rather than on a
+smoother vote-share metric: the coefficient on the continuous BJP
+vote-share change is right-signed but insignificant ($p=0.36$), consistent
+with the seat-winning margin being the discretely-decided object.
+
+The state-FE specification is not estimable with this sample size:
+within-state outcome variation is thin in $10$ of the $15$ states and the
+fixed-effects design absorbs much of the relevant variation mechanically.
+The primary specification should therefore be read as combining
+within-state and cross-state identification.
+
+\subsection{Ban-and-Conflict Event Studies} \label{app:event_studies}
+
+A parallel line of analysis estimates the effect of each of the four
+bovine-family cattle-slaughter-ban types on Hindu--Muslim violence at the
+state-year level using staggered difference-in-differences with two-way
+fixed effects and event-study leads and lags. The main-text figure
+(\autoref{fig:rent_dissipation_event_study}) reports the TWFE event-study
+coefficients per ban type. \autoref{fig:event_studies_robustness} reports
+the same coefficients overlaid with three modern dynamic-DiD estimators
+(\citet*{cengizEffectMinimumWages2019}, \citet*{gardnerTwostageDifferencesDifferences2022}, and \citet*{liuPracticalGuideCounterfactual2024})
+to show the post-adoption pattern is robust to estimator choice. Sample
+and control specification match the main-text version.
+
+\input{appendix_figures}
+
+\subsection{State-Level Population Panel} \label{app:population}
+
+Annual state-level population 2000--2024 is interpolated from
+Census~2001 and Census~2011 enumerations. The 2011 state shares of the
+national total are carried forward annually by rescaling to the World Bank
+\texttt{SP.POP.TOTL} India series. The resulting panel is used to
+normalize the Hindu--Muslim violence intensity in Map~B
+(\autoref{fig:map_conflict_intensity}).
+
+\subsection{Supplementary Maps} \label{app:supplementary_maps}
+
+The six policy-specific maps (one per ban type) and the seven decade-specific
+conflict maps are available in the supplementary replication materials but are not reproduced in this appendix.
+
