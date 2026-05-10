@@ -1,0 +1,19 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {A}More on Empirical Facts}{2}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Data Sources}{2}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Composite Ban-Intensity Index}{4}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Narrative Classification Methodology}{6}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Minority Corpus Construction}{9}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}Intergenerational Welfare Consequences}{9}{subsection.A.5}%
+\contentsline {subsection}{\numberline {A.6}Paradox-of-Competence Regression}{10}{subsection.A.6}%
+\contentsline {subsection}{\numberline {A.7}Ban-and-Conflict Event Studies}{12}{subsection.A.7}%
+\contentsline {subsection}{\numberline {A.8}State-Level Population Panel}{14}{subsection.A.8}%
+\contentsline {subsection}{\numberline {A.9}Supplementary Maps}{14}{subsection.A.9}%
+\contentsline {section}{\numberline {B}Robustness to Forward-Looking Voters}{14}{appendix.B}%
+\contentsline {section}{\numberline {C}Strategic Minority Coordination}{16}{appendix.C}%
+\contentsline {section}{\numberline {D}Strategic Minority Voting and Endogenous Trap Fragility}{19}{appendix.D}%
+\contentsline {paragraph}{Sign of the contest channel.}{20}{equation.5}%
+\contentsline {paragraph}{Cross-incumbent contest wedge.}{22}{equation.10}%
+\contentsline {paragraph}{Two additional primitive conditions.}{22}{equation.10}%
+\contentsline {section}{\numberline {E}Microfoundations of the Additive Stake}{29}{appendix.E}%
+\contentsfinish 

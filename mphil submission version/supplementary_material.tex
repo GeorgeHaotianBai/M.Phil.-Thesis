@@ -1,0 +1,811 @@
+% =============================================================================
+% Supplementary material for "Manufacturing Enemies in Political Contests"
+% Contains Appendix A (More on Empirical Facts), moved out of the main
+% submission .tex so it does not count toward the 20,000-word limit.
+% Path resolution uses the import package: \subimport{../}{appendix_tables.tex}
+% and \subimport{../}{appendix_figures.tex} resolve relative to this .tex file,
+% so the supplementary compiles whether you build it from model/ or from this folder.
+% =============================================================================
+
+\documentclass[11pt,twoside]{extarticle}
+\usepackage{floatrow}
+\usepackage{etex}
+\usepackage[english]{babel}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage[breaklinks]{hyperref}
+\usepackage{comment}
+
+\usepackage[figuresright]{rotating}
+\usepackage[margin=1.2in]{geometry}
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.3}
+\usepackage{booktabs, multicol}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage{xcolor}
+\usepackage{amstext}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage{soul}
+
+\usepackage{eurosym}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{afterpage}
+\usepackage{epsfig}
+\usepackage{upgreek}
+\usepackage{commath}
+\usepackage{enumitem}
+\usepackage{subfigure}
+\usepackage{indentfirst}
+\usepackage{xr}
+\usepackage{dsfont}
+\usepackage{cleveref}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{makecell}
+\usepackage{soul}
+\usepackage{arydshln}
+\usepackage{mathrsfs}
+\usepackage{ragged2e}
+\allowdisplaybreaks
+
+\usepackage[normalem]{ulem}
+\setcounter{MaxMatrixCols}{10}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{fact}{Fact}
+\providecommand*{\theoremautorefname}{Theorem}
+\providecommand*{\lemmaautorefname}{Lemma}
+\providecommand*{\propositionautorefname}{Proposition}
+\providecommand*{\corollaryautorefname}{Corollary}
+\providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\subfigureautorefname}{Subfigure}
+% Capitalise section/subsection so \autoref{sec:X} prints "Section X" not "section X".
+% Deferred to \AtBeginDocument because hyperref defines these names late.
+\AtBeginDocument{%
+  \renewcommand*{\sectionautorefname}{Section}%
+  \renewcommand*{\subsectionautorefname}{Section}%
+}
+\newenvironment{proof}[1][Proof]{\noindent \textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\geometry{left=1.2in,right=1.2in,top=1.3in,bottom=1.3in}
+\renewcommand{\baselinestretch}{1.3}
+\usepackage{bbm}
+
+\usepackage{longtable}
+\usepackage[para]{threeparttablex}
+
+\usepackage{float}
+\usepackage[titletoc,title]{appendix}
+\raggedbottom
+
+\usepackage{amsmath}
+\usepackage{bm}
+
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+
+\usepackage{graphicx}
+
+\hypersetup{
+   colorlinks=true,linkcolor=blue,citecolor=blue, filecolor=magenta, citebordercolor=yellow,
+   linkbordercolor = magenta
+}
+
+\graphicspath{{../output/figures/}{../../output/figures/}}
+\floatsetup[figure]{font=footnotesize}
+\floatsetup[table]{capposition=top}
+\floatsetup[table]{font=footnotesize}
+\floatsetup{style=plain,footposition=bottom}
+\floatsetup[figure]{capposition=bottom}
+
+\usepackage{multirow}
+\newcommand{\specialcell}[2][c]{%
+        \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\makeatletter
+\renewcommand\@makefntext[1]{%
+    \parindent 1em%
+    \@thefnmark.~#1$\qquad$}
+\makeatother
+
+\usepackage{tabularx}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\usepackage[font=normalsize,format=plain,labelfont=bf,up,textfont=up,justification=centering]{caption}
+\captionsetup[table]{labelsep=space}
+\captionsetup[figure]{labelsep=space}
+\addto\captionsenglish{%
+\renewcommand{\figurename}{FIGURE}
+\renewcommand{\tablename}{TABLE}}
+\renewcommand{\thesubfigure}{(\Alph{subfigure})}
+
+\usepackage{natbib}
+\newcommand{\cites}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+
+\usepackage[titletoc]{appendix}
+\usepackage{titletoc}
+
+% Resolve \input paths relative to this .tex file rather than pdflatex's cwd.
+\usepackage{import}
+
+% Pull labels from the main submission so we can resolve refs like
+% \autoref{sec:empirical_facts} or \autoref{fig:rent_dissipation_event_study}.
+\externaldocument{M.Phil Submission Version}
+
+\title{Online Appendix to ``Manufacturing Enemies in Political Contests''}
+\author{Haotian (George) Bai}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% Table of contents so the reader knows what the supplementary covers.
+\tableofcontents
+\clearpage
+
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thetable}{A.\arabic{table}}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+
+\section{More on Empirical Facts} \label{app:more_empirical_facts}
+
+\subsection{Data Sources} \label{app:data_sources}
+
+\autoref{tab:data_sources} catalogues every dataset used in
+Section~\ref{sec:empirical_facts}, together with the unit of observation,
+coverage window, and retrieval date.
+
+\begin{landscape}
+\begin{table}[!htbp]
+\centering
+\caption{\bf Data Sources}
+\label{Table:data_sources}\label{tab:data_sources}
+\begin{threeparttable}
+\singlespacing
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.95}
+\begin{tabularx}{\linewidth}{p{2.8cm}p{3.0cm}p{2.2cm}p{2.0cm}X}
+\toprule[1.25pt]
+Dataset & Unit & Coverage & Retrieved & Source \\
+\midrule
+Cattle Slaughter Policy & State & 1955--2018 & Sep 2025 & Author-compiled from state-level legislative records (see \S\ref{app:ban_intensity}). \\
+Bhavnani India Election v2.0 & Candidate $\times$ constituency $\times$ election & 1977--2015 & 2023 & Harvard Dataverse, Bhavnani (2014). \\
+Post-2015 election supplement & State $\times$ election-year aggregate & 2015--2025 & Apr 2026 & Author-compiled from Wikipedia ``Results of the YYYY \textit{State} Legislative Assembly election'' and ``YYYY Indian general election'' pages, cross-checked against Election Commission of India Statistical Reports. \\
+Bhavnani-to-ECI reconciliation panel & State $\times$ year & 1984--2024 & Apr 2026 & Combines Bhavnani~v2.0 with the post-2015 supplement; forward-fills non-election years. \\
+Varshney--Wilkinson (V-W) Dataset v2 & Incident & 1950--1995 & 2025 & ICPSR~04342, Varshney and Wilkinson (2006). \\
+GDELT Events Database (India subset) & Event & 1979--2024 & 2025 & Global Database of Events, Language, and Tone CAMEO~19 (Fight) subset; Hindu-Muslim subset standardised. \\
+Social Conflict Analysis Database (SCAD) & Event & 1990--2017 & 2025 & Idean Salehyan et al. (2012). \\
+India Human Development Survey (IHDS-II) & Household; individual & 2011--12 (Wave~2) & 2025 & ICPSR 36151, Desai and Vanneman (2018). \\
+BJP speech archive & Speech & 2000--2025 & Oct 2025 & \texttt{bjp.org/speeches} (author scrape). \\
+PMIndia news updates & PM speech / statement & 2024m6--2026m4 & Apr 2026 & \texttt{pmindia.gov.in/en/news\_updates} (author scrape, fallback after \texttt{narendramodi.in} was unreachable). \\
+Muslim-voice news proxy & News item & 2010--2025 & Apr 2026 & 65-query Google News RSS harvest across major English outlets; details at \S\ref{app:minority_corpus}. \\
+Relative per-capita income (state) & State $\times$ anchor-year & 1990, 2000, 2010, 2020, 2023 & 2025 & Reserve Bank of India, \textit{Handbook of Statistics on Indian States}. \\
+State population annual & State $\times$ year & 2000--2024 & Apr 2026 & Census~2011 state shares rescaled annually by World~Bank \texttt{SP.POP.TOTL} India. \\
+GADM administrative boundaries & State polygon & v4.1 (2022) & 2025 & Global Administrative Areas \texttt{gadm.org}. \\
+\bottomrule[1.25pt]
+\end{tabularx}
+\begin{tablenotes}[para,flushleft]
+\footnotesize
+\textit{Notes.} All datasets listed above are local to the project folder
+\texttt{PE\_of\_Cattle\_Shared/india\_beef\_and\_religion/} and reproducible
+end-to-end from the scripts listed alongside each subsection below. \\
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+
+\subsection{Composite Ban-Intensity Index} \label{app:ban_intensity}
+
+The composite ban intensity for state~$s$ in year $t$ is
+\begin{equation*}
+\text{BanIntensity}_{s,t}
+\;=\;\sum_{b\in\mathcal{B}} \max\!\big(t-\tau_{s,b},\,0\big),
+\end{equation*}
+where $\mathcal{B}=\{\text{cow slaughter, bull slaughter, bullock slaughter,
+buffalo slaughter, beef possession, beef sales}\}$ is the set of six ban
+types and $\tau_{s,b}$ is the year in which state~$s$ first enacted a ban of
+type~$b$. A state that never enacts ban~$b$ has $\tau_{s,b}=\infty$ and the
+corresponding term is zero. The cumulative map uses the
+1990--2020 annual average of this panel.
+
+The underlying policy panel was constructed from state-level legislative
+records compiled in the Cattle Slaughter Policy Excel file. Because a handful of states (Bihar, Chandigarh,
+Punjab) had early, near-contemporaneous adoption of multiple ban types
+before~1990, their 1990--2020 average is bounded near the theoretical
+maximum; the index compresses cross-state variation at the top end. Results
+are qualitatively identical with a binary indicator or with a
+count-of-ban-types-in-force metric.
+
+\subimport{../}{appendix_tables.tex}
+
+\subsection{Narrative Classification Methodology} \label{app:narrative_classification}
+
+\textbf{Corpus.} The majority-side corpus comprises three stacked sources
+totalling $3{,}328$ rows: (i)~$2{,}066$ BJP-leadership speeches from
+\texttt{bjp.org/speeches} ($2000$--$2025$), filtered to post-2014 dates for
+the main-text figure; (ii)~$1{,}500$ Prime-Ministerial speeches harvested
+from \texttt{pmindia.gov.in/en/news\_updates} (Nov~$2020$--Apr~$2026$), used
+as a supplement during the pmindia fallback window (the primary target
+\texttt{narendramodi.in} was unreachable); (iii)~$406$ BJP Lok Sabha floor
+speeches and~$9$ AIMIM floor speeches harvested from the official DSpace
+backend at \texttt{elibrary.sansad.in} ($1996$--$2024$), filtered to
+single-speaker debate items with word-count $\geq 50$. The Lok Sabha
+supplement fills the pre-$2014$ period in which the party-website archive
+is sparse (fewer than~$35$ items $1996$--$2013$) and introduces
+parliamentary-register content alongside the campaign-register bjp.org
+corpus. AIMIM Lok Sabha speeches (Asaduddin~Owaisi, Imtiaz~Jaleel) are
+assigned to the minority-side corpus. Speakers in the main corpus include
+the Prime Minister and the four BJP National Presidents of the period; the
+top seven speakers in the parliamentary supplement are Arun~Jaitley,
+Sushma~Swaraj, Rajnath~Singh, Narendra~Modi, Nitin~Gadkari,
+Asaduddin~Owaisi, and Amit~Shah. The minority-side corpus comprises
+$3{,}792$ items ($3{,}783$~news-outlet snippets and~$9$~AIMIM Lok~Sabha
+floor speeches) from a $65$-query Google News RSS harvest, $2010$--$2025$.
+Queries cover AIMIM/Owaisi, Jamiat Ulama-i-Hind, AIMPLB, cow-related
+lynchings (Akhlaq~2015, Pehlu~Khan~2017, Junaid~2017, Tabrez~2019), Shaheen
+Bagh/CAA/NRC, hijab, Waqf, Uniform Civil Code, Gyanvapi, Babri~Masjid,
+Bilkis~Bano, and Kashmir Muslim leadership. Outlets include The~Hindu, The
+Times of India, NDTV, India~Today, Indian Express, Scroll, The~Wire,
+Maktoob, SabrangIndia, Muslim Mirror, Al~Jazeera, and the BBC.
+
+\textbf{Asymmetry in primary-source availability.} A primary-source Muslim
+corpus analogous to \texttt{bjp.org/speeches} was not feasible: as of
+April~2026, \texttt{aimim.in} fails to resolve; \texttt{jamiatulama.org}
+resolves to a parked lander; \texttt{aimplboard.in} retains a static
+early-2000s site whose press-release endpoint returns HTTP~500. The
+minority-side corpus is therefore a curated press proxy rather than a
+like-for-like speech archive. This asymmetry is documented in the main text
+(\autoref{fact:1}) and treated as a data fact rather than a
+nuisance.
+
+\textbf{Classification.} Each text is classified by Claude Haiku~4.5
+(\texttt{claude-haiku-4-5}) into one of four (majority) or five (minority)
+mutually exclusive categories using a structured system prompt pinned to the
+theoretical primitives. Majority categories are \textsc{identity\_policy},
+\textsc{economic\_provision}, \textsc{security\_foreign}, and
+\textsc{residual}; minority categories add \textsc{counter\_mobilization}
+to capture collective-response content distinct from threat-and-event
+content. Texts are truncated to the first $500$ words to bound per-call
+input tokens; the pinned system prompt is cached via Anthropic's ephemeral
+prompt cache so that each call pays cache-read rates on the prompt and full
+rates only on the unique text. A keyword-lexicon fallback is maintained for
+robustness; the lexicon overlaps the Haiku category boundaries on the
+high-$d$ cases and diverges on polysemous tokens (e.g., ``conversion,''
+``dharma,'' ``border'') on which Haiku is substantially sharper. The two
+system prompts (one per side, both cached) are reproduced verbatim below;
+the user-message payload for each row is the concatenation of the title,
+date, and first-$500$-word body.
+
+\begin{quote}\footnotesize
+\noindent\textbf{majority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MAJORITY texts (BJP leadership speeches, PM addresses,
+parliamentary BJP speeches):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_policy}: text advancing, defending, enforcing, or
+reasoning about identity-coded regulation or Hindu--Muslim relations.
+Concretely: beef/cow slaughter bans, CAA/NRC, love jihad, ghar wapsi,
+Ayodhya/Ram Mandir, Gyanvapi, UCC, waqf, triple talaq, hijab, religious
+conversion, communal violence, Muslim appeasement claims. Include
+anti-Pakistan framing ONLY when it is explicitly identity-laden (e.g.,
+``Go to Pakistan if you want beef''); exclude when it is pure foreign
+policy.
+\item \textsc{economic\_provision}: text about public-goods delivery or
+economic management. Concretely: welfare schemes (PM-KISAN, Ujjwala, Jan
+Dhan, Ayushman Bharat, Awas Yojana), DBT/Aadhaar, MGNREGA, MSME,
+farmers-as-producers (NOT farmers-as-lynching-victims), manufacturing,
+infrastructure, Make in India, Viksit Bharat, GST, startup, digital India,
+skilling.
+\item \textsc{security\_foreign}: external-security and foreign-policy
+content NOT primarily about domestic identity. Concretely: Pakistan as
+military adversary, China, Galwan, LoC, Article~370 abrogation framed as
+national security, surgical strikes, armed forces, terrorism abroad,
+neighbours as strategic partners.
+\item \textsc{residual}: ceremonial speeches, tributes, organisational
+matters, procedural parliamentary business, condolences, anniversaries
+without thematic content in the three categories above.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+\begin{quote}\footnotesize
+\noindent\textbf{minority system prompt.}\\[0.3em]
+You are classifying speeches and press coverage from Indian political
+discourse for an academic political-economy paper. The paper models a
+security-oriented majority party's use of symbolic policy ($d$) to
+manufacture a minority threat and thereby offset its comparative economic
+disadvantage. You will classify each text into exactly ONE category based
+on which theoretical primitive the text is primarily supplying content to.
+Return ONLY the single label in UPPERCASE, nothing else.
+
+\smallskip
+Categories for MINORITY texts (press coverage and AIMIM speeches about
+Muslim community):
+
+\begin{itemize}[leftmargin=1.2em, itemsep=0.15em, topsep=0.2em]
+\item \textsc{identity\_contested}: text about identity-coded regulation
+or conflict affecting Muslims. Concretely: beef/cow lynching victims,
+CAA/NRC opposition, hijab rights, waqf rights, triple talaq debates,
+Babri/Gyanvapi, communal violence, Muslim representation concerns, Muslim
+electoral politics, anti-Muslim rhetoric reported on.
+\item \textsc{counter\_mobilization}: text describing Muslim-led or
+Muslim-joined protest, resistance, organising. Concretely: Shaheen Bagh,
+CAA protests, bandh, dharna, satyagraha, rally, march, ``not in my name'',
+civil disobedience, petition drives, legal challenges framed as
+resistance.
+\item \textsc{security\_foreign}: external-security content,
+Pakistan/Kashmir militancy framing, terrorism NOT primarily about identity.
+\item \textsc{economic}: genuine economic content about Muslim community
+(employment, business, education access) NOT about lynching or identity.
+\item \textsc{residual}: sports, entertainment, unrelated news, internal
+community matters without political content.
+\end{itemize}
+
+\smallskip
+CRITICAL: A lynching news story is \textsc{identity\_contested} even if the
+word ``farmer'' appears (the victim's occupation does not make it economic
+content). A protest against CAA is \textsc{counter\_mobilization} even if
+``economic'' grievances are incidentally mentioned. When in doubt between
+\textsc{identity\_contested} and \textsc{counter\_mobilization}, ask: does
+the text primarily describe a threat/event (\textsc{identity\_contested})
+or a collective response (\textsc{counter\_mobilization})?
+
+Return only the single UPPERCASE label.
+\end{quote}
+
+On the $2{,}330$ rows Haiku classified at the time of the main-text figure,
+the category distributions are:
+\begin{center}
+\footnotesize
+\begin{tabular}{lcc}
+\toprule
+Category & majority & minority \\
+\midrule
+Identity-coded / contested & $14.5\%$ & $63.3\%$ \\
+Counter-mobilisation & --- & $22.8\%$ \\
+Economic-programmatic & $33.7\%$ & $0.7\%$ \\
+Security-and-foreign & $10.3\%$ & $2.7\%$ \\
+Residual & $40.6\%$ & $10.7\%$ \\
+Unparseable / error & $0.8\%$ & $0.0\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Outputs and validation.} Aggregate monthly shares
+underlying \autoref{fig:narrative_timeseries} are computed as the count of
+rows in the numerator category divided by the total rows in the corpus that
+month, with a six-month centred rolling mean applied for display and
+monthly totals below two items set to missing. A validation audit against
+$200$ hand-coded sample items is planned for the next revision.
+
+\subsection{Minority Corpus Construction} \label{app:minority_corpus}
+
+The $3{,}783$-item Muslim-voice proxy corpus is constructed from Google News
+RSS feeds, one per query, retrieved at 1 request per second with a custom
+user agent and cached locally. Queries span five categories: (i)~Muslim
+political representation (Owaisi, AIMIM, MIM, Muslim MP, Muslim
+chief~minister); (ii)~religious leadership (Jamiat Ulama-i-Hind, Deoband,
+AIMPLB); (iii)~cow-related violence (Akhlaq, Pehlu Khan, Junaid, Tabrez,
+cow~vigilante lynching, gau~rakshak); (iv)~legislative episodes (CAA,
+NRC, NPR, triple talaq, hijab, waqf, UCC); (v)~locational flashpoints
+(Shaheen~Bagh, Babri~Masjid, Gyanvapi, Bilkis~Bano, Kashmir). Each retrieved
+item is deduplicated by URL, enriched with outlet name parsed from the RSS
+source field, and stored with the item's title, description (first $\sim$30
+words), publication date, and URL. The 2025 share of items is
+disproportionately high ($31\%$) because of the Waqf Amendment and
+freshness-weighted indexing in Google News RSS; the main-text figure
+controls for this with monthly-share normalisation rather than raw counts.
+
+\subsection{Intergenerational Welfare Consequences} \label{app:intergenerational}
+
+The main text's focus on the contemporaneous security premium leaves open the
+question of the durable welfare consequences of repeated symbolic-policy
+shocks. In prior work on the same India beef-ban setting, I estimate a series
+of generation-specific consequences using the IHDS-II micro-Panel~(A)nd an
+intensity measure \textit{Non-Hindu~$\times$~Ban} that interacts household
+religious identity with exposure to the ban window. The results span three
+generations and four domains: (i)~birth history and early-life growth
+deficiency (induced abortion, premature death, infant Ponderal Index, minor
+BMI); (ii)~short- and long-term poverty (absolute, relative, and subjective
+cutoffs); (iii)~first-generation segregation and second-generation
+discrimination (electoral and ethnic segregation, political acquaintance,
+religious trust; school inaccessibility, teacher unfairness, communal
+prejudice); (iv)~first-generation utility and protest (net income, life
+satisfaction, demonstration and boycott participation). \autoref{tab:birth_history} reports the birth-history and early-life growth-deficiency results; \autoref{tab:economic} reports the short- and long-term poverty results. Full specifications, control sets, and robustness checks for the remaining domains will be migrated into this appendix in a subsequent revision.
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Birth History and Early-Life Growth Deficiency of Muslim Households Exposed to Cow-Slaughter Bans}
+\label{Table:birth_history}\label{tab:birth_history}
+\begin{threeparttable}
+    \onehalfspacing
+    \subimport{../../output/tables/}{output_birth_history.tex}
+    \begin{tablenotes}[para,flushleft]
+        \footnotesize
+        \textit{Notes.}
+        Data are from IHDS-II, the second wave of the India Human Development
+        Survey. Unit of observation is at the individual level.
+        \textit{Non-Hindu} is a household-level indicator (1 for non-Hindu, 0 for Hindu).
+        Intensity in columns (1)--(2) is the overlap between the respondent's
+        formative years (ages 8--22) and the violent aftermath of a state-level
+        cow-slaughter ban (eight years following first enactment); in columns
+        (3)--(6), intensity is an indicator for whether the child was born
+        within that eight-year window. Column~(1): indicator for having
+        experienced a spontaneous miscarriage. Column~(2): indicator for an
+        induced abortion or dilation-and-curettage procedure. Column~(3):
+        indicator for neonatal death (within one month of birth) among
+        deceased children. Column~(4): indicator for pre-formative-years
+        death (before age eight) among deceased children. Column~(5):
+        Ponderal Index of surviving children under age three. Column~(6):
+        Body-Mass Index of surviving children under age eighteen. Individual
+        controls: gender. Year controls: survey year. Standard errors
+        clustered at the state $\times$ birth-year level. Significance:
+        \textsuperscript{*} $p < 0.10$;
+        \textsuperscript{**} $p < 0.05$;
+        \textsuperscript{***} $p < 0.01$.
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{\bf Short- and Long-Term Poverty of Muslim Households Exposed to Cow-Slaughter Bans}
+\label{Table:economic}\label{tab:economic}
+\begin{threeparttable}
+    \onehalfspacing
+    \subimport{../../output/tables/}{output_economic.tex}
+    \begin{tablenotes}[para,flushleft]
+        \footnotesize
+        \textit{Notes.}
+        Data are from IHDS-II. Unit of observation is the household.
+        Intensity in columns (1)--(3) is an indicator for whether the
+        household's state of residence was within the violent aftermath of a
+        cow-slaughter ban during the survey year. Intensity in columns
+        (4)--(6) is the overlap between the household head's formative years
+        (ages 8--22) and the violent eight-year window. Columns (1) and (4):
+        indicator for household per-capita expenditure above the
+        state/urban-specific 2012 Tendulkar poverty line. Columns (2) and
+        (5): household expenditure percentile rank within the district.
+        Columns (3) and (6): an ordinal indicator of poor / middle-class /
+        comfortable self-reported status. All dependent variables are
+        standardised. Individual controls: gender. Household controls: age
+        and gender structure, highest adult education, number of workers.
+        Year controls: survey year. Standard errors clustered at the state
+        level. Significance:
+        \textsuperscript{$\dagger$} $p < 0.15$;
+        \textsuperscript{*} $p < 0.10$;
+        \textsuperscript{**} $p < 0.05$;
+        \textsuperscript{***} $p < 0.01$.
+    \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{Paradox-of-Competence Regression}\label{app:paradox_regression}
+
+\autoref{fig:paradox_of_competence} reports a linear-probability model of
+BJP retention at the next Assembly election on tenure-average annual count
+of Hindu--Muslim violent events. The sample is every state-election pair in
+which the BJP was the state government in the year prior to the election
+($N=42$, fifteen states, $1984$--$2024$). GDELT Hindu--Muslim violent
+events $1980$--$2024$ is the primary conflict series, with
+Varshney--Wilkinson incidents as a pre-1995 supplement.
+
+The primary specification regresses the retention indicator on
+tenure-average annual event count, with state-clustered standard
+errors. The coefficient is~$+0.0103$~(SE~$0.0042$, $p=0.015$): one
+additional violent Hindu--Muslim event per tenure year raises the BJP
+retention probability by approximately one percentage point. Quintile
+means of the retention rate rise monotonically from~$33\%$ in the lowest
+tenure-conflict quintile to~$78\%$ in the highest.
+
+Robustness: the sign is stable and the magnitude broadly comparable under a
+log-conflict specification ($p=0.063$), under the addition of decade fixed
+effects ($p=0.089$), and under an average-marginal-effect logit
+($p=0.11$). Splitting the sample at 2014 returns similar positive
+coefficients in both the pre-2014 ($N=23$, $p=0.061$) and post-2014
+($N=19$, $p=0.085$) subsamples, so the pattern is not a Modi-era
+artefact. The effect operates at the retention margin rather than on a
+smoother vote-share metric: the coefficient on the continuous BJP
+vote-share change is right-signed but insignificant ($p=0.36$), consistent
+with the seat-winning margin being the discretely-decided object.
+
+The state-FE specification is not estimable with this sample size:
+within-state outcome variation is thin in $10$ of the $15$ states and the
+fixed-effects design absorbs much of the relevant variation mechanically.
+The primary specification should therefore be read as combining
+within-state and cross-state identification.
+
+\subsection{Ban-and-Conflict Event Studies} \label{app:event_studies}
+
+A parallel line of analysis estimates the effect of each of the four
+bovine-family cattle-slaughter-ban types on Hindu--Muslim violence at the
+state-year level using staggered difference-in-differences with two-way
+fixed effects and event-study leads and lags. The main-text figure
+(\autoref{fig:rent_dissipation_event_study}) reports the TWFE event-study
+coefficients per ban type. \autoref{fig:event_studies_robustness} reports
+the same coefficients overlaid with three modern dynamic-DiD estimators
+(\citet*{cengizEffectMinimumWages2019}, \citet*{gardnerTwostageDifferencesDifferences2022}, and \citet*{liuPracticalGuideCounterfactual2024})
+to show the post-adoption pattern is robust to estimator choice. Sample
+and control specification match the main-text version.
+
+\subimport{../}{appendix_figures.tex}
+
+\subsection{State-Level Population Panel} \label{app:population}
+
+Annual state-level population 2000--2024 is interpolated from
+Census~2001 and Census~2011 enumerations. The 2011 state shares of the
+national total are carried forward annually by rescaling to the World Bank
+\texttt{SP.POP.TOTL} India series. The resulting panel is used to
+normalize the Hindu--Muslim violence intensity in Map~B
+(\autoref{fig:map_conflict_intensity}).
+
+\subsection{Supplementary Maps} \label{app:supplementary_maps}
+
+The six policy-specific maps (one per ban type) and the seven decade-specific
+conflict maps are available in the supplementary replication materials but are not reproduced in this appendix.
+
+
+%===================================================================================
+% Online Appendices D-G, moved from the main submission .tex so they do not count
+% toward the 20,000-word limit. Cross-refs in main resolve via
+% xternaldocument{supplementary_material} in the main preamble.
+%===================================================================================
+
+%===================================================================================
+% APPENDIX D: Robustness to Forward-Looking Voters
+%===================================================================================
+
+\section{Robustness to Forward-Looking Voters}\label{oa:robust_fwd}
+
+The bounded-rationality assumption of \autoref{subsec:discussion_v3} is empirically appropriate for the divided populist electorates the paper studies, but a referee might reasonably ask whether the within-cycle and long-run results survive when voters are fully forward-looking. This appendix shows that they do.
+
+\subsection*{Setup.} Let $\delta\in[0,1)$ be the voter's discount factor. The voter's value function $V^v(M,k)$ now solves the Bellman recursion
+\begin{equation}\label{eq:bellman_oa}
+    V^v(M,k)\;=\;\mathbb E_\omega\!\left[U^k(d_k(M);M)+\delta\big(\rho^v(M,k,\omega)V^v(M',k)+(1-\rho^v(M,k,\omega))V^v(M',\tilde k)\big)\right],
+\end{equation}
+where $M'=(1-\rho)M+\rho E_m^*(d_k(M),S_k;M,\omega)$ is the next-period stock, $\tilde k$ denotes the opposing party, and $\rho^v(M,k,\omega)\in\{0,1\}$ is the realisation-conditional retention rule. The Hawk's MPE strategy $d_A^*(M)$ now solves
+\begin{equation}\label{eq:hawk_mpe_oa}
+    d_A^*(M)\;\in\;\arg\max_{d\ge 0}\,\mathbb E_\omega\!\left[\lambda\,\Delta\Pi(d;M,\omega)-\chi(d)+\delta\,V^v(M'(d),A)\cdot\mathbbm{1}[\rho^v(M'(d),A,\omega)=1]\right],
+\end{equation}
+which adds a stock-building continuation term $\delta\,(\partial V^v/\partial M')\cdot(\partial M'/\partial d)$ to the within-cycle FOC of \eqref{eq:hawk_t2_objective_v3}.
+
+The myopic-retrospective baseline of the main text is the $\delta=0$ limit of \eqref{eq:bellman_oa}--\eqref{eq:hawk_mpe_oa}: the continuation term in the Hawk's FOC vanishes, $V^v(M,k)$ collapses to $U^k(d_k(M);M)$, and the swing-voter rule reduces to the per-period welfare comparison of \eqref{eq:vote_HA_v3}.
+
+\subsection*{Result D1 (MPE existence and uniqueness).} Under the regularity conditions of \autoref{lem:hawk_t2_v3} and a bounded strategy space $[0,d_{\max}]$ as in the proof of \autoref{prop:phase_v3}, a pure-strategy Markov Perfect Equilibrium $(d_A^*,d_B^*,\rho^v,V^v)$ exists for any $\delta\in[0,1)$. The argument is standard: the strategy correspondence is upper hemicontinuous on the bounded $L^2$ strategy space, the within-period payoff is strictly concave in own $d$ on the relevant range (strict convexity of $\chi$ plus weak concavity of $\Delta\Pi$ on its increasing branch), the Bellman operator on $\mathcal{C}_b(\mathbb R_+\times\{A,B\})$ is a $\delta$-contraction by standard contraction-mapping arguments, and Glicksberg's fixed-point theorem applied to the strategy correspondence yields a Markov pair that is mutually best-responding given the cutoff retention rule.
+
+\subsection*{Result D2 (Hawk's MPE strategy preserves the shallow/deep dichotomy).} For every $\delta\in[0,1)$, the Hawk's MPE strategy $d_A^*(M)$ has the same shallow/deep structure as the myopic version of \autoref{lem:hawk_t2_v3}: $d_A^*(M)>0$ on the shallow regime $M<\alpha^2 S_A S_B/\xi$ and $d_A^*(M)=0$ on the deep regime $M\ge\alpha^2 S_A S_B/\xi$. The discount factor $\delta$ enters the FOC only through the stock-building correction term $\delta\,(\partial V^v/\partial M')\,(\partial M'/\partial d)$, which is positive on the increasing branch of $V^v(\cdot,A)$ and negative on its decreasing branch. The deep-regime corner is preserved because both the within-cycle margin and the stock-building term are non-positive there.
+
+\subsection*{Result D3 (Voter's wedge is single-peaked at the peak-shift threshold under a primitive regularity condition).} \autoref{prop:t2_election_v3} establishes that the within-cycle gap $\mathcal H(M)=\lambda[\Pi_A^*(d_A^*(M),S_A;M)-\Pi_B^*(0,S_B;M)]-(1-\lambda)\Delta u-\chi(d_A^*(M))$ is single-peaked in $M$ at $M=\alpha^2 S_A S_B/\xi$. Under the primitive regularity assumption that the expected per-period gap $\mathbb E_\omega[\mathcal H(M,\omega)]$ inherits this single-peakedness when integrated against the salience shock (a property that holds whenever $u$ is linear, $\chi$ is quadratic, $F$ has bounded support, and the composite mapping $M\mapsto\mathbb E_\omega[\Pi_A^*-\Pi_B^*]$ is single-peaked in $M$ along the Hawk's reaction function, which the within-cycle analysis verifies), a standard Topkis-style monotone-comparative-statics argument carries the single-peakedness through the Bellman operator to the fixed-point wedge $\Phi^M(M):=\mathbb E_\omega[V^v(M,A;\omega)-V^v(M,B;\omega)]$: the Bellman operator on the Banach space of bounded continuous functions preserves the single-peakedness in $M$ on the relevant domain, and the cutoff retention rule $\rho^v(M,A,\omega)=\mathbbm{1}[M\ge\bar M(\omega)]$ therefore mirrors the myopic version, with a hysteresis interval $\underline M(\omega)\le\bar M(\omega)$ whose width is $O(\delta)$ in the \citet{coatePolicyPersistence1999} sense.
+
+\subsection*{Result D4 (Phase transition is $\delta$-continuous).} The trap-vs-cycles characterisation of \autoref{prop:phase_v3} holds for any $\delta\in[0,1)$ with a threshold $\bar\rho(\delta)$ that is continuous in $\delta$. The Foster--Lyapunov drift verification carries through unchanged: the orbit bound \eqref{eq:orbit_bound_v3} is independent of $\delta$, and the deterministic basin of attraction around the Hawk attractor depends on $\delta$ only through the width of the hysteresis interval (which is itself $O(\delta)$). The myopic-retrospective version is the $\delta=0$ limit and is the empirically appropriate baseline for the divided electorates the paper studies.
+
+\subsection*{Result D5 (Within-cycle predictions are $\delta$-invariant; long-run regimes are $\delta$-continuous).} In the 2-period within-cycle game of \autoref{sec:model_v3}--\autoref{sec:block3} (where period~2 is the terminal election), the Hawk has no continuation beyond period~2 and therefore no continuation term in its FOC. The inverted-U electoral return (\autoref{thm:inverted_U_v3}), the paradox of restraint (\autoref{lem:hawk_t2_v3}), and the lagged dissipation (\autoref{prop:RD_v3}) all follow from the contest technology of \autoref{sec:block1} and the Hawk's within-cycle maximisation, neither of which depends on the discount factor: the Hawk's choice of $d_1$ at $M_1=0$ gives the same interior optimum at $M_2(d_1^*)=\alpha^2 S_A S_B/\xi$ under any $\delta$, and the contest dynamics governing rent dissipation are independent of voter rationality. In the long-run iteration of \autoref{sec:dynamics_v3} (where each cycle has a continuation), the Hawk's MPE strategy at any $M$ acquires a $\delta$-dependent continuation term that shifts the interior optimum continuously in $\delta$, but the qualitative structure (interior on shallow, corner on deep, single-peaked $P_A$ in $M$) and the trap-vs-cycles regime characterisation are preserved by Results~D2--D4. The substantive content of the paper is therefore robust to the bounded-vs-forward-looking choice; the bounded baseline is the empirically appropriate one and the algebraically cleanest.
+
+%===================================================================================
+% APPENDIX E: Strategic minority Coordination
+%===================================================================================
+
+\section{Strategic Minority Coordination}\label{oa:strategic_minority}
+
+The minority's mobilisation in \autoref{sec:block1} is the rest point of a within-group population game, with individual minority members best-replying to the contest stake $\hat d^\sigma$. A natural concern is that a strategic minority leader could deny the Hawk its security premium by suppressing aggregate mobilisation. This appendix shows that the within-group collective-action problem on the minority side prevents purely strategic restraint, so the qualitative results of the paper survive a Stackelberg minority leader.
+
+\subsection*{Setup.} Suppose a minority leader chooses an aggregate mobilisation target $E_m^L\ge 0$ and assigns individual effort levels $\{e_j\}_{j=1}^{N_m}$ summing to $E_m^L$. The referee's concern is that the leader has a \emph{strategic-electoral motive} to suppress aggregate mobilisation: lower $E_m^L$ reduces the contest-activation effect that gives the Hawk its security premium, which raises the Dove's election probability and thereby benefits the minority over the long run. Let the leader's overall objective combine the within-period welfare $W_m^{\text{within}}(E_m^L,d,S_k;M)=\phi\hat d^\sigma(1-\Pi_k^*(E_M^*,E_m^L))-\sum_{j=1}^{N_m}\frac{1}{2\kappa}e_j^2$ with a continuation term that reflects this strategic motive,
+\begin{equation}\label{eq:leader_objective}
+    V^L(E_m^L,d,S_k;M)\;=\;W_m^{\text{within}}(E_m^L,d,S_k;M)\;+\;\delta_L\,\Lambda^L\big(P_A(M_2(E_m^L))\big),
+\end{equation}
+where $\delta_L\in[0,1)$ is the leader's discount factor (distinct from the contest scale constant $\beta$ of the main text) and $\Lambda^L(\cdot)$ is a strictly decreasing function of the Hawk's election probability (the leader prefers a Dove government). The strategic-restraint hypothesis is that the leader optimally chooses $E_m^L<E_m^*$ to suppress the Hawk's security premium even though within-period welfare is maximised at the unconstrained $E_m^*$.
+
+The leader's choice is constrained by individual incentive-compatibility:
+\begin{equation}\label{eq:IC}
+    e_j\;=\;\kappa\phi\,\hat d^\sigma\,\frac{S_kE_M^*}{(S_kE_M^*+E_m^L)^2}\quad\text{for every }j\in\{1,\dots,N_m\},
+\end{equation}
+because each individual minority member best-replies to the contest stake on the basis of its own within-period payoff (it does not internalise the leader's electoral motive, since by assumption it is not a voter). The aggregate $E_m^L=N_m e_j$ must therefore satisfy the symmetric Nash condition of \autoref{lem:contest_v3}.
+
+\subsection*{Result E1 (Strategic restraint is infeasible at the level of individual incentive-compatibility).} For any $\hat d^\sigma>0$, the only aggregate mobilisation level $E_m^L$ that satisfies the symmetric IC constraints \eqref{eq:IC} simultaneously for all $j$ is the unconstrained Nash equilibrium $E_m^*(d,S_k;M)$ of \autoref{lem:contest_v3}. Any leader-chosen $E_m^L\ne E_m^*$ violates IC: if $E_m^L<E_m^*$, individual best-reply at the lowered aggregate level exceeds the assigned individual share, and members deviate upward; if $E_m^L>E_m^*$, the assigned share exceeds individual best-reply and members defect downward. The leader's strategic-electoral motive in \eqref{eq:leader_objective} cannot be exercised: any $E_m^L$ that the leader would prefer for electoral reasons is incentive-incompatible at the individual level. The non-strategic minority of \autoref{sec:block1} is therefore not a behavioural shortcut but the unique strategy profile that survives individual incentive-compatibility.
+
+The intuition is that a Stackelberg leader who tries to ``lay low'' faces the same free-rider problem in REVERSE: each individual minority member with a personal grievance can do better than zero effort by mobilising up to its individual best-reply, and no leader-coordination scheme can prevent this defection. The minority's mobilisation is the rest point of the within-group population game in either the leader's solution or the decentralised one. Empirical observation supports this: the 2019--20 CAA protests in India and the 2022 \emph{Woman, Life, Freedom} movement in Iran both saw substantial minority mobilisation despite the obvious electoral cost of strengthening the hardliners.
+
+\subsection*{Result E2 (Inverted-U electoral return survives).} Since the strategic equilibrium aggregate mobilisation coincides with the unconstrained equilibrium of \autoref{lem:contest_v3}, the security premium $\Delta\Pi(d;M)$ of \eqref{eq:security_premium_v3} is unchanged. The peak-shift structure of \autoref{lem:invU_v3}, the Hawk's stationary best-reply of \autoref{lem:hawk_t2_v3}, the swing-voter equation \eqref{eq:vote_HA_v3}, and the inverted-U electoral return of \autoref{thm:inverted_U_v3} all hold under the Stackelberg minority extension. The Hawk's optimal $d_1^*$ is unchanged.
+
+\subsection*{Remark.} A binding leader-coordination scheme would require either (i) a coercive enforcement mechanism that imposes a mobilisation ceiling below individual best-replies (which the empirical literature on minority political organisation does not support), or (ii) a transfer scheme in which the leader compensates individuals for not mobilising (which faces the same enforcement obstacle). The model's non-strategic minority is therefore not a behavioural shortcut but a substantive consequence of the within-group collective-action problem the paper places on both sides of the contest.
+
+%===================================================================================
+% APPENDIX F: Strategic minority Voting and Endogenous Trap Fragility
+%===================================================================================
+
+\section{Strategic Minority Voting and Endogenous Trap Fragility}\label{oa:strategic_minority_voting}
+
+The main text takes the minority as non-voting. This appendix relaxes that assumption by introducing a strategic minority bloc into the swing-voter equation, with no upper bound on the bloc's electoral weight $n_m\in(0,1/2)$, and characterises the qualitative consequences for the Hawk's strategic-provocation problem (\autoref{thm:inverted_U_v3}) and the long-run trap--cycles partition (\autoref{prop:phase_v3}). The exercise complements Online Appendix~\ref{oa:strategic_minority} (which closes the within-period mobilisation channel through individual incentive-compatibility) by addressing the orthogonal electoral channel through which the silenced minority might do substantive work in the baseline. Three substantive results emerge. First, the within-period contest equilibrium and security premium are exactly $n_m$-invariant by Result F1 below. Second, minority enfranchisement induces a partition of the Hawk's strategic-provocation problem into a small-$n_m$ regime (perturbative shift in $d_1^{*}$, direction primitive-dependent), an intermediate regime (the inverted-U flattens), and a corner regime ($d_1^{**}=0$ above an explicit primitive threshold $\bar n_m$). Third, the trap--cycles threshold $\bar\rho^{**}(n_m)$ collapses continuously to zero as $n_m\to\bar n_m$, so a sufficiently enfranchised minority makes the Hawk-trap basin endogenously fragile and forces the polity into a peace equilibrium. The empirical implication is a testable cross-state hypothesis on the joint distribution of minority share, cattle-ban intensity, and Hawk vote share that the paper's state-level Panel~(C)an address directly.
+
+\subsection*{Setup.}
+
+The minority of population share $n_m\in(0,1/2)$ enters the electoral arena through a probabilistic-voting block parallel to the majority's. Voter $j\in\mathsf{m}$'s utility from incumbent $k\in\{A,B\}$ playing policy $d_k\ge 0$ at inherited stock $M$ is
+\begin{equation}\label{eq:utility_minority_oaF}
+    U^k_m(d_k;M)\;=\;-\lambda_m\,\Pi_k^*(d_k,S_k;M)\;+\;(1-\lambda_m)\,u(\bar g_k)\;-\;\chi_m(d_k)\;+\;\mathbbm{1}[k=A]\,\mu_j,
+\end{equation}
+which mirrors the majority utility \eqref{eq:utility_v3} with three differences. First, the contest term enters with the opposite sign: $\Pi_k^*$ is welfare-reducing for the minority because majority dominance is the contest outcome the minority loses. Second, the policy disutility $\chi_m:\mathbb{R}_+\to\mathbb{R}_+$ is a new primitive capturing the lived burden of identity-coded regulation on the minority (cattle-slaughter restrictions, citizenship registers, dress codes), with $\chi_m(0)=0$, $\chi_m'>0$, and $\chi_m''\ge 0$. Third, the idiosyncratic Hawk-bias $\mu_j$ is drawn from a CDF $\Phi_m$ with median zero and a continuous, strictly positive density $\phi_m$ on $\mathbb{R}$, possibly more dispersed than the majority's $\Phi$. The weight $\lambda_m\in(0,1)$ is the minority's analogue of the security weight $\lambda$.
+
+\paragraph{Sign of the contest channel.} The specification \eqref{eq:utility_minority_oaF} is the natural mirror of the majority utility, but it introduces a substantive parametric tension that the analysis must confront openly. Within a single incumbent's tenure, $\Pi_k^*(d,S_k;M)$ is strictly decreasing in $d$ (more contest activity reduces majority dominance probability), so the marginal contest-channel utility $-\lambda_m\partial_d\Pi_k^*$ is strictly positive in $d$. At the marginal-$d$ level, the minority benefits from higher Hawk policy through the contest channel. The minority's net dislike of the Hawk's $d$ is therefore not a structural consequence of \eqref{eq:utility_minority_oaF} alone. It requires the direct repression cost $\chi_m'$ to dominate the contest-channel margin. We maintain the following primitive condition throughout the appendix:
+\begin{equation}\label{eq:PC_oaF}
+    \chi_m'(d)\;\ge\;\lambda_m\,\big|\partial_d\Pi_k^*(d,S_k;M)\big|\quad\text{for all }(d,S_k,M)\text{ in the relevant compact range.}\tag{PC}
+\end{equation}
+Under (PC), the minority's net marginal utility decreases in $d$ within any single incumbent. Combined with the cross-incumbent wedge $\Pi_A^*(d_A^*;M)-\Pi_B^*(0;M)>0$ (which holds robustly from $S_A>S_B$ regardless of (PC)), the minority unambiguously prefers Dove. Condition (PC) is the formal counterpart of the empirical observation that Indian Muslims do not prefer cattle bans even when those bans mobilise Muslim resistance. The direct repression cost dominates the contest-mobilisation benefit.
+
+The minority's net gain from a Dove victory at inherited stock $M$ is
+\begin{equation}\label{eq:Gm_oaF}
+    \mathcal G_m(M)\;\equiv\;\lambda_m\big[\Pi_A^*(d_A^*(M),S_A;M)-\Pi_B^*(0,S_B;M)\big]\;+\;(1-\lambda_m)\,\Delta u\;+\;\chi_m(d_A^*(M)),
+\end{equation}
+the sum of three non-negative terms: the contest loss the Hawk would impose, the economic deficit the Hawk would carry, and the direct repression cost the Hawk would inflict through its stationary best-reply $d_A^*(M)$ of \autoref{lem:hawk_t2_v3}. Voter $j$ supports the Hawk iff $\mu_j>\mathcal G_m(M)$, so the minority's Hawk vote share at $M$ is $P_A^m(M)=1-\Phi_m(\mathcal G_m(M))<1/2$ whenever $\mathcal G_m(M)>0$. The Hawk's overall vote share at inherited stock $M$ is
+\begin{equation}\label{eq:VA_oaF}
+    \mathcal V_A(M;n_m)\;=\;(1-n_m)\big[\,1-\Phi(-\mathcal H(M))\,\big]\;+\;n_m\big[\,1-\Phi_m(\mathcal G_m(M))\,\big],
+\end{equation}
+with the majority component as in the swing-voter equation of \autoref{sec:block2} and $\mathcal H(M)$ the net Hawk advantage of \eqref{eq:net_advantage_v3}. The Hawk wins iff $\mathcal V_A(M;n_m)>1/2$.
+
+\subsection*{Result F1 (Contest invariance).} The within-period contest equilibrium $(E_M^*,E_m^*)$ of \autoref{lem:contest_v3}, the equilibrium security $\Pi_k^*$ of \eqref{eq:Pi_v3}, the security premium $\Delta\Pi(d;M)$ of \eqref{eq:security_premium_v3}, the peak-shift threshold $M^*=\alpha^2 S_AS_B/\xi$ of \autoref{lem:invU_v3}, and the rent-dissipation map $RD(d,S_k;M)$ of \eqref{eq:RD_v3} are exactly $n_m$-invariant under minority electoral participation, for any $(\lambda_m,\chi_m,\Phi_m,n_m)$. The within-period contest is the symmetric Nash equilibrium of the within-group population game with each minority member solving the static problem $\max_{e_j\ge 0}\,\phi\hat d^\sigma(1-\Pi_k)-\tfrac{1}{2\kappa}e_j^2$. Adding the electoral utility \eqref{eq:utility_minority_oaF} does not alter this within-period optimisation. The electoral payoff is realised at the next-period voting stage and enters the contest player's problem as a state-dependent constant, with no marginal contribution at the within-period mobilisation margin. The IC argument of Result E1 in Online Appendix~\ref{oa:strategic_minority} extends to this richer setting unchanged: any leader-coordination scheme that would couple within-period mobilisation to electoral payoff is incentive-incompatible at the individual level. Hence $E_m^*$ and all dependent objects coincide with their baseline values. The electoral channel of this appendix is independent of the mobilisation channel of \autoref{oa:strategic_minority}, and the closure of the latter does not propagate to the former.
+
+\subsection*{Hawk's modified problem.} Given Result F1, the Hawk's modified period-1 problem is
+\begin{equation}\label{eq:Hawk_t1_modified_oaF}
+    d_1^{**}(n_m)\;\equiv\;\arg\max_{d_1\ge 0}\;\mathcal V_A(M_2(d_1);n_m),
+\end{equation}
+with stock-building map $M_2(d_1)$ unchanged from \eqref{eq:M2_of_d1_v3}. Differentiating the vote share \eqref{eq:VA_oaF} along $M_2(d_1)$ and dividing through by the strictly positive $M_2'(d_1)$ yields the marginal-vote-share map
+\begin{equation}\label{eq:T_map_oaF}
+    T(M;n_m)\;\equiv\;(1-n_m)\,\phi(-\mathcal H(M))\,\mathcal H'(M)\;-\;n_m\,\phi_m(\mathcal G_m(M))\,\mathcal G_m'(M),
+\end{equation}
+the population-weighted net marginal Hawk gain from a unit increase in the inherited stock $M$. Interior optima of \eqref{eq:Hawk_t1_modified_oaF} satisfy $T(M_2(d_1^{**});n_m)=0$. The corner $d_1^{**}=0$ is optimal iff $\mathcal V_A(0;n_m)\ge\mathcal V_A(M_2(d_1^{*}(n_m));n_m)$, where $d_1^{*}(n_m)$ is the largest interior critical point of $\mathcal V_A$. Substituting \eqref{eq:VA_oaF} and rearranging, this value-comparison condition becomes
+\begin{equation}\label{eq:corner_threshold_oaF}
+    \frac{n_m}{1-n_m}\;\ge\;\frac{\Phi(-\mathcal H(0))-\Phi(-\mathcal H(M_2^{**}))}{\Phi_m(\mathcal G_m(M_2^{**}))-\Phi_m(\mathcal G_m(0))},
+\end{equation}
+with $M_2^{**}\equiv M_2(d_1^{*}(n_m))$. The numerator is positive (by $\mathcal H(M_2^{**})>\mathcal H(0)$, the majority gain from interior provocation) and the denominator is positive under (PC$''$) (by $\mathcal G_m(M_2^{**})>\mathcal G_m(0)$, the minority anti-Hawk gain from $M$ rising along the Hawk locus). Local FOC characterisation via $T(0^+;n_m)\le 0$ does not generally apply because $M_2'(d_1)$ is not Lipschitz at $d_1=0$ for arbitrary $\sigma\in(0,2]$ (specifically $M_2'(0^+)\to\infty$ for $\sigma\le 4/3$ and $M_2'(0^+)\to 0$ for $\sigma>4/3$), so the appropriate threshold criterion is the global value comparison.
+
+\paragraph{Cross-incumbent contest wedge.} The contest term in \eqref{eq:Gm_oaF} is the cross-incumbent wedge
+$D(M)\equiv\Pi_A^{*}(d_A^{*}(M),S_A;M)-\Pi_B^{*}(0,S_B;M)$,
+which differs from the same-$d$ security premium $\Delta\Pi(d_A^{*}(M);M)$ used in the Hawk's own optimisation because the Dove plays $d_B=0$ rather than $d_A^{*}$. At $M=0$ the Dove's contest is dormant, $\hat d^\sigma_B(0;0)=0$, and the contest-success function delivers $\Pi_B^{*}(0;0)\to 1$ as a degenerate limit, with $\Pi_A^{*}(d_A^{*}(0);0)<1$. Hence $D(0)<0$, an artefact of the dormant state in which the formal contest-success function evaluates majority dominance at zero stake. As $M$ rises slightly above zero, the Dove's contest activates ($\hat d^\sigma_B=\xi M>0$) and $\Pi_B^{*}$ falls from $1$, so $D'(0^+)>0$. Tracking $D$ along the Hawk locus on the shallow regime, $D$ rises through zero to the value $D(M^{*})=(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$ at the peak-shift threshold, and falls strictly on the deep regime where $d_A^{*}=0$ and $D(M)=\Delta\Pi(0;M)$ shrinks to zero as $M\to\infty$. The maintained-regularity assumption that $D(M)$ is single-peaked at $M=M^{*}$ on the relevant range holds under standard primitive conditions on $(\alpha,S_A,S_B,\xi,\sigma)$ verified in the closed-form specialisation below.
+
+\paragraph{Two additional primitive conditions.} The analysis maintains two further primitive conditions to handle the dormant-state edge case at $M=0$ and to ensure the existence of a meaningful corner regime. The first requires the cross-incumbent wedge $\mathcal G_m$ to be positive throughout, so that the minority's Hawk vote share is below $1/2$ at every $M\ge 0$:
+\begin{equation}\label{eq:PCprime_oaF}
+    (1-\lambda_m)\,\Delta u\;>\;\lambda_m\,\big[1-\Pi_A^{*}(d_A^{*}(0),S_A;0)\big]\;-\;\chi_m(d_A^{*}(0)).\tag{PC$'$}
+\end{equation}
+Under (PC$'$), $\mathcal G_m(0)>0$, and combined with $\mathcal G_m(M^{*})>0$ this gives $\mathcal G_m(M)>0$ throughout $[0,M^{*}]\cup[M^{*},\infty)$ by continuity of $\mathcal G_m$. The second requires the contest-channel rise along the Hawk locus to dominate the repression-channel fall in the value comparison between the Hawk's interior optimum at $M=M^{*}$ and the corner $M=0$:
+\begin{equation}\label{eq:PCdoubleprime_oaF}
+    \mathcal G_m(M^{*})\;>\;\mathcal G_m(0).\tag{PC$''$}
+\end{equation}
+Equivalently, the minority's Dove preference at the peak-shift threshold exceeds its Dove preference at the dormant baseline. Under (PC$''$), the minority's anti-Hawk swing at $M=M^{*}$ exceeds its swing at $M=0$, so the Hawk's modified vote-share function admits the corner regime characterised in Result F2 below.
+
+The substantive content of (PC$'$) and (PC$''$) is that the minority's preference for Dove is anchored more in the economic-deficit term $(1-\lambda_m)\Delta u$ and in the contest-channel rise as $M$ approaches the peak-shift threshold than in the dormant-state quirk that makes $\Pi_B^{*}\to 1$ at $M=0$. Both conditions are testable against primitives and can be ensured by appropriate choices of $(\lambda_m,\Delta u,\chi_m,S_A,S_B)$. The conditions are non-vacuous: they fail when $\lambda_m$ is large and $\Delta u$ is small, in which case the minority's contest-channel preference for the active-Hawk over the dormant-Dove dominates and the minority's preferences cease to discipline the Hawk in the model. The condition $(\lambda_m\,\text{small relative to }\Delta u)$ is the relevant empirical regime for Indian Muslims, who are documented to vote primarily on economic-policy grounds rather than direct contest-outcome considerations.
+
+\subsection*{Result F2 (Three regimes of enfranchisement).} Under the primitive conditions (PC), (PC$'$), and (PC$''$), and the additional regularity that $\Phi,\Phi_m$ have continuous, strictly positive densities and the Hawk's modified objective is single-peaked in $d_1$ on $(0,d_1^{\max}]$ (a maintained assumption verified in the closed-form specialisation below), there exist primitive thresholds $0<\bar n_m^{(1)}\le\bar n_m<1$ such that the Hawk's optimum $d_1^{**}(n_m)$ partitions into three regimes.
+
+\medskip\noindent\textit{(i) Small-$n_m$ regime, $n_m\in[0,\bar n_m^{(1)}]$.} The optimum is interior and satisfies the perturbative bound
+\begin{equation}\label{eq:perturb_bound_oaF}
+    |d_1^{**}(n_m)-d_1^{*}|\;\le\;C\,\frac{n_m}{1-n_m},
+\end{equation}
+for a constant $C$ that depends on the curvature bounds of $\mathcal H,\mathcal G_m$ and on the densities $\phi,\phi_m$ at the baseline optimum. The sign of the shift inherits the sign of $\mathcal G_m'(M^{*})$. Since $M^{*}$ sits at the boundary of the shallow and deep regimes, the relevant directional derivative is taken from the appropriate side, with $\mathcal G_m'(M^{*-})>0$ from the left and $\mathcal G_m'(M^{*+})<0$ from the right. The shift direction is therefore generically determined by which side of the kink the modified optimum approaches and by the relative magnitudes of $(\lambda_m,\chi_m')$ near the threshold.
+
+\medskip\noindent\textit{(ii) Distortion regime, $n_m\in(\bar n_m^{(1)},\bar n_m)$.} The optimum remains interior, but the inverted-U flattens. The peak height $\mathcal V_A^{**}(n_m)\equiv\mathcal V_A(M_2(d_1^{**}(n_m));n_m)$ is strictly decreasing in $n_m$, and the gap $\mathcal V_A^{**}(n_m)-\mathcal V_A(0;n_m)$ shrinks continuously to zero as $n_m\uparrow\bar n_m$. The Hawk's incentive to provoke vanishes at the upper threshold.
+
+\medskip\noindent\textit{(iii) Corner regime, $n_m\in[\bar n_m,1/2)$.} The unique optimum is the corner $d_1^{**}(n_m)=0$. The Hawk's strategic-provocation result of \autoref{thm:inverted_U_v3} fails: the Hawk plays peace at $t=1$, the period-2 inherited stock is $M_2=0$, the Hawk's stationary best-reply at $t=2$ is $d_A^{*}(0)>0$ (interior, by \autoref{lem:hawk_t2_v3}), and the within-cycle dynamic collapses to a one-period symbolic-policy game with no strategic stock-building. The election outcome at $t=2$ is determined by the Hawk's win probability $\mathcal V_A(0;n_m)$, which can fall below $1/2$ for $n_m$ sufficiently large. In that subregime the Hawk loses with probability one and the polity transitions to a Dove government.
+
+The threshold $\bar n_m$ is the unique solution to the value-comparison equation
+\begin{equation}\label{eq:nbar_oaF}
+    \mathcal V_A\big(0;\bar n_m\big)\;=\;\mathcal V_A\big(M_2(d_1^{**}(\bar n_m));\bar n_m\big),
+\end{equation}
+with $d_1^{**}(\bar n_m)$ the interior critical point of $\mathcal V_A(\cdot;\bar n_m)$. Both numerator and denominator of the rearranged form \eqref{eq:corner_threshold_oaF} are positive under (PC$''$), and the implicit-function theorem applied to the value-comparison equation gives $\bar n_m\in(0,1)$. As an upper bound, replacing the modified optimum $M_2^{**}(\bar n_m)$ with the baseline optimum $M^{*}$ delivers
+\begin{equation}\label{eq:nbar_upperbound_oaF}
+    \bar n_m\;\le\;\frac{\Phi(-\mathcal H(0))-\Phi(-\mathcal H(M^{*}))}{[\Phi(-\mathcal H(0))-\Phi(-\mathcal H(M^{*}))]\;+\;[\Phi_m(\mathcal G_m(M^{*}))-\Phi_m(\mathcal G_m(0))]},
+\end{equation}
+which is informative when the distortion regime is narrow (small $\bar n_m-\bar n_m^{(1)}$). The lower threshold $\bar n_m^{(1)}$ separating the small-$n_m$ and distortion regimes is the largest $n_m$ at which the perturbative bound \eqref{eq:perturb_bound_oaF} provides a tight characterisation of the optimum's location. In the closed-form specialisation below, $\bar n_m^{(1)}$ is determined by the curvature of $\mathcal V_A$ in $d_1$ at the modified optimum, and the bound \eqref{eq:perturb_bound_oaF} ceases to bind once $n_m$ approaches the regime boundary.
+
+The argument for (i) is the implicit-function theorem applied to the interior FOC $T(M_2(d_1);n_m)=0$ at $n_m=0$, where $T(M_2(d_1^{*});0)=0$ trivially and the second derivative of $T$ in $d_1$ at the baseline optimum equals the majority's curvature contribution, which is strictly negative by the strict concavity of $1-\Phi(-\mathcal H(M_2(\cdot)))$ at $d_1^{*}$ established in \autoref{app:proofs_v3}. The bound \eqref{eq:perturb_bound_oaF} follows by Lipschitz continuity of the implicit map on the regime where the interior FOC has positive majority margin and negative minority margin in absolute terms, both of order independent of $n_m$. The argument for (iii) is the value-comparison criterion: at $n_m=\bar n_m$ defined by \eqref{eq:nbar_oaF}, the Hawk is exactly indifferent between the corner $d_1=0$ (delivering $\mathcal V_A(0;\bar n_m)$) and the interior $d_1=d_1^{*}(\bar n_m)$ (delivering $\mathcal V_A(M_2(d_1^{*});\bar n_m)$). For $n_m>\bar n_m$, the corner value strictly exceeds any interior value under the maintained single-peakedness, so $d_1=0$ is the unique global maximum. The argument for (ii) is by continuity: $d_1^{**}(n_m)$ is continuous in $n_m$ on $[0,\bar n_m]$ by Berge's Maximum Theorem under continuous dependence of $\mathcal V_A$ on $(d_1,n_m)$, and $\mathcal V_A^{**}(n_m)\to\mathcal V_A(0;\bar n_m)$ as $n_m\uparrow\bar n_m$ by the indifference at the threshold.
+
+\subsection*{Result F3 (Endogenous trap fragility and exit to peace).} The trap--cycles threshold $\bar\rho^{**}(n_m)$ of the perturbed Markov chain $(M_t,k_t)$ generated by the Hawk's modified within-period reaction $d_A^{**}(M;n_m)$ is continuous in $n_m$ on $[0,\bar n_m)$, with $\bar\rho^{**}(0)=\bar\rho$ and $\bar\rho^{**}(n_m)\downarrow 0$ as $n_m\uparrow\bar n_m$. For $n_m\ge\bar n_m$, the Hawk plays $d=0$ at every $t$, the minority's contest mobilisation under the Hawk decays at rate $\rho$ from any initial $M_0$, the deterministic drift $\bar\Psi_A^{**}(M;\rho,n_m)<M$ uniformly, and the long-run distribution concentrates at $M=0$ with a Dove-incumbent or trivial Hawk-incumbent equilibrium that does not activate the contest.
+
+The argument iterates Result F2 over the long-run dynamics. The Hawk's stationary best-reply at any inherited stock $M$ is the solution to the within-period vote-share maximisation parametrised by inherited $M$ rather than the baseline initial condition $M_1=0$. By Result F2 applied at each $M$, the modified reaction $d_A^{**}(M;n_m)$ is bounded above by $d_A^{*}(M)$ on the shallow regime under (PC) and identically zero for $n_m\ge\bar n_m(M)$, where $\bar n_m(M)$ is the local corner threshold given by the analogue of \eqref{eq:nbar_oaF} at inherited stock $M$. The corner-regime threshold $\bar n_m=\inf_M\bar n_m(M)$ is well-defined and finite. For $n_m\ge\bar n_m$, the Hawk's modified within-period reaction collapses to $d_A^{**}(M;n_m)=0$ at every $M$, so the deterministic drift becomes $\bar\Psi_A^{**}(M;\rho,n_m)=(1-\rho)M+\rho\,\mathbb{E}_\omega E_m^{*}(0,S_A;M,\omega)$. Since $E_m^{*}(0,S_A;M,\omega)$ depends only on $\xi M+\omega_t$, with $\xi M$ being decay-vulnerable through $(1-\rho)M$, the drift satisfies $\bar\Psi_A^{**}(M;\rho,n_m)<M$ for all $M>0$ when $\rho$ is bounded away from zero. The chain accumulates probability mass at $M=0$ in the long run, where the contest is dormant. This is the model's prediction of an exit-to-peace equilibrium under sufficient minority enfranchisement.
+
+For $n_m\in(0,\bar n_m)$, the Hawk's stationary best-reply is shifted by an amount that scales in $n_m$ via Result F2 (i)--(ii). The Foster--Lyapunov drift verification of \autoref{prop:phase_v3} (Online Appendix~\ref{oa:proof_phase_v3}) is robust to such uniform perturbations of the drift map. The Lyapunov function and the basin-of-attraction characterisation depend continuously on the drift, and the threshold $\bar\rho^{**}(n_m)$ at which the basin around the Hawk attractor collapses to the swing-voter cutoff inherits the continuity. The collapse $\bar\rho^{**}\downarrow 0$ as $n_m\uparrow\bar n_m$ follows because the Hawk attractor itself collapses (the basin shrinks to $\{0\}$ when the Hawk plays peace).
+
+The substantive consequence is the title of the result. Pivotal minority enfranchisement is an \emph{endogenous source of trap fragility}. A polity classified as a deep trap at $n_m=0$ (low $\rho$, large $S_A/S_B$, slow communal-grievance decay) is reclassified as a cycles polity at $n_m\in(\bar n_m^{\text{cycles}},\bar n_m)$ for some $\bar n_m^{\text{cycles}}<\bar n_m$ that depends on the polity's $\rho$, and is reclassified as a peace polity for $n_m\ge\bar n_m$. The trap--cycles partition therefore becomes a joint function of $(\rho,n_m)$ in the $(\rho,n_m)$-plane, with the trap region a strictly decreasing function of $n_m$ on $[0,\bar n_m]$.
+
+\subsection*{Result F4 (Cross-state empirical predictions).} The peak vote share $\mathcal V_A^{**}(n_m)$ of the Hawk's modified vote-share function is strictly decreasing in $n_m$ on $[0,\bar n_m)$, falling from $\mathcal V_A^{**}(0)=1-\Phi(-\mathcal H(M^{*}))$ at the baseline to $\mathcal V_A(0;\bar n_m)$ at the corner threshold. Two cross-state empirical implications follow.
+
+\medskip\noindent\textit{(a) Cattle-ban intensity in cross-section.} Conditional on Hawk-party institutional capacity $S_A$ (e.g., BJP organisational depth at the state level), on the Dove's economic comparative advantage $\Delta u$, and on baseline communal-grievance stock $M_0$, the Hawk's optimal symbolic-policy intensity $d_1^{**}(n_m)$ is non-increasing in the local minority share $n_m$ across the partition of Result F2, with the strongest reduction occurring in the upper distortion regime ($n_m$ near $\bar n_m$) and in the corner regime ($d_1^{**}=0$). Across Indian states, the model predicts that BJP cattle-ban intensity should be lower in states with high Muslim population shares (Assam, West Bengal, Kerala, parts of Bihar) than in states with low Muslim shares (the Hindi Belt, Gujarat, Maharashtra), conditional on baseline ban likelihood and BJP organisational capacity.
+
+\medskip\noindent\textit{(b) Inverted-U flattening in cross-section.} The Hawk's vote-share-to-policy mapping $d_1\mapsto\mathcal V_A(M_2(d_1);n_m)$ is flatter (lower peak height, broader peak in $d_1$) in high-$n_m$ states than in low-$n_m$ states. The cross-state heterogeneity in the inverted-U slope and curvature is itself an empirical signature of the minority-enfranchisement channel of this appendix.
+
+These predictions are testable with the state-level Panel~(D)ata already constructed for the empirical analysis of \autoref{sec:empirical_facts}. The natural specification is a state-level regression of cattle-ban intensity on Muslim share, BJP organisational depth, baseline ban likelihood, and electoral-competitiveness controls, with state and year fixed effects. The cross-state heterogeneity in the vote-conflict inverted-U could be tested by interacting Muslim share with the inverted-U regressors of \autoref{fig:security_premium_empirical}. The regression analysis is left to a companion empirical paper because identifying the minority-share channel from electoral-competitiveness and baseline-grievance channels requires instrumental-variable strategies that the present paper's theoretical focus does not develop.
+
+\subsection*{Closed-form specialisation.} For algebraic tractability we specialise to quadratic destruction costs $\chi(d)=(c/2)d^2$ and $\chi_m(d)=(c_m/2)d^2$, and to uniform bias distributions $\nu_i\sim U[-\bar\nu,\bar\nu]$ and $\mu_j\sim U[-\bar\mu,\bar\mu]$. The Hawk's vote share \eqref{eq:VA_oaF} becomes linear in the wedges,
+\begin{equation}\label{eq:VA_uniform_oaF}
+    \mathcal V_A(M;n_m)\;=\;\tfrac12\;+\;(1-n_m)\,\frac{\mathcal H(M)}{2\bar\nu}\;-\;n_m\,\frac{\mathcal G_m(M)}{2\bar\mu}\qquad\text{for }|\mathcal H|\le\bar\nu,\;|\mathcal G_m|\le\bar\mu,
+\end{equation}
+since $1-\Phi(-\mathcal H)=1/2+\mathcal H/(2\bar\nu)$ and $1-\Phi_m(\mathcal G_m)=1/2-\mathcal G_m/(2\bar\mu)$ on the support. The constant densities $\phi=1/(2\bar\nu)$ and $\phi_m=1/(2\bar\mu)$ make the interior FOC algebraic, $(1-n_m)\,\mathcal H'(M_2)/\bar\nu=n_m\,\mathcal G_m'(M_2)/\bar\mu$, equivalently
+\begin{equation}\label{eq:FOC_uniform_oaF}
+    \frac{n_m}{1-n_m}\;=\;\frac{\bar\mu}{\bar\nu}\cdot\frac{\mathcal H'(M_2^{**})}{\mathcal G_m'(M_2^{**})},
+\end{equation}
+which characterises the modified period-1 stock target $M_2^{**}(n_m)$ as the unique solution to a one-dimensional algebraic equation, monotone in $n_m$ on the relevant range. The corner-threshold upper bound \eqref{eq:nbar_upperbound_oaF} simplifies under uniform bias to
+\begin{equation}\label{eq:nbar_uniform_oaF}
+    \bar n_m\;\le\;\widetilde n_m\;\equiv\;\frac{\bar\mu\,[\mathcal H(M^{*})-\mathcal H(0)]}{\bar\mu\,[\mathcal H(M^{*})-\mathcal H(0)]\;+\;\bar\nu\,[\mathcal G_m(M^{*})-\mathcal G_m(0)]},
+\end{equation}
+explicit in the primitive density bounds $(\bar\nu,\bar\mu)$ and the value differences of the majority and minority wedges between the dormant baseline ($M=0$) and the peak-shift threshold ($M=M^{*}$). The majority value gain $\mathcal H(M^{*})-\mathcal H(0)>0$ is the per-cycle Hawk vote-share lift from operating at the inverted-U peak. The minority value loss $\mathcal G_m(M^{*})-\mathcal G_m(0)>0$ (under (PC$''$)) is the additional minority anti-Hawk swing the Hawk faces at $M^{*}$ relative to the dormant baseline. The bound $\widetilde n_m$ is tight to leading order in $n_m$ (it equals the threshold when $\bar n_m\le\bar n_m^{(1)}$, i.e., when the distortion regime is narrow). The threshold's primitive content is the relative magnitude of $\bar\mu/\bar\nu$ (the minority's bias dispersion relative to the majority's) interacting with the wedge value gains.
+
+The interior optimum $M_2^{**}(n_m)$ is monotone increasing in $\bar\mu/\bar\nu$ (relatively dispersed minority bias makes the minority less responsive at the margin, allowing the Hawk to push provocation further), monotone decreasing in $n_m$ once $n_m$ enters the distortion regime (approaching the corner threshold), and identically equal to $M^{*}$ at $n_m=0$. The trap--cycles threshold $\bar\rho^{**}(n_m)$ inherits the same monotonicity through the iterated stationary best-reply.
+
+\subsection*{Discussion.} The previous version of this appendix maintained an electoral non-pivotality bound $n_m<n_m^{\dagger}$ that excluded the empirically relevant case of states with substantial minority shares. Result F2 above subsumes that previous treatment as the small-$n_m$ regime $n_m\in[0,\bar n_m^{(1)}]$. The perturbative bound \eqref{eq:perturb_bound_oaF} is the analogue of the magnitude bound $|d_1^{**}-d_1^{*}|=O(n_m)$ derived under non-pivotality, and Result F3 in the same regime gives $|\bar\rho^{**}-\bar\rho|=O(n_m)$. The substantive content of the present appendix is Results F2(ii)--(iii), F3, and F4: the distortion and corner regimes that emerge at moderate-to-large $n_m$, the endogenous fragility of the trap basin, and the cross-state empirical predictions on the joint distribution of minority share and Hawk-party behaviour. These results depend on the maintained primitive condition (PC), which makes explicit the dependence on the relative magnitudes of $(\lambda_m,\chi_m')$ that was implicit in the previous version.
+
+The orthogonality of the contest channel (Result F1) and the electoral channel (Results F2--F4) means that the IC argument of Online Appendix~\ref{oa:strategic_minority} closes the within-period mobilisation problem regardless of $n_m$, and the electoral-channel analysis builds on top of the unchanged within-period equilibrium. The minority's two strategic margins (within-period mobilisation effort and between-period vote) are therefore separately addressed: the first is closed by collective-action incentive-compatibility, and the second is characterised by the three-regime partition of Result F2 and the trap-fragility partition of Result F3.
+
+\subsection*{Remark on the form of minority resistance.} A natural further extension would endogenise the minority's choice of resistance form, including electoral voice (this appendix), within-period mobilisation effort (the contest of \autoref{sec:block1} and Online Appendix~\ref{oa:strategic_minority}), and unmodelled categories such as exit, judicial challenge, and extra-systemic disruption. Such an endogenisation requires additional structure on $\chi_m$, on the contest cost $\kappa$, and on the minority's capacity to substitute across action menus, and it changes the equilibrium concept from a within-group population game to a multi-instrument leader--follower problem. The exercise lies beyond the scope of the present paper and is deferred to a companion note.
+
+%===================================================================================
+% APPENDIX G: Microfoundations of the Additive Stake
+%===================================================================================
+
+\section{Microfoundations of the Additive Stake}\label{oa:stake_micro}
+
+The additive form $\hat d^\sigma=d^\sigma+\xi M$ of \eqref{eq:dhat_v3} is the natural decomposition of two independent grievance sources, inherited organisational capital and fresh policy shock. This appendix provides three independent microfoundations of the additive form and a CES generalisation showing that the qualitative results of the paper survive under more general aggregation.
+
+\subsection*{Microfoundation G1 (Organisational capital).} The minority's mobilisation decision depends on a perceived stake. Inherited identity-based networks $M$ supply a baseline mobilisation capacity that does not vanish overnight: each period of activated contest builds protest infrastructure, communal media, legal-advocacy organisations, and vigil committees that provide a fixed contribution $\xi M$ to the perceived stake. Fresh policy $d^\sigma$ adds an independent grievance shock that scales by the elasticity $\sigma$. Total perceived stake = sum of independent contributions = $d^\sigma+\xi M$. This is the working narrative used throughout the main text.
+
+\subsection*{Microfoundation G2 (Bayesian belief).} The additive form also emerges as the closed-form Bayesian posterior expectation of regime grievance intensity under standard Normal--Normal updating with an endogenous prior anchor. Suppose the minority's prior on regime intent is $\theta_t\mid M_t\sim\mathcal N(M_t,\tau_M^{-1})$ with $\tau_M>0$, and the public signal is $s_t=d_t^\sigma+\epsilon_t$ with $\epsilon_t\sim\mathcal N(0,\tau_d^{-1})$ i.i.d. and $\tau_d>0$. By standard conjugate-updating arguments, the posterior expectation is $E[\theta_t\mid s_t,M_t]=(1-w)M_t+w\,d_t^\sigma$ with signal weight $w=\tau_d/(\tau_M+\tau_d)\in(0,1)$ (distinct from the salience shock $\omega$ of the main text), and rescaling by $1/w$ gives $\hat d^\sigma=d^\sigma+\xi M$ with $\xi=\tau_M/\tau_d$. The minority's effective stake is the posterior expectation of regime grievance intensity, scaled by the signal weight.
+
+\subsection*{Microfoundation G3 (Adaptive learning).} A learning interpretation gives the additive form as the perceived hostility of the regime under a fictitious-play learning rule. Suppose the minority's perceived regime hostility is updated period-by-period as $\theta_{t+1}=(1-\eta)\theta_t+\eta\,(\xi M_t+d_t^\sigma)$ for some learning rate $\eta\in(0,1)$. The steady-state perceived hostility under any constant policy and stock is $\theta^*=\xi M+d^\sigma=\hat d^\sigma$. The additive form is the rest point of the learning dynamic.
+
+The three microfoundations are not mutually exclusive: each captures a different aspect of why the minority's perceived stake aggregates inherited and current grievance additively. The paper uses the organisational reading as the working narrative and treats the additive form as a primitive.
+
+\subsection*{CES generalisation and robustness.} A natural generalisation of the additive form, which nests it as a special case while preserving the role of the stock-stake elasticity $\xi$, is the CES aggregator with exponent $\psi$ (distinct from the depreciation rate $\rho$ of the main text)
+\begin{equation}\label{eq:CES_oa}
+    \hat d^\sigma\;=\;\big((\xi M)^\psi+(d^\sigma)^\psi\big)^{1/\psi},\qquad \psi\in[1,\infty],
+\end{equation}
+which nests the additive form ($\psi=1$, recovering $\hat d^\sigma=\xi M+d^\sigma$) and the maximum form ($\psi\to\infty$, recovering $\hat d^\sigma=\max\{\xi M,d^\sigma\}$). For $\psi<1$ the unnormalised CES diverges and the normalisation needed to obtain a geometric-mean limit at $\psi\to 0$ would alter the calibration of $\xi$; I therefore restrict attention to $\psi\ge 1$. The qualitative results of the paper survive any $\psi\in[1,\infty]$:
+
+\medskip\noindent\textbf{Single-peakedness of the security premium.} The security premium $\Delta\Pi$ depends on $\hat d^\sigma$ only through $h(\hat d^{\sigma/2})$, where $h$ is the function from the proof of \autoref{lem:invU_v3}. For any $\psi\in[1,\infty]$, $\hat d^\sigma$ is continuous, strictly increasing in both $d$ and $M$ separately, and ranges over $[0,\infty)$ as $d$ varies over $[0,\infty)$ at any fixed $M\ge 0$. The composition $h(\hat d^{\sigma/2})$ is therefore single-peaked in $d$ at the value where $\hat d^{\sigma/2}=\alpha\sqrt{S_A S_B}$, with peak value $(\sqrt{S_A}-\sqrt{S_B})/(\sqrt{S_A}+\sqrt{S_B})$ unchanged from the additive case.
+
+\medskip\noindent\textbf{Migrating-peak property.} The peak in $d$ occurs at the unique $d^{\mathrm{peak}}(M)$ solving $\hat d^\sigma=\alpha^2 S_A S_B$, i.e.\ $((\xi M)^\psi+(d^\sigma)^\psi)^{1/\psi}=\alpha^2 S_A S_B$. As $M$ rises, the right-hand-side constraint becomes binding at smaller $d$, so $d^{\mathrm{peak}}(M)$ decreases in $M$ and reaches the corner $d^{\mathrm{peak}}(M)=0$ exactly when $(\xi M)^\psi=(\alpha^2 S_A S_B)^\psi$, equivalently at the threshold
+\begin{equation}\label{eq:CES_threshold}
+    M^*_{\mathrm{CES}}(\psi)\;=\;\alpha^2 S_A S_B/\xi,
+\end{equation}
+which is independent of $\psi$ and matches the additive-case threshold of \autoref{lem:invU_v3} exactly. The peak-shift threshold is therefore a property of the contest geometry ($\alpha$, $S_A$, $S_B$, $\xi$) rather than of the aggregation form; only the shape of the peak-location curve $d^{\mathrm{peak}}(M)$ depends on $\psi$.
+
+\medskip\noindent\textbf{Paradox of restraint.} For $M\ge M^*_{\mathrm{CES}}(\psi)=\alpha^2 S_A S_B/\xi$, the Hawk's optimal symbolic policy is the corner $d_A^*(M)=0$ for any $\psi\in[1,\infty]$, since further provocation moves $\hat d^{\sigma/2}$ into the decreasing branch of $h$ while continuing to increase $\chi$.
+
+The additive form ($\psi=1$) is the algebraically cleanest and rests on the most natural microfoundation of independent grievance aggregation; the qualitative content of the paper does not depend on this specific choice within the family $\psi\in[1,\infty]$.
+
+
+\bibliographystyle{aer}
+\bibliography{../ref}
+
+\end{document}
